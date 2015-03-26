@@ -1,0 +1,39 @@
+{
+  "name": "credit-card-type",
+  "version": "0.0.1",
+  "description": "A library for determining credit card type",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp lint && mocha test/**/*.js",
+    "build": "gulp build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^6.1.0",
+    "chai": "^2.1.2",
+    "del": "^1.1.0",
+    "gulp": "^3.8.8",
+    "gulp-eslint": "^0.6.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-size": "^1.1.0",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^1.0.2",
+    "gulp-watch": "^0.6.8",
+    "karma": "^0.12.31",
+    "karma-browserify": "^4.0.0",
+    "karma-chai-sinon": "^0.1.4",
+    "karma-es5-shim": "0.0.4",
+    "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "mocha": "^2.2.1",
+    "phantomjs": "^1.9.16",
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "dependencies": {
+    "lodash.clonedeep": "^3.0.0",
+    "lodash.isstring": "^3.0.1"
+  }
+}
