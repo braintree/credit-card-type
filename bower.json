@@ -1,0 +1,30 @@
+{
+  "name": "credit-card-type",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/braintree/credit-card-type",
+  "authors": [
+    "braintree <code@getbraintree.com>"
+  ],
+  "description": "A library for determining credit card type",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "credit",
+    "card",
+    "type",
+    "visa",
+    "amex",
+    "mastercard",
+    "discover"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
