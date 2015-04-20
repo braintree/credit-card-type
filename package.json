@@ -7,6 +7,11 @@
     "test": "gulp lint && mocha test/**/*.js",
     "build": "gulp build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:braintree/credit-card-type"
+  },
+  "homepage": "https://github.com/braintree/credit-card-type",
   "author": "",
   "license": "MIT",
   "devDependencies": {
