@@ -23,7 +23,7 @@ console.log(card.type); // 'visa'
 
 | Key | Value | Description |
 | --- | ----- | ----------- |
-| `niceType` | `String` | A pretty printed represention of the card brand.<br/>- `Visa`<br />- `MasterCard`<br />- `American Express`<br />- `DinersClub`<br />- `Discover`<br />- `JCB` |
+| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `MasterCard`<br />- `American Express`<br />- `DinersClub`<br />- `Discover`<br />- `JCB` |
 | `type` | `String` | A code-friendly presentation of the card brand (useful to class names in CSS).<br/>- `visa`<br />- `master-card`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb` |
 | `pattern` | `RegExp` | The regular expression used to determine the card type. |
 | `gaps` | `Array` | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules. |
