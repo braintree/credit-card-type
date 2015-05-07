@@ -37,6 +37,11 @@ describe('getCardType', function () {
       ['6011111111111117', 'discover'],
       ['6011000990139424', 'discover'],
 
+      ['6221558812340000', 'unionpay'],
+      ['6269992058134322', 'unionpay'],
+
+      ['6304000000000000', 'maestro'],
+
       ['3530111333300000', 'jcb'],
       ['3566002020360505', 'jcb']
     ];
@@ -75,8 +80,34 @@ describe('getCardType', function () {
       expect(getCardType('30569309025904').code.name).to.equal('CVV');
     });
     it('DinersClub', function () {
-      expect(getCardType('3530111333300000').code.size).to.equal(3);
-      expect(getCardType('3530111333300000').code.name).to.equal('CVV');
+      expect(getCardType('30569309025904').code.size).to.equal(3);
+      expect(getCardType('30569309025904').code.name).to.equal('CVV');
+    });
+    it('UnionPay', function () {
+      expect(getCardType('6221558812340000').code.size).to.equal(3);
+      expect(getCardType('6221558812340000').code.name).to.equal('CVN');
+    });
+    it('Maestro', function () {
+      expect(getCardType('6304000000000000').code.size).to.equal(3);
+      expect(getCardType('6304000000000000').code.name).to.equal('CVC');
+    });
+  });
+
+  describe('returns lengths for', function () {
+    it('maestro', function () {
+      expect(getCardType('63').lengths).to.deep.equal([12,13,14,15,16,17,18,19]);
+    });
+    it('diners club', function () {
+      expect(getCardType('305').lengths).to.deep.equal([14]);
+    });
+    it('discover', function () {
+      expect(getCardType('6011').lengths).to.deep.equal([16]);
+    });
+    it('visa', function () {
+      expect(getCardType('4').lengths).to.deep.equal([16]);
+    });
+    it('mastercard', function () {
+      expect(getCardType('54').lengths).to.deep.equal([16]);
     });
   });
 

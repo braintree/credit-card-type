@@ -21,13 +21,13 @@ console.log(card.type); // 'visa'
 
 `getCardType` will return an Object with the following data:
 
-| Key | Value | Description |
-| --- | ----- | ----------- |
-| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `MasterCard`<br />- `American Express`<br />- `DinersClub`<br />- `Discover`<br />- `JCB` |
+| Key | Type | Description |
+| --- | ---- | ----------- |
+| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `MasterCard`<br />- `American Express`<br />- `DinersClub`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro` |
 | `type` | `String` | A code-friendly presentation of the card brand (useful to class names in CSS).<br/>- `visa`<br />- `master-card`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb` |
 | `pattern` | `RegExp` | The regular expression used to determine the card type. |
 | `gaps` | `Array` | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules. |
-| `length` | `Integer` | The expected length of the card number string (excluding spaces and `/` characters). |
+| `lengths` | `Array` | The expected lengths of the card number as an array of strings (excluding spaces and `/` characters). |
 | `code` | `Object` | The information regarding the security code for the determined card. Learn more about the [code object](#code) below. |
 
 #### `code`
@@ -42,6 +42,8 @@ Card brands provide different nomenclature for their security codes as well as v
 | `DinersClub` | `CVV` | 3 |
 | `Discover` | `CID` | 3 |
 | `JCB` | `CVV` | 3 |
+| `UnionPay` | `CVN` | 3 |
+| `Maestro` | `CVC` | 3 |
 
 A full response for a `Visa` card will look like this:
 
@@ -51,7 +53,7 @@ A full response for a `Visa` card will look like this:
   type: 'visa',
   pattern: '^4[0-9][\\s\\d]*$',
   gaps: [ 4, 8, 12 ],
-  length: 16,
+  lengths: [16],
   code: { name: 'CVV', size: 3 }
 }
 ```
