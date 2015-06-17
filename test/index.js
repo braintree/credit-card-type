@@ -52,6 +52,7 @@ describe('getCardType', function () {
       ['647', 'discover'],
       ['648', 'discover'],
       ['649', 'discover'],
+      ['6011000400000000', 'discover'],
       ['6011111111111117', 'discover'],
       ['6011000990139424', 'discover'],
 
