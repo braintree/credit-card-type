@@ -32,7 +32,9 @@ describe('getCardType', function () {
       ['5555555555554444', 'master-card'],
       ['5454545454545454', 'master-card'],
 
+      ['34', 'american-express'],
       ['37', 'american-express'],
+      ['34343434343434', 'american-express'],
       ['378282246310005', 'american-express'],
       ['371449635398431', 'american-express'],
       ['378734493671000', 'american-express'],
