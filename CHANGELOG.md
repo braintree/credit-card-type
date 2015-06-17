@@ -1,3 +1,8 @@
+3.0.0
+=====
+
+- Resolve ambiguity issues with Maestro and Discover cards
+
 2.0.0
 =====
 
