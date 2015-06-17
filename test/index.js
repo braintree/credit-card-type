@@ -39,6 +39,7 @@ describe('getCardType', function () {
       ['371449635398431', 'american-express'],
       ['378734493671000', 'american-express'],
 
+      ['300', 'diners-club'],
       ['30569309025904', 'diners-club'],
       ['38520000023237', 'diners-club'],
       ['36700102000000', 'diners-club'],
