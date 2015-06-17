@@ -101,12 +101,20 @@ describe('getCardType', function () {
 
   describe('unknown card types', function () {
     var unknowns = [
+      '0',
+      '1',
+      '2',
       '3',
+      '30',
+      '306',
       '5',
       '6',
       '60',
       '601',
-      '64'
+      '64',
+      '7',
+      '8',
+      '9'
     ];
 
     unknowns.forEach(function (unknown) {
