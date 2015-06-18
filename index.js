@@ -16,7 +16,7 @@ var types = [
   {
     niceType: 'MasterCard',
     type: 'master-card',
-    pattern: '^5[1-5]\\d*$',
+    pattern: '^5([1-5]\\d*)?$',
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
@@ -27,7 +27,7 @@ var types = [
   {
     niceType: 'American Express',
     type: 'american-express',
-    pattern: '^3[47]\\d*$',
+    pattern: '^3([47]\\d*)?$',
     isAmex: true,
     gaps: [4, 10],
     lengths: [15],
@@ -39,7 +39,7 @@ var types = [
   {
     niceType: 'DinersClub',
     type: 'diners-club',
-    pattern: '^3(0[0-5]|[689])\\d*$',
+    pattern: '^3((0([0-5]\\d*)?)|[689]\\d*)?$',
     gaps: [4, 10],
     lengths: [14],
     code: {
@@ -50,7 +50,7 @@ var types = [
   {
     niceType: 'Discover',
     type: 'discover',
-    pattern: '^6(011|5|4[4-9])\\d*$',
+    pattern: '^6(0|01|011\\d*|5\\d*|4|4[4-9]\\d*)?$',
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
@@ -61,7 +61,7 @@ var types = [
   {
     niceType: 'JCB',
     type: 'jcb',
-    pattern: '^(2131|1800|35)\\d*$',
+    pattern: '^((2|21|213|2131\\d*)|(1|18|180|1800\\d*)|(3|35\\d*))$',
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
@@ -72,7 +72,7 @@ var types = [
   {
     niceType: 'UnionPay',
     type: 'unionpay',
-    pattern: '^62\\d*$',
+    pattern: '^6(2\\d*)?$',
     gaps: [4, 8, 12],
     lengths: [16, 17, 18, 19],
     code: {
@@ -83,7 +83,7 @@ var types = [
   {
     niceType: 'Maestro',
     type: 'maestro',
-    pattern: '^(50|5[6-9]|60\\d{2}|61|63|64\\d|6[6-9])\\d*$',
+    pattern: '^((5((0|[6-9])\\d*)?)|(6|6[13]\\d*|64([0-3]\\d*)?|6[6-9]\\d*|60|601|601[^1]\\d*))$',
     gaps: [4, 8, 12],
     lengths: [12, 13, 14, 15, 16, 17, 18, 19],
     code: {
@@ -94,18 +94,18 @@ var types = [
 ];
 
 module.exports = function getCardType(cardNumber) {
-  var key, value;
-  var noMatch = {};
+  var i, value;
+  var result = [];
 
-  if (!isString(cardNumber)) { return noMatch; }
+  if (!isString(cardNumber)) { return result; }
 
-  for (key in types) {
-    if (!types.hasOwnProperty(key)) { continue; }
+  for (i = 0; i < types.length; i++) {
+    value = types[i];
 
-    value = types[key];
-
-    if (RegExp(value.pattern).test(cardNumber)) { return clone(value); }
+    if (RegExp(value.pattern).test(cardNumber)) {
+      result.push(clone(value));
+    }
   }
 
-  return noMatch;
+  return result;
 };
