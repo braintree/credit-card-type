@@ -1,5 +1,5 @@
-unreleased
-==========
+4.0.0
+=====
 
 - Further resolve ambiguity issues with various cards; return an array of potential card types instead of a single type
 
