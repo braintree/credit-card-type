@@ -93,7 +93,7 @@ var types = [
   }
 ];
 
-module.exports = function getCardType(cardNumber) {
+module.exports = function getCardTypes(cardNumber) {
   var i, value;
   var result = [];
 
