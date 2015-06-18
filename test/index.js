@@ -78,7 +78,6 @@ describe('getCardType', function () {
       ['6304000000000000', 'maestro'],
       ['6799990100000000019', 'maestro'],
 
-
       ['1', 'jcb'],
       ['2', 'jcb'],
       ['35', 'jcb'],
@@ -106,7 +105,10 @@ describe('getCardType', function () {
     var ambiguous = [
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['master-card', 'maestro']],
-      ['6', ['discover', 'maestro', 'unionpay']]
+      ['6', ['discover', 'maestro', 'unionpay']],
+      ['60', ['discover', 'maestro']],
+      ['601', ['discover', 'maestro']],
+      ['64', ['discover', 'maestro']]
         /// TODO MORE OF THESE
       // '30',
       // '306',
