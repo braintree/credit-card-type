@@ -8,18 +8,23 @@ This library is designed for type-as-you-go detection (supports partial numbers)
 ## Example
 
 ```javascript
-var getCardType = require('credit-card-type');
+var getCardTypes = require('credit-card-type');
 
-var card = getCardType('4111');
+var visaCards = getCardTypes('4111');
+console.log(visaCards[0].type);  // 'visa'
 
-console.log(card.type); // 'visa'
+var ambiguousCards = getCardTypes('6');
+console.log(ambiguousCards.length);       // 3
+console.log(ambiguousCards[0].niceType);  // 'Discover'
+console.log(ambiguousCards[1].niceType);  // 'UnionPay'
+console.log(ambiguousCards[2].niceType);  // 'Maestro'
 ```
 
 ## API
 
-### `getCardType(number: String)`
+### `getCardTypes(number: String)`
 
-`getCardType` will return an Object with the following data:
+`getCardTypes` will return an array of objects, each with the following data:
 
 | Key | Type | Description |
 | --- | ---- | ----------- |
@@ -29,6 +34,8 @@ console.log(card.type); // 'visa'
 | `gaps` | `Array` | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules. |
 | `lengths` | `Array` | The expected lengths of the card number as an array of strings (excluding spaces and `/` characters). |
 | `code` | `Object` | The information regarding the security code for the determined card. Learn more about the [code object](#code) below. |
+
+If no card types are found, this returns an empty array.
 
 #### `code`
 
