@@ -99,6 +99,8 @@ module.exports = function getCardType(cardNumber) {
 
   if (!isString(cardNumber)) { return result; }
 
+  if (cardNumber === '') { return clone(types); }
+
   for (i = 0; i < types.length; i++) {
     value = types[i];
 

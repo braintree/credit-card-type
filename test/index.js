@@ -2,12 +2,11 @@ var expect = require('chai').expect;
 var getCardType = require('../index');
 
 describe('getCardType', function () {
-
-  it('returns an empty array if passed nothing', function () {
+  it('returns an empty array if passed non-strings', function () {
     expect(getCardType()).to.deep.equal([]);
-  });
-
-  it('returns an empty array if passed garbage', function () {
+    expect(getCardType(null)).to.deep.equal([]);
+    expect(getCardType(true)).to.deep.equal([]);
+    expect(getCardType(false)).to.deep.equal([]);
     expect(getCardType('ren hoek')).to.deep.equal([]);
     expect(getCardType(3920342)).to.deep.equal([]);
     expect(getCardType([])).to.deep.equal([]);
@@ -106,6 +105,7 @@ describe('getCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
+      ['', ['visa', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['master-card', 'maestro']],
       ['6', ['discover', 'maestro', 'unionpay']]
