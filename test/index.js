@@ -202,7 +202,7 @@ describe('getCardType', function () {
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVV');
     });
-    it('DinersClub', function () {
+    it('Diners Club', function () {
       var code = getCardType('30569309025904')[0].code;
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVV');
@@ -223,7 +223,7 @@ describe('getCardType', function () {
     it('Maestro', function () {
       expect(getCardType('6304000000000000')[0].lengths).to.deep.equal([12,13,14,15,16,17,18,19]);
     });
-    it('DinersClub', function () {
+    it('Diners Club', function () {
       expect(getCardType('305')[0].lengths).to.deep.equal([14]);
     });
     it('Discover', function () {
