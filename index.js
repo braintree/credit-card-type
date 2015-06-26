@@ -37,7 +37,7 @@ var types = [
     }
   },
   {
-    niceType: 'DinersClub',
+    niceType: 'Diners Club',
     type: 'diners-club',
     pattern: '^3((0([0-5]\\d*)?)|[689]\\d*)?$',
     gaps: [4, 10],
