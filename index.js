@@ -1,5 +1,5 @@
-var isString = require('lodash.isstring');
-var clone = require('lodash.clonedeep');
+var isString = require('lodash/lang/isString');
+var clone = require('lodash/lang/cloneDeep');
 
 var types = [
   {
