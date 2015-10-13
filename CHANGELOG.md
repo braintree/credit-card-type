@@ -1,3 +1,8 @@
+4.0.1
+=====
+
+- Switch to one version of Lodash
+
 4.0.0
 =====
 
