@@ -29,8 +29,5 @@
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
     "vinyl-source-stream": "^1.0.0"
-  },
-  "dependencies": {
-    "lodash": "3.10.1"
   }
 }

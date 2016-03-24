@@ -2,13 +2,14 @@ var expect = require('chai').expect;
 var getCardType = require('../index');
 
 describe('getCardType', function () {
-  it('returns an empty array if passed non-strings', function () {
+  it('returns an empty array if no matches', function () {
     expect(getCardType()).to.deep.equal([]);
+    expect(getCardType(undefined)).to.deep.equal([]);
+    expect(getCardType('')).to.deep.equal([]);
     expect(getCardType(null)).to.deep.equal([]);
     expect(getCardType(true)).to.deep.equal([]);
     expect(getCardType(false)).to.deep.equal([]);
     expect(getCardType('ren hoek')).to.deep.equal([]);
-    expect(getCardType(3920342)).to.deep.equal([]);
     expect(getCardType([])).to.deep.equal([]);
     expect(getCardType({})).to.deep.equal([]);
   });
@@ -105,7 +106,6 @@ describe('getCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['master-card', 'maestro']],
       ['6', ['discover', 'maestro', 'unionpay']]
@@ -242,9 +242,21 @@ describe('getCardType', function () {
     expect(getCardType(number)[0].type).to.equal('visa');
   });
 
+  it('works for Number objects', function () {
+    var number = new Number('4111111111111111');
+    expect(getCardType(number)[0].type).to.equal('visa');
+  });
+
   it('preserves integrity of returned values', function () {
     var result = getCardType('4111111111111111');
     result.type = 'whaaaaaat';
+    expect(result.type).to.equal('whaaaaaat');
     expect(getCardType('4111111111111111')[0].type).to.equal('visa');
+  });
+
+  it('numbers work as expected', function () {
+    var test = getCardType(4111);
+    expect(test.length).to.equal(1);
+    expect(test[0].type).to.equal('visa');
   });
 });

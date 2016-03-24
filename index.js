@@ -1,6 +1,3 @@
-var isString = require('lodash/lang/isString');
-var clone = require('lodash/lang/cloneDeep');
-
 var types = [
   {
     niceType: 'Visa',
@@ -97,15 +94,11 @@ module.exports = function getCardTypes(cardNumber) {
   var i, value;
   var result = [];
 
-  if (!isString(cardNumber)) { return result; }
-
-  if (cardNumber === '') { return clone(types); }
-
   for (i = 0; i < types.length; i++) {
     value = types[i];
 
-    if (RegExp(value.pattern).test(cardNumber)) {
-      result.push(clone(value));
+    if (new RegExp(value.pattern).test(cardNumber)) {
+      result.push(value);
     }
   }
 
