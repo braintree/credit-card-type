@@ -1,5 +1,6 @@
 var isString = require('lodash/lang/isString');
 var clone = require('lodash/lang/cloneDeep');
+var range = require('lodash/utility/range');
 
 var types = [
   {
@@ -50,7 +51,7 @@ var types = [
   {
     niceType: 'Discover',
     type: 'discover',
-    pattern: '^6(0|01|011\\d*|5\\d*|4|4[4-9]\\d*)?$',
+    pattern: discoverPattern(),
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
@@ -111,3 +112,19 @@ module.exports = function getCardTypes(cardNumber) {
 
   return result;
 };
+
+function unionPayAndDiscoverPattern() {
+  var firstPatternBins = range(622126, 622925 + 1);
+  var firstPattern = '^(' + firstPatternBins.join('|') + ')\\d{10,13}$';
+  var secondPattern = '^(62[4-6])\\d{13,16}$';
+  var thirdPattern = '^(628[2-9])\\d{12,15}$';
+  return [firstPattern, secondPattern, thirdPattern].join('|');
+}
+
+function nonUnionPayAndDiscoverPattern() {
+  return '(^6(0|01|011\\d*|5\\d*|4|4[4-9]\\d*)?$)';
+}
+
+function discoverPattern() {
+  return [unionPayAndDiscoverPattern(), nonUnionPayAndDiscoverPattern()].join('|');
+}
