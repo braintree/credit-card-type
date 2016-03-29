@@ -254,7 +254,7 @@ describe('getCardType', function () {
       expect(getCardType('305')[0].lengths).to.deep.equal([14]);
     });
     it('Discover', function () {
-      expect(getCardType('6011')[0].lengths).to.deep.equal([16]);
+      expect(getCardType('6011')[0].lengths).to.deep.equal([16, 19]);
     });
     it('Visa', function () {
       expect(getCardType('4')[0].lengths).to.deep.equal([16]);
