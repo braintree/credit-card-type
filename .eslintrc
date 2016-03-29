@@ -62,7 +62,6 @@
     no-empty-label: 2
     no-eq-null: 0
     no-eval: 2
-    no-native-reassign: 2
     no-extra-bind: 2
     no-fallthrough: 2
     no-floating-decimal: 2

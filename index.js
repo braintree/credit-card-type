@@ -50,9 +50,9 @@ var types = [
   {
     niceType: 'Discover',
     type: 'discover',
-    pattern: '^6(0|01|011\\d*|5\\d*|4|4[4-9]\\d*)?$',
+    pattern: discoverPattern(),
     gaps: [4, 8, 12],
-    lengths: [16],
+    lengths: [16, 19],
     code: {
       name: 'CID',
       size: 3
@@ -111,3 +111,24 @@ module.exports = function getCardTypes(cardNumber) {
 
   return result;
 };
+
+function unionPayAndDiscoverPattern() {
+  var i, firstPattern, secondPattern, thirdPattern;
+  var firstPatternBins = [];
+
+  for (i = 622126; i <= 622925; i++) { firstPatternBins.push(i); }
+
+  firstPattern = '^(' + firstPatternBins.join('|') + ')\\d*$';
+  secondPattern = '^(62[4-6])\\d*$';
+  thirdPattern = '^(628[2-9])\\d*$';
+
+  return [firstPattern, secondPattern, thirdPattern].join('|');
+}
+
+function nonUnionPayAndDiscoverPattern() {
+  return '(^6(0|01|011\\d*|5\\d*|4|4[4-9]\\d*)?$)';
+}
+
+function discoverPattern() {
+  return [unionPayAndDiscoverPattern(), nonUnionPayAndDiscoverPattern()].join('|');
+}
