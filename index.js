@@ -93,6 +93,19 @@ var types = [
   }
 ];
 
+var matchRegex = (function matchRegex() {
+  var i, value;
+  var result = {};
+
+  for (i = 0; i < types.length; i++) {
+    value = types[i];
+
+    result[value.type] = new RegExp(value.pattern);
+  }
+
+  return result;
+})();
+
 module.exports = function getCardTypes(cardNumber) {
   var i, value;
   var result = [];
@@ -104,7 +117,7 @@ module.exports = function getCardTypes(cardNumber) {
   for (i = 0; i < types.length; i++) {
     value = types[i];
 
-    if (RegExp(value.pattern).test(cardNumber)) {
+    if (matchRegex[value.type].test(cardNumber)) {
       result.push(clone(value));
     }
   }
