@@ -270,7 +270,7 @@ describe('getCardType', function () {
   });
 
   it('preserves integrity of returned values', function () {
-    var result = getCardType('4111111111111111');
+    var result = getCardType('4111111111111111')[0];
     result.type = 'whaaaaaat';
     expect(getCardType('4111111111111111')[0].type).to.equal('visa');
   });
