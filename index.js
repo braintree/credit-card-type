@@ -16,7 +16,7 @@ var types = [
   {
     niceType: 'MasterCard',
     type: 'master-card',
-    pattern: '^5([1-5]\\d*)?$',
+    pattern: '(^5([1-5]\\d*)?$)|(^2((22[1-9]\\d*)|([3-6]\\d*)|(7[0-1]\\d*)|(720\\d*))$)',
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
