@@ -7,8 +7,6 @@ var streamify = require('gulp-streamify');
 var size = require('gulp-size');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var watch = require('gulp-watch');
-var eslint = require('gulp-eslint');
 var del = require('del');
 
 var config = {
@@ -22,16 +20,10 @@ var config = {
       min: 'app.built.min.js'
     }
   },
-  dist: { js: 'dist/js' }
+  dist: {js: 'dist/js'}
 };
 
-gulp.task('lint', function () {
-  gulp.src([config.src.js.main])
-  .pipe(eslint())
-  .pipe(eslint.format());
-});
-
-gulp.task('js', ['lint'], function () {
+gulp.task('js', function () {
   return browserify(config.src.js.main)
     .bundle()
     .pipe(source(config.src.js.output))
@@ -48,7 +40,7 @@ gulp.task('watch', ['js'], function () {
 });
 
 gulp.task('clean', function (done) {
-  del([ config.dist.js ], done);
+  del([config.dist.js], done);
 });
 
 gulp.task('build', ['clean', 'js']);

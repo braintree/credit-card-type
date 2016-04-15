@@ -1,3 +1,5 @@
+'use strict';
+
 var expect = require('chai').expect;
 var getCardType = require('../index');
 
@@ -103,8 +105,7 @@ describe('getCardType', function () {
       ['6289000000000000000', ['discover', 'unionpay']],
       ['6221558812340000', ['discover', 'unionpay']],
       ['6269992058134322', ['discover', 'unionpay']]
-    ]
-
+    ];
 
     tests.forEach(function (test) {
       var number = test[0];
@@ -112,6 +113,7 @@ describe('getCardType', function () {
 
       it('returns type ' + type + ' for ' + number, function () {
         var actual = getCardType(number);
+
         expect(actual).to.have.lengthOf(1);
         expect(actual[0].type).to.equal(type);
       });
@@ -123,6 +125,7 @@ describe('getCardType', function () {
 
       it('returns type ' + types.join(', ') + ' for ' + number, function () {
         var actual = getCardType(number);
+
         expect(actual).to.have.lengthOf(2);
         expect(actual[0].type).to.equal(types[0]);
         expect(actual[1].type).to.equal(types[1]);
@@ -146,6 +149,7 @@ describe('getCardType', function () {
         var actualNames = getCardType(number).map(function (type) {
           return type.type;
         }).sort();
+
         expect(expectedNames).to.deep.equal(actualNames);
       });
     });
@@ -206,41 +210,56 @@ describe('getCardType', function () {
   describe('returns security codes for', function () {
     it('MasterCard', function () {
       var code = getCardType('5454545454545454')[0].code;
+
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVC');
     });
+
     it('Visa', function () {
       var code = getCardType('4111111111111111')[0].code;
+
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVV');
     });
+
     it('American Express', function () {
       var code = getCardType('378734493671000')[0].code;
+
       expect(code.size).to.equal(4);
       expect(code.name).to.equal('CID');
     });
+
     it('Discover', function () {
       var code = getCardType('6011000990139424')[0].code;
+
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CID');
     });
+
     it('JCB', function () {
       var code = getCardType('30569309025904')[0].code;
+
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVV');
     });
+
     it('Diners Club', function () {
       var code = getCardType('30569309025904')[0].code;
+
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVV');
     });
+
     it('UnionPay', function () {
       var code = getCardType('6220558812340000')[0].code;
+
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVN');
     });
+
     it('Maestro', function () {
       var code = getCardType('6304000000000000')[0].code;
+
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVC');
     });
@@ -248,7 +267,7 @@ describe('getCardType', function () {
 
   describe('returns lengths for', function () {
     it('Maestro', function () {
-      expect(getCardType('6304000000000000')[0].lengths).to.deep.equal([12,13,14,15,16,17,18,19]);
+      expect(getCardType('6304000000000000')[0].lengths).to.deep.equal([12, 13, 14, 15, 16, 17, 18, 19]);
     });
     it('Diners Club', function () {
       expect(getCardType('305')[0].lengths).to.deep.equal([14]);
@@ -265,12 +284,14 @@ describe('getCardType', function () {
   });
 
   it('works for String objects', function () {
-    var number = new String('4111111111111111');
+    var number = new String('4111111111111111'); // eslint-disable-line no-new-wrappers
+
     expect(getCardType(number)[0].type).to.equal('visa');
   });
 
   it('preserves integrity of returned values', function () {
     var result = getCardType('4111111111111111')[0];
+
     result.type = 'whaaaaaat';
     expect(getCardType('4111111111111111')[0].type).to.equal('visa');
   });

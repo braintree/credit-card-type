@@ -1,3 +1,5 @@
+'use strict';
+
 var isString = require('lodash/lang/isString');
 var clone = require('lodash/lang/cloneDeep');
 
