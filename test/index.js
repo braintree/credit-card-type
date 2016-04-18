@@ -96,7 +96,6 @@ describe('getCardType', function () {
       ['6799990100000000019', 'maestro'],
 
       ['1', 'jcb'],
-      ['2', 'jcb'],
       ['35', 'jcb'],
       ['2131', 'jcb'],
       ['21312', 'jcb'],
@@ -149,6 +148,7 @@ describe('getCardType', function () {
   describe('ambiguous card types', function () {
     var ambiguous = [
       ['', ['visa', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro']],
+      ['2', ['master-card', 'jcb']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['master-card', 'maestro']],
       ['6', ['discover', 'maestro', 'unionpay']]
@@ -174,7 +174,7 @@ describe('getCardType', function () {
       '123',
       '181',
       '1802',
-      '22',
+      '221',
       '222099',
       '2721',
       '212',
