@@ -1,5 +1,5 @@
-UNRELEASED
-==========
+4.0.2
+=====
 
 - Removes dependency on Lodash
 
