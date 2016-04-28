@@ -1,8 +1,5 @@
 'use strict';
 
-var isString = require('lodash/lang/isString');
-var clone = require('lodash/lang/cloneDeep');
-
 var types = [
   {
     niceType: 'Visa',
@@ -99,7 +96,9 @@ module.exports = function getCardTypes(cardNumber) {
   var i, value;
   var result = [];
 
-  if (!isString(cardNumber)) { return result; }
+  if (!(typeof cardNumber === 'string' || cardNumber instanceof String)) {
+    return result;
+  }
 
   if (cardNumber === '') { return clone(types); }
 
@@ -133,4 +132,8 @@ function nonUnionPayAndDiscoverPattern() {
 
 function discoverPattern() {
   return [unionPayAndDiscoverPattern(), nonUnionPayAndDiscoverPattern()].join('|');
+}
+
+function clone(x) {
+  return JSON.parse(JSON.stringify(x));
 }
