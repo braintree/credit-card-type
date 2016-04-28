@@ -1,3 +1,8 @@
+UNRELEASED
+==========
+
+- Removes dependency on Lodash
+
 4.0.1
 =====
 
