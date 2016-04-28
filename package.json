@@ -33,6 +33,7 @@
     "vinyl-source-stream": "^1.0.0"
   },
   "dependencies": {
-    "lodash": "3.10.1"
+    "lodash.clonedeep": "4.3.2",
+    "lodash.isstring": "4.0.1"
   }
 }
