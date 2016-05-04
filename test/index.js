@@ -104,22 +104,20 @@ describe('getCardType', function () {
       ['1800', 'jcb'],
       ['18002', 'jcb'],
       ['3530111333300000', 'jcb'],
-      ['3566002020360505', 'jcb']
-    ];
+      ['3566002020360505', 'jcb'],
 
-    var dualBrandTests = [
-      ['6221260000000000', ['discover', 'unionpay']],
-      ['6221260000000000000', ['discover', 'unionpay']],
-      ['6222000000000000', ['discover', 'unionpay']],
-      ['6228000000000000', ['discover', 'unionpay']],
-      ['6229250000000000', ['discover', 'unionpay']],
-      ['6229250000000000000', ['discover', 'unionpay']],
-      ['6240000000000000', ['discover', 'unionpay']],
-      ['6260000000000000000', ['discover', 'unionpay']],
-      ['6282000000000000', ['discover', 'unionpay']],
-      ['6289000000000000000', ['discover', 'unionpay']],
-      ['6221558812340000', ['discover', 'unionpay']],
-      ['6269992058134322', ['discover', 'unionpay']]
+      ['6221260000000000', 'unionpay'],
+      ['6221260000000000000', 'unionpay'],
+      ['6222000000000000', 'unionpay'],
+      ['6228000000000000', 'unionpay'],
+      ['6229250000000000', 'unionpay'],
+      ['6229250000000000000', 'unionpay'],
+      ['6240000000000000', 'unionpay'],
+      ['6260000000000000000', 'unionpay'],
+      ['6282000000000000', 'unionpay'],
+      ['6289000000000000000', 'unionpay'],
+      ['6221558812340000', 'unionpay'],
+      ['6269992058134322', 'unionpay']
     ];
 
     tests.forEach(function (test) {
@@ -131,19 +129,6 @@ describe('getCardType', function () {
 
         expect(actual).to.have.lengthOf(1);
         expect(actual[0].type).to.equal(type);
-      });
-    });
-
-    dualBrandTests.forEach(function (test) {
-      var number = test[0];
-      var types = test[1];
-
-      it('returns type ' + types.join(', ') + ' for ' + number, function () {
-        var actual = getCardType(number);
-
-        expect(actual).to.have.lengthOf(2);
-        expect(actual[0].type).to.equal(types[0]);
-        expect(actual[1].type).to.equal(types[1]);
       });
     });
   });
