@@ -1,3 +1,8 @@
+4.0.3
+=====
+
+- Remove behavior where some UnionPay cards displayed Discover and UnionPay as possible card types
+
 4.0.2
 =====
 
