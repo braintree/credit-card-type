@@ -1,6 +1,10 @@
 language: node_js
 node_js:
-  - "0.10"
+- '6'
+- '4'
 notifications:
-  email:
-    - external-ci-notifications+credit-card-type@getbraintree.com
+  email: false
+  slack:
+    on_success: change
+    on_failure: always
+    secure: o1GgwFtTvXayqJSpONp2XLAeUjjtMCNSrrn3Ii3hLmEdlbpphpFgc4Q9g6uvO2Kw/vLKiFv/2/bHptaokV6hCRfqTAdYVO985VyIet8gyY3Uu3/8vK4gjm1g8b5GnJvcuIbZ0Nmhn8d23Mc2wOnjdl44XiuHBqqU1UXRPtQnHWk=
