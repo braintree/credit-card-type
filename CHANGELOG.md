@@ -1,3 +1,8 @@
+4.1.0
+=====
+
+- Add `getTypeInfo` and `types` exports for getting type information such as number spacing given a type string such as `visa`.
+
 4.0.3
 =====
 
