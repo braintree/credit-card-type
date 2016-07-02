@@ -299,3 +299,17 @@ describe('getCardType', function () {
     expect(getCardType('4111111111111111')[0].type).to.equal('visa');
   });
 });
+
+describe('getTypeInfo', function () {
+  it('returns type information', function () {
+    var info = getCardType.getTypeInfo(getCardType.types.VISA);
+
+    expect(info.type).to.equal('visa');
+    expect(info.niceType).to.equal('Visa');
+    expect(info.pattern).to.be.a('string');
+  });
+
+  it('returns null for an unknown type', function () {
+    expect(getCardType.getTypeInfo('gibberish')).to.equal(null);
+  });
+});
