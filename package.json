@@ -27,7 +27,7 @@
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.0.2",
     "gulp-watch": "^0.6.8",
-    "mocha": "^2.2.1",
+    "mocha": "^3.0.0",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
     "vinyl-source-stream": "^1.0.0"
