@@ -124,7 +124,7 @@ types[UNIONPAY] = {
 types[MAESTRO] = {
   niceType: 'Maestro',
   type: MAESTRO,
-  pattern: /^((5((0|[6-9])\d*)?)|(6|6[37]\d*))$/,
+  pattern: /^((5((0|[6-9])\d*)?)|(6\d*))$/,
   gaps: [4, 8, 12],
   lengths: [12, 13, 14, 15, 16, 17, 18, 19],
   code: {
