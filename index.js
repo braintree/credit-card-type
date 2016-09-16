@@ -13,6 +13,16 @@ var CVV = 'CVV';
 var CID = 'CID';
 var CVC = 'CVC';
 var CVN = 'CVN';
+var testOrder = [
+  VISA,
+  MASTERCARD,
+  AMERICAN_EXPRESS,
+  DINERS_CLUB,
+  DISCOVER,
+  JCB,
+  UNIONPAY,
+  MAESTRO
+];
 
 function clone(x) {
   var pattern, dupe;
@@ -124,14 +134,16 @@ types[MAESTRO] = {
 };
 
 function creditCardType(cardNumber) {
-  var type, value;
+  var type, value, i;
   var result = [];
 
   if (!(typeof cardNumber === 'string' || cardNumber instanceof String)) {
     return result;
   }
 
-  for (type in types) {
+  for (i = 0; i < testOrder.length; i++) {
+    type = testOrder[i];
+
     if (!types.hasOwnProperty(type)) { continue; }
 
     value = types[type];
