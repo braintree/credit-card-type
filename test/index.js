@@ -67,6 +67,23 @@ describe('creditCardType', function () {
       ['36700102000000', 'diners-club'],
       ['36148900647913', 'diners-club'],
 
+      ['6011', 'discover'],
+      ['644', 'discover'],
+      ['65', 'discover'],
+      ['644', 'discover'],
+      ['645', 'discover'],
+      ['646', 'discover'],
+      ['647', 'discover'],
+      ['648', 'discover'],
+      ['649', 'discover'],
+      ['6011000400000000', 'discover'],
+      ['6011111111111117', 'discover'],
+      ['6011000990139424', 'discover'],
+
+      ['62', 'unionpay'],
+      ['627', 'unionpay'],
+      ['6221258812340000', 'unionpay'],
+
       ['50', 'maestro'],
       ['56', 'maestro'],
       ['57', 'maestro'],
@@ -75,7 +92,6 @@ describe('creditCardType', function () {
       ['63', 'maestro'],
       ['67', 'maestro'],
       ['6304000000000000', 'maestro'],
-      ['6020111111111116', 'maestro'],
       ['6799990100000000019', 'maestro'],
 
       ['1', 'jcb'],
@@ -85,7 +101,20 @@ describe('creditCardType', function () {
       ['1800', 'jcb'],
       ['18002', 'jcb'],
       ['3530111333300000', 'jcb'],
-      ['3566002020360505', 'jcb']
+      ['3566002020360505', 'jcb'],
+
+      ['6221260000000000', 'unionpay'],
+      ['6221260000000000000', 'unionpay'],
+      ['6222000000000000', 'unionpay'],
+      ['6228000000000000', 'unionpay'],
+      ['6229250000000000', 'unionpay'],
+      ['6229250000000000000', 'unionpay'],
+      ['6240000000000000', 'unionpay'],
+      ['6260000000000000000', 'unionpay'],
+      ['6282000000000000', 'unionpay'],
+      ['6289000000000000000', 'unionpay'],
+      ['6221558812340000', 'unionpay'],
+      ['6269992058134322', 'unionpay']
     ];
 
     tests.forEach(function (test) {
@@ -110,34 +139,7 @@ describe('creditCardType', function () {
       ['6', ['discover', 'maestro', 'unionpay']],
       ['60', ['discover', 'maestro']],
       ['601', ['discover', 'maestro']],
-      ['6011', ['discover', 'maestro']],
-      ['64', ['discover', 'maestro']],
-      ['644', ['discover', 'maestro']],
-      ['65', ['discover', 'maestro']],
-      ['644', ['discover', 'maestro']],
-      ['645', ['discover', 'maestro']],
-      ['646', ['discover', 'maestro']],
-      ['647', ['discover', 'maestro']],
-      ['648', ['discover', 'maestro']],
-      ['649', ['discover', 'maestro']],
-      ['6011000400000000', ['discover', 'maestro']],
-      ['6011111111111117', ['discover', 'maestro']],
-      ['6011000990139424', ['discover', 'maestro']],
-      ['62', ['unionpay', 'maestro']],
-      ['627', ['unionpay', 'maestro']],
-      ['6221258812340000', ['unionpay', 'maestro']],
-      ['6221260000000000', ['unionpay', 'maestro']],
-      ['6221260000000000000', ['unionpay', 'maestro']],
-      ['6222000000000000', ['unionpay', 'maestro']],
-      ['6228000000000000', ['unionpay', 'maestro']],
-      ['6229250000000000', ['unionpay', 'maestro']],
-      ['6229250000000000000', ['unionpay', 'maestro']],
-      ['6240000000000000', ['unionpay', 'maestro']],
-      ['6260000000000000000', ['unionpay', 'maestro']],
-      ['6282000000000000', ['unionpay', 'maestro']],
-      ['6289000000000000000', ['unionpay', 'maestro']],
-      ['6221558812340000', ['unionpay', 'maestro']],
-      ['6269992058134322', ['unionpay', 'maestro']]
+      ['64', ['discover', 'maestro']]
     ];
 
     ambiguous.forEach(function (group) {
@@ -278,7 +280,8 @@ describe('getTypeInfo', function () {
 
     expect(info.type).to.equal('visa');
     expect(info.niceType).to.equal('Visa');
-    expect(info.pattern).to.be.a('string');
+    expect(info.prefixPattern).to.be.a('string');
+    expect(info.exactPattern).to.be.a('string');
   });
 
   it('returns null for an unknown type', function () {

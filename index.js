@@ -25,13 +25,15 @@ var testOrder = [
 ];
 
 function clone(x) {
-  var pattern, dupe;
+  var prefixPattern, exactPattern, dupe;
 
   if (!x) { return null; }
 
-  pattern = x.pattern.source;
+  prefixPattern = x.prefixPattern.source;
+  exactPattern = x.exactPattern.source;
   dupe = JSON.parse(JSON.stringify(x));
-  dupe.pattern = pattern;
+  dupe.prefixPattern = prefixPattern;
+  dupe.exactPattern = exactPattern;
 
   return dupe;
 }
@@ -39,7 +41,8 @@ function clone(x) {
 types[VISA] = {
   niceType: 'Visa',
   type: VISA,
-  pattern: /^4\d*$/,
+  prefixPattern: /^4$/,
+  exactPattern: /^4\d*$/,
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
@@ -51,7 +54,8 @@ types[VISA] = {
 types[MASTERCARD] = {
   niceType: 'MasterCard',
   type: MASTERCARD,
-  pattern: /^(5|5[1-5]\d*|2|22|222|222[1-9]\d*|2[3-6]\d*|27[0-1]\d*|2720\d*)$/,
+  prefixPattern: /^(5|5[1-5]|2|22|222|222[1-9]|2[3-6]|27[0-1]|2720)$/,
+  exactPattern: /^(5[1-5]|222[1-9]|2[3-6]|27[0-1]|2720)\d*$/,
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
@@ -63,7 +67,8 @@ types[MASTERCARD] = {
 types[AMERICAN_EXPRESS] = {
   niceType: 'American Express',
   type: AMERICAN_EXPRESS,
-  pattern: /^3([47]\d*)?$/,
+  prefixPattern: /^(3|34|37)$/,
+  exactPattern: /^3[47]\d*$/,
   isAmex: true,
   gaps: [4, 10],
   lengths: [15],
@@ -76,7 +81,8 @@ types[AMERICAN_EXPRESS] = {
 types[DINERS_CLUB] = {
   niceType: 'Diners Club',
   type: DINERS_CLUB,
-  pattern: /^3((0([0-5]\d*)?)|[689]\d*)?$/,
+  prefixPattern: /^(3|3[0689]|30[0-5])$/,
+  exactPattern: /^3(0[0-5]|[689])\d*$/,
   gaps: [4, 10],
   lengths: [14],
   code: {
@@ -88,7 +94,8 @@ types[DINERS_CLUB] = {
 types[DISCOVER] = {
   niceType: 'Discover',
   type: DISCOVER,
-  pattern: /^6(0|01|011\d*|5\d*|4|4[4-9]\d*)?$/,
+  prefixPattern: /^(6|60|601|6011|65|64|64[4-9])$/,
+  exactPattern: /^(6011|65|64[4-9])\d*$/,
   gaps: [4, 8, 12],
   lengths: [16, 19],
   code: {
@@ -100,7 +107,8 @@ types[DISCOVER] = {
 types[JCB] = {
   niceType: 'JCB',
   type: JCB,
-  pattern: /^((2|21|213|2131\d*)|(1|18|180|1800\d*)|(3|35\d*))$/,
+  prefixPattern: /^(2|21|213|2131|1|18|180|1800|3|35)$/,
+  exactPattern: /^(2131|1800|35)\d*$/,
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
@@ -112,7 +120,8 @@ types[JCB] = {
 types[UNIONPAY] = {
   niceType: 'UnionPay',
   type: UNIONPAY,
-  pattern: /^6(2\d*)?$/,
+  prefixPattern: /^(6|62)$/,
+  exactPattern: /^62\d*$/,
   gaps: [4, 8, 12],
   lengths: [16, 17, 18, 19],
   code: {
@@ -124,7 +133,8 @@ types[UNIONPAY] = {
 types[MAESTRO] = {
   niceType: 'Maestro',
   type: MAESTRO,
-  pattern: /^((5((0|[6-9])\d*)?)|(6\d*))$/,
+  prefixPattern: /^(5|5[06-9]|6\d*)$/,
+  exactPattern: /^5[06-9]\d*$/,
   gaps: [4, 8, 12],
   lengths: [12, 13, 14, 15, 16, 17, 18, 19],
   code: {
@@ -135,25 +145,30 @@ types[MAESTRO] = {
 
 function creditCardType(cardNumber) {
   var type, value, i;
-  var result = [];
+  var prefixResults = [];
+  var exactResults = [];
 
   if (!(typeof cardNumber === 'string' || cardNumber instanceof String)) {
-    return result;
+    return [];
   }
 
   for (i = 0; i < testOrder.length; i++) {
     type = testOrder[i];
-
-    if (!types.hasOwnProperty(type)) { continue; }
-
     value = types[type];
 
-    if (cardNumber.length === 0 || value.pattern.test(cardNumber)) {
-      result.push(clone(value));
+    if (cardNumber.length === 0) {
+      prefixResults.push(clone(value));
+      continue;
+    }
+
+    if (value.exactPattern.test(cardNumber)) {
+      exactResults.push(clone(value));
+    } else if (value.prefixPattern.test(cardNumber)) {
+      prefixResults.push(clone(value));
     }
   }
 
-  return result;
+  return exactResults.length ? exactResults : prefixResults;
 }
 
 creditCardType.getTypeInfo = function (type) {
