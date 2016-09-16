@@ -67,10 +67,7 @@ describe('creditCardType', function () {
       ['36700102000000', 'diners-club'],
       ['36148900647913', 'diners-club'],
 
-      ['60', 'discover'],
-      ['601', 'discover'],
       ['6011', 'discover'],
-      ['64', 'discover'],
       ['644', 'discover'],
       ['65', 'discover'],
       ['644', 'discover'],
@@ -139,7 +136,10 @@ describe('creditCardType', function () {
       ['2', ['master-card', 'jcb']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['master-card', 'maestro']],
-      ['6', ['discover', 'maestro', 'unionpay']]
+      ['6', ['discover', 'maestro', 'unionpay']],
+      ['60', ['discover', 'maestro']],
+      ['601', ['discover', 'maestro']],
+      ['64', ['discover', 'maestro']]
     ];
 
     ambiguous.forEach(function (group) {
@@ -172,32 +172,6 @@ describe('creditCardType', function () {
       '31',
       '32',
       '33',
-      '600',
-      '602',
-      '603',
-      '604',
-      '605',
-      '606',
-      '607',
-      '608',
-      '609',
-      '6010',
-      '6012',
-      '6013',
-      '6014',
-      '6015',
-      '6016',
-      '6017',
-      '6018',
-      '6019',
-      '61',
-      '640',
-      '641',
-      '642',
-      '643',
-      '66',
-      '68',
-      '69',
       '7',
       '8',
       '9'
@@ -306,7 +280,8 @@ describe('getTypeInfo', function () {
 
     expect(info.type).to.equal('visa');
     expect(info.niceType).to.equal('Visa');
-    expect(info.pattern).to.be.a('string');
+    expect(info.prefixPattern).to.be.a('string');
+    expect(info.exactPattern).to.be.a('string');
   });
 
   it('returns null for an unknown type', function () {
