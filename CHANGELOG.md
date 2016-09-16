@@ -1,3 +1,11 @@
+5.0.0
+=====
+
+- Card matching has been replaced with a two-tier process. This simplifies the matching process for ambiguous numbers.
+  - Partial BIN matches (`prefixPattern`) are accumulated separately from exact BIN matches (`exactPattern`).
+  - If there were any exact BIN matches, those matches are returned.
+  - If there are no exact BIN matches, all partial matches are returned.
+
 4.1.0
 =====
 
