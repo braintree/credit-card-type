@@ -10,7 +10,6 @@ var rename = require('gulp-rename');
 var del = require('del');
 
 var config = {
-  namespace: 'braintree',
   src: {
     js: {
       all: './src/**/*.js',
@@ -20,11 +19,14 @@ var config = {
       min: 'app.built.min.js'
     }
   },
+  options: {
+    standalone: 'creditCardType'
+  },
   dist: {js: 'dist/js'}
 };
 
 gulp.task('js', function () {
-  return browserify(config.src.js.main)
+  return browserify(config.src.js.main, config.options)
     .bundle()
     .pipe(source(config.src.js.output))
     .pipe(streamify(size()))
