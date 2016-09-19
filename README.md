@@ -6,15 +6,15 @@ Credit Card Type provides a useful utility method for determining a credit card 
 This library is designed for type-as-you-go detection (supports partial numbers) and is written in CommonJS so you can use it in Node, io.js, and the [browser](http://browserify.org).
 
 ## Download
-To install via npm: 
+To install via npm:
 
-```
+```bash
 npm install credit-card-type
 ```
 
 To install via Bower:
 
-```
+```bash
 bower install credit-card-type
 ```
 
@@ -84,7 +84,7 @@ Card brands provide different nomenclature for their security codes as well as v
 
 A full response for a `Visa` card will look like this:
 
-```js
+```javascript
 {
   niceType: 'Visa',
   type: 'visa',
@@ -99,7 +99,7 @@ A full response for a `Visa` card will look like this:
 
 CommonJS:
 
-```
+```javascript
 var creditCardType = require('credit-card-type');
 var getTypeInfo = require('credit-card-type').getTypeInfo;
 var CardType = require('credit-card-type').types;
@@ -107,13 +107,13 @@ var CardType = require('credit-card-type').types;
 
 ES6:
 
-```
+```javascript
 import creditCardType, { getTypeInfo, types as CardType } from 'credit-card-type')
 ```
 
 #### Filtering
 
-```
+```javascript
 creditCardType(cardNumber).filter(function(card) {
   return card.type == CardType.MASTERCARD || card.type == CardType.VISA;
 })
@@ -121,7 +121,7 @@ creditCardType(cardNumber).filter(function(card) {
 
 #### Pretty Card Numbers
 
-```
+```javascript
 function prettyCardNumber(cardNumber, cardType) {
   var card = getTypeInfo(cardType);
 
@@ -148,7 +148,7 @@ prettyCardNumber('xxxxxxxxxx343', CardType.AMERICAN_EXPRESS); // 'xxxx xxxxxx 34
 
 We use `nvm` for managing our node versions, but you do not have to. Replace any `nvm` references with the tool of your choice below.
 
-```
+```bash
 nvm install
 npm install
 ```
