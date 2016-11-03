@@ -108,7 +108,7 @@ var CardType = require('credit-card-type').types;
 ES6:
 
 ```javascript
-import creditCardType, { getTypeInfo, types as CardType } from 'credit-card-type')
+import creditCardType, { getTypeInfo, types as CardType } from 'credit-card-type'
 ```
 
 #### Filtering
