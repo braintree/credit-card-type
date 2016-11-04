@@ -1,7 +1,6 @@
 {
   "name": "credit-card-type",
   "main": "index.js",
-  "version": "4.0.0",
   "homepage": "https://github.com/braintree/credit-card-type",
   "authors": [
     "braintree <code@getbraintree.com>"
