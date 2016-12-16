@@ -148,8 +148,8 @@ types[MAESTRO] = {
 types[MIR] = {
   niceType: 'Mir',
   type: MIR,
-  prefixPattern: /^220$/,
-  exactPattern: /^220\d*$/,
+  prefixPattern: /^(2|22|220|220[0-4])$/,
+  exactPattern: /^220[0-4]\d*$/,
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
