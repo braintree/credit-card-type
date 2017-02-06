@@ -1,3 +1,8 @@
+5.0.1
+=====
+
+- Visa cards can now be 16, 18, or 19 digits.
+
 5.0.0
 =====
 
