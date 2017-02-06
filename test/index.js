@@ -24,6 +24,8 @@ describe('creditCardType', function () {
       ['4222222222222', 'visa'],
       ['4462030000000000', 'visa'],
       ['4484070000000000', 'visa'],
+      ['411111111111111111', 'visa'],
+      ['4111111111111111110', 'visa'],
 
       ['2221', 'master-card'],
       ['2222', 'master-card'],
@@ -253,7 +255,7 @@ describe('creditCardType', function () {
       expect(creditCardType('6011')[0].lengths).to.deep.equal([16, 19]);
     });
     it('Visa', function () {
-      expect(creditCardType('4')[0].lengths).to.deep.equal([16]);
+      expect(creditCardType('4')[0].lengths).to.deep.equal([16, 18, 19]);
     });
     it('MasterCard', function () {
       expect(creditCardType('54')[0].lengths).to.deep.equal([16]);
