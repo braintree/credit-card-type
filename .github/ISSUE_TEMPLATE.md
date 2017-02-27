@@ -1,6 +1,6 @@
 ### General information
 
-* SDK/Library version: <!-- Example: 4.7.2 -->
+* Library version: <!-- Example: 5.0.0 -->
 * Browser and OS <!-- Example: Chrome 56.0.2924.87 (64-bit) on MacOS 10.12.3 -->
 
 ### Issue description
