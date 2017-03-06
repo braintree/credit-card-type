@@ -9,6 +9,7 @@ var DISCOVER = 'discover';
 var JCB = 'jcb';
 var UNIONPAY = 'unionpay';
 var MAESTRO = 'maestro';
+var MIR = 'mir';
 var CVV = 'CVV';
 var CID = 'CID';
 var CVC = 'CVC';
@@ -21,7 +22,8 @@ var testOrder = [
   DISCOVER,
   JCB,
   UNIONPAY,
-  MAESTRO
+  MAESTRO,
+  MIR
 ];
 
 function clone(x) {
@@ -139,6 +141,19 @@ types[MAESTRO] = {
   lengths: [12, 13, 14, 15, 16, 17, 18, 19],
   code: {
     name: CVC,
+    size: 3
+  }
+};
+
+types[MIR] = {
+  niceType: 'Mir',
+  type: MIR,
+  prefixPattern: /^(2|22|220|220[0-4])$/,
+  exactPattern: /^220[0-4]\d*$/,
+  gaps: [4, 8, 12],
+  lengths: [16],
+  code: {
+    name: CVV,
     size: 3
   }
 };
