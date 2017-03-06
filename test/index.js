@@ -17,7 +17,6 @@ describe('creditCardType', function () {
 
   describe('matches card numbers to brand', function () {
     var tests = [
-      ['4', 'visa'],
       ['411', 'visa'],
       ['4111111111111111', 'visa'],
       ['4012888888881881', 'visa'],
@@ -26,6 +25,15 @@ describe('creditCardType', function () {
       ['4484070000000000', 'visa'],
       ['411111111111111111', 'visa'],
       ['4111111111111111110', 'visa'],
+
+      ['4026', 'visa-electron'],
+      ['417500', 'visa-electron'],
+      ['4405', 'visa-electron'],
+      ['4508', 'visa-electron'],
+      ['4844', 'visa-electron'],
+      ['4913', 'visa-electron'],
+      ['4917', 'visa-electron'],
+      ['4917300800000000', 'visa-electron'],
 
       ['2221', 'master-card'],
       ['2222', 'master-card'],
@@ -134,9 +142,10 @@ describe('creditCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro']],
+      ['', ['visa', 'visa-electron', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro']],
       ['2', ['master-card', 'jcb']],
       ['3', ['american-express', 'diners-club', 'jcb']],
+      ['4', ['visa', 'visa-electron']],
       ['5', ['master-card', 'maestro']],
       ['6', ['discover', 'maestro', 'unionpay']],
       ['60', ['discover', 'maestro']],
@@ -201,6 +210,13 @@ describe('creditCardType', function () {
       expect(code.name).to.equal('CVV');
     });
 
+    it('Visa Electron', function () {
+      var code = creditCardType('4917300800000000')[0].code;
+
+      expect(code.size).to.equal(3);
+      expect(code.name).to.equal('CVV');
+    });
+
     it('American Express', function () {
       var code = creditCardType('378734493671000')[0].code;
 
@@ -256,6 +272,9 @@ describe('creditCardType', function () {
     });
     it('Visa', function () {
       expect(creditCardType('4')[0].lengths).to.deep.equal([16, 18, 19]);
+    });
+    it('Visa Electron', function () {
+      expect(creditCardType('4026')[0].lengths).to.deep.equal([16]);
     });
     it('MasterCard', function () {
       expect(creditCardType('54')[0].lengths).to.deep.equal([16]);

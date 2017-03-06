@@ -2,6 +2,7 @@
 
 var types = {};
 var VISA = 'visa';
+var VISA_ELECTRON = 'visa-electron';
 var MASTERCARD = 'master-card';
 var AMERICAN_EXPRESS = 'american-express';
 var DINERS_CLUB = 'diners-club';
@@ -15,6 +16,7 @@ var CVC = 'CVC';
 var CVN = 'CVN';
 var testOrder = [
   VISA,
+  VISA_ELECTRON,
   MASTERCARD,
   AMERICAN_EXPRESS,
   DINERS_CLUB,
@@ -41,10 +43,23 @@ function clone(x) {
 types[VISA] = {
   niceType: 'Visa',
   type: VISA,
-  prefixPattern: /^4$/,
-  exactPattern: /^4\d*$/,
+  prefixPattern: /^(4(?!026|17500|405|508|844|913|917)|4)$/,
+  exactPattern: /^4(?!026|17500|405|508|844|913|917)\d+$/,
   gaps: [4, 8, 12],
   lengths: [16, 18, 19],
+  code: {
+    name: CVV,
+    size: 3
+  }
+};
+
+types[VISA_ELECTRON] = {
+  niceType: 'Visa Electron',
+  type: VISA_ELECTRON,
+  prefixPattern: /^(4(026|17500|405|508|844|913|917)|4)$/,
+  exactPattern: /^4(026|17500|405|508|844|913|917)\d*$/,
+  gaps: [4, 8, 12],
+  lengths: [16],
   code: {
     name: CVV,
     size: 3
@@ -177,6 +192,7 @@ creditCardType.getTypeInfo = function (type) {
 
 creditCardType.types = {
   VISA: VISA,
+  VISA_ELECTRON: VISA_ELECTRON,
   MASTERCARD: MASTERCARD,
   AMERICAN_EXPRESS: AMERICAN_EXPRESS,
   DINERS_CLUB: DINERS_CLUB,
