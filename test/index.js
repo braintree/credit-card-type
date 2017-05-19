@@ -82,9 +82,8 @@ describe('creditCardType', function () {
       ['6011111111111117', 'discover'],
       ['6011000990139424', 'discover'],
 
-      ['62', 'unionpay'],
-      ['627', 'unionpay'],
       ['6221258812340000', 'unionpay'],
+      ['622018111111111111', 'unionpay'],
 
       ['50', 'maestro'],
       ['56', 'maestro'],
@@ -95,6 +94,8 @@ describe('creditCardType', function () {
       ['67', 'maestro'],
       ['6304000000000000', 'maestro'],
       ['6799990100000000019', 'maestro'],
+      ['6220181111111111111', 'maestro'],
+      ['62183', 'maestro'],
 
       ['1', 'jcb'],
       ['35', 'jcb'],
@@ -116,7 +117,9 @@ describe('creditCardType', function () {
       ['6282000000000000', 'unionpay'],
       ['6289000000000000000', 'unionpay'],
       ['6221558812340000', 'unionpay'],
-      ['6269992058134322', 'unionpay']
+      ['6269992058134322', 'unionpay'],
+      ['622018111111111111', 'unionpay'],
+      ['6220181111111111111', 'maestro']
     ];
 
     tests.forEach(function (test) {
@@ -141,7 +144,9 @@ describe('creditCardType', function () {
       ['6', ['discover', 'maestro', 'unionpay']],
       ['60', ['discover', 'maestro']],
       ['601', ['discover', 'maestro']],
-      ['64', ['discover', 'maestro']]
+      ['64', ['discover', 'maestro']],
+      ['62', ['unionpay', 'maestro']],
+      ['627', ['unionpay', 'maestro']]
     ];
 
     ambiguous.forEach(function (group) {
