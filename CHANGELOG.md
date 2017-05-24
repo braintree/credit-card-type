@@ -1,3 +1,8 @@
+5.0.2
+=====
+
+- Fix checking for UnionPay ranges
+
 5.0.1
 =====
 
