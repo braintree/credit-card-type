@@ -39,8 +39,10 @@ describe('creditCardType', function () {
       ['24', 'master-card'],
       ['25', 'master-card'],
       ['26', 'master-card'],
+      ['27', 'master-card'],
       ['270', 'master-card'],
       ['271', 'master-card'],
+      ['272', 'master-card'],
       ['2720', 'master-card'],
 
       ['51', 'master-card'],
