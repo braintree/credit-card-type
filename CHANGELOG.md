@@ -1,5 +1,5 @@
-unreleased
-==========
+5.0.3
+=====
 
 - Fix prefix pattern for MasterCard numbers starting with `27`
 
