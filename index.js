@@ -44,7 +44,7 @@ types[VISA] = {
   prefixPattern: /^4$/,
   exactPattern: /^4\d*$/,
   gaps: [4, 8, 12],
-  lengths: [16, 18, 19],
+  lengths: [13, 14, 15, 16, 17, 18, 19],
   code: {
     name: CVV,
     size: 3
