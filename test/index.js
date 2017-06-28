@@ -256,7 +256,7 @@ describe('creditCardType', function () {
       expect(creditCardType('6304000000000000')[0].lengths).to.deep.equal([12, 13, 14, 15, 16, 17, 18, 19]);
     });
     it('Diners Club', function () {
-      expect(creditCardType('305')[0].lengths).to.deep.equal([14]);
+      expect(creditCardType('305')[0].lengths).to.deep.equal([14, 15, 16, 17, 18, 19]);
     });
     it('Discover', function () {
       expect(creditCardType('6011')[0].lengths).to.deep.equal([16, 19]);

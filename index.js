@@ -84,7 +84,7 @@ types[DINERS_CLUB] = {
   prefixPattern: /^(3|3[0689]|30[0-5])$/,
   exactPattern: /^3(0[0-5]|[689])\d*$/,
   gaps: [4, 10],
-  lengths: [14],
+  lengths: [14, 15, 16, 17, 18, 19],
   code: {
     name: CVV,
     size: 3
