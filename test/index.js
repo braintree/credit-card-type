@@ -262,7 +262,7 @@ describe('creditCardType', function () {
       expect(creditCardType('6011')[0].lengths).to.deep.equal([16, 19]);
     });
     it('Visa', function () {
-      expect(creditCardType('4')[0].lengths).to.deep.equal([16, 18, 19]);
+      expect(creditCardType('4')[0].lengths).to.deep.equal([13, 14, 15, 16, 17, 18, 19]);
     });
     it('MasterCard', function () {
       expect(creditCardType('54')[0].lengths).to.deep.equal([16]);
