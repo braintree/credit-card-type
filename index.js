@@ -145,7 +145,7 @@ types[MAESTRO] = {
   niceType: 'Maestro',
   type: MAESTRO,
   prefixPattern: /^(5|5[06-9]|6\d*)$/,
-  exactPattern: /^5[06-9]\d*$/,
+  exactPattern: /^(5[06-9]|6[37])\d*$/,
   gaps: [4, 8, 12],
   lengths: [12, 13, 14, 15, 16, 17, 18, 19],
   code: {
