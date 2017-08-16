@@ -43,7 +43,6 @@ console.log(ambiguousCards[2].niceType);  // 'Maestro'
 |------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `MasterCard`<br />- `American Express`<br />- `Diners Club`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro`                                                                                                           |
 | `type`     | `String` | A code-friendly presentation of the card brand (useful to class names in CSS). Please refer to Card Type "Constants" below for the list of possible values.<br/>- `visa`<br />- `master-card`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb`<br />- `unionpay`<br />- `maestro` |
-| `pattern`  | `RegExp` | The regular expression used to determine the card type.                                                                                                                                                                                                                                                        |
 | `gaps`     | `Array`  | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules.                                                            |
 | `lengths`  | `Array`  | The expected lengths of the card number as an array of strings (excluding spaces and `/` characters).                                                                                                                                                                                                          |
 | `code`     | `Object` | The information regarding the security code for the determined card. Learn more about the [code object](#code) below.                                                                                                                                                                                          |
@@ -88,12 +87,13 @@ A full response for a `Visa` card will look like this:
 {
   niceType: 'Visa',
   type: 'visa',
-  pattern: '^4[0-9][\\s\\d]*$',
   gaps: [ 4, 8, 12 ],
   lengths: [16],
   code: { name: 'CVV', size: 3 }
 }
 ```
+
+*Note:* The response also includes an `exactPattern` regex and a `prefixPattern` regex. These are used internally to determine the card type, but they should not be relied on and may be removed in the next major version.
 
 ### Advanced Usage
 
