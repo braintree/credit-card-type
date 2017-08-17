@@ -1,7 +1,8 @@
-unreleased
-==========
+5.0.4
+=====
 
 - Correct Discover to respect lengths for international cards
+- Make Maestro pattern more exact
 
 5.0.3
 =====
