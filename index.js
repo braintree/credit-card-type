@@ -29,6 +29,17 @@ function clone(x) {
 
   if (!x) { return null; }
 
+  // TODO: in the next major version, we should
+  // consider removing these pattern properties.
+  // They are not useful extnerally and can be
+  // confusing because the exactPattern does not
+  // always match (for instance, Maestro cards
+  // can start with 62, but the exact pattern
+  // does not include that since it would
+  // exclude UnionPay and Discover cards
+  // when it is not sure whether or not
+  // the card is a UnionPay, Discover or
+  // Maestro card).
   prefixPattern = x.prefixPattern.source;
   exactPattern = x.exactPattern.source;
   dupe = JSON.parse(JSON.stringify(x));
@@ -134,7 +145,7 @@ types[MAESTRO] = {
   niceType: 'Maestro',
   type: MAESTRO,
   prefixPattern: /^(5|5[06-9]|6\d*)$/,
-  exactPattern: /^5[06-9]\d*$/,
+  exactPattern: /^(5[06-9]|6[37])\d*$/,
   gaps: [4, 8, 12],
   lengths: [12, 13, 14, 15, 16, 17, 18, 19],
   code: {
