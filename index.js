@@ -106,7 +106,7 @@ types[DISCOVER] = {
   niceType: 'Discover',
   type: DISCOVER,
   prefixPattern: /^(6|60|601|6011|65|64|64[4-9])$/,
-  exactPattern: /^(6011|65|64[4-9])\d*$/,
+  exactPattern: /^(6011|65|6221|6229|64[4-9])\d*$/,
   gaps: [4, 8, 12],
   lengths: [16, 19],
   code: {
