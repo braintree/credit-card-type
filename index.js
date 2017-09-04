@@ -105,8 +105,8 @@ types[DINERS_CLUB] = {
 types[DISCOVER] = {
   niceType: 'Discover',
   type: DISCOVER,
-  prefixPattern: /^(6|60|601|6011|65|64|64[4-9])$/,
-  exactPattern: /^(6011|65|64[4-9])\d*$/,
+  prefixPattern: /^(6|60|601|6011|65|64|64[4-9]|622[126-925])$/,
+  exactPattern: /^(6011|65|6221|6229|64[4-9]|622[126-925])\d*$/,
   gaps: [4, 8, 12],
   lengths: [16, 19],
   code: {
