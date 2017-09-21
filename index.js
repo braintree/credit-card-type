@@ -121,7 +121,7 @@ types[JCB] = {
   prefixPattern: /^(2|21|213|2131|1|18|180|1800|3|35)$/,
   exactPattern: /^(2131|1800|35)\d*$/,
   gaps: [4, 8, 12],
-  lengths: [16],
+  lengths: [16, 17, 18, 19],
   code: {
     name: CVV,
     size: 3
