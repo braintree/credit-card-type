@@ -107,6 +107,9 @@ describe('creditCardType', function () {
       ['18002', 'jcb'],
       ['3530111333300000', 'jcb'],
       ['3566002020360505', 'jcb'],
+      ['35308796121637357', 'jcb'],
+      ['353445444300732639', 'jcb'],
+      ['3537286818376838569', 'jcb'],
 
       ['6221260000000000', 'unionpay'],
       ['6221260000000000000', 'unionpay'],
@@ -266,6 +269,9 @@ describe('creditCardType', function () {
     });
     it('MasterCard', function () {
       expect(creditCardType('54')[0].lengths).to.deep.equal([16]);
+    });
+    it('JCB', function () {
+      expect(creditCardType('35')[0].lengths).to.deep.equal([16, 17, 18, 19]);
     });
   });
 
