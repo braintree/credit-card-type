@@ -40,6 +40,7 @@
 4.0.2
 =====
 
+- Add support for series 2 MasterCard bins (ranging from 222100 to 272099) 
 - Removes dependency on Lodash
 
 4.0.1
