@@ -41,7 +41,7 @@ console.log(ambiguousCards[2].niceType);  // 'Maestro'
 
 | Key        | Type     | Description                                                                                                                                                                                                                                                                                                    |
 |------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `MasterCard`<br />- `American Express`<br />- `Diners Club`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro`                                                                                                           |
+| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `Mastercard`<br />- `American Express`<br />- `Diners Club`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro`                                                                                                           |
 | `type`     | `String` | A code-friendly presentation of the card brand (useful to class names in CSS). Please refer to Card Type "Constants" below for the list of possible values.<br/>- `visa`<br />- `master-card`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb`<br />- `unionpay`<br />- `maestro` |
 | `gaps`     | `Array`  | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules.                                                            |
 | `lengths`  | `Array`  | The expected lengths of the card number as an array of strings (excluding spaces and `/` characters).                                                                                                                                                                                                          |
@@ -73,7 +73,7 @@ Card brands provide different nomenclature for their security codes as well as v
 | Brand              | Name  | Size |
 |--------------------|-------|------|
 | `Visa`             | `CVV` | 3    |
-| `MasterCard`       | `CVC` | 3    |
+| `Mastercard`       | `CVC` | 3    |
 | `American Express` | `CID` | 4    |
 | `Diners Club`      | `CVV` | 3    |
 | `Discover`         | `CID` | 3    |

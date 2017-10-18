@@ -194,7 +194,7 @@ describe('creditCardType', function () {
   });
 
   describe('returns security codes for', function () {
-    it('MasterCard', function () {
+    it('Mastercard', function () {
       var code = creditCardType('5454545454545454')[0].code;
 
       expect(code.size).to.equal(3);
@@ -264,7 +264,7 @@ describe('creditCardType', function () {
     it('Visa', function () {
       expect(creditCardType('4')[0].lengths).to.deep.equal([16, 18, 19]);
     });
-    it('MasterCard', function () {
+    it('Mastercard', function () {
       expect(creditCardType('54')[0].lengths).to.deep.equal([16]);
     });
   });
