@@ -24,27 +24,14 @@ var testOrder = [
   MAESTRO
 ];
 
-function clone(x) {
-  var prefixPattern, exactPattern, dupe;
+function clone(originalObject) {
+  var dupe;
 
-  if (!x) { return null; }
+  if (!originalObject) { return null; }
 
-  // TODO: in the next major version, we should
-  // consider removing these pattern properties.
-  // They are not useful extnerally and can be
-  // confusing because the exactPattern does not
-  // always match (for instance, Maestro cards
-  // can start with 62, but the exact pattern
-  // does not include that since it would
-  // exclude UnionPay and Discover cards
-  // when it is not sure whether or not
-  // the card is a UnionPay, Discover or
-  // Maestro card).
-  prefixPattern = x.prefixPattern.source;
-  exactPattern = x.exactPattern.source;
-  dupe = JSON.parse(JSON.stringify(x));
-  dupe.prefixPattern = prefixPattern;
-  dupe.exactPattern = exactPattern;
+  dupe = JSON.parse(JSON.stringify(originalObject));
+  delete dupe.prefixPattern;
+  delete dupe.exactPattern;
 
   return dupe;
 }

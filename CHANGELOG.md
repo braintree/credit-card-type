@@ -3,6 +3,9 @@ unreleased
 
 - Update mastercard niceType property to `Mastercard` to match new brand guidelines
 
+__Breaking Changes__
+- Remove internal properties `prefixPattern` and `exactPattern` from returned object
+
 5.0.4
 =====
 
