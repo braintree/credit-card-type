@@ -93,8 +93,6 @@ A full response for a `Visa` card will look like this:
 }
 ```
 
-*Note:* The response also includes an `exactPattern` regex and a `prefixPattern` regex. These are used internally to determine the card type, but they should not be relied on and may be removed in the next major version.
-
 ### Advanced Usage
 
 CommonJS:

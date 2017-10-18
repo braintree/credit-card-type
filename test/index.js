@@ -289,8 +289,13 @@ describe('getTypeInfo', function () {
 
     expect(info.type).to.equal('visa');
     expect(info.niceType).to.equal('Visa');
-    expect(info.prefixPattern).to.be.a('string');
-    expect(info.exactPattern).to.be.a('string');
+  });
+
+  it('removes pattern attributes', function () {
+    var info = creditCardType.getTypeInfo(creditCardType.types.VISA);
+
+    expect(info.exactPattern).to.equal(undefined); // eslint-disable-line no-undefined
+    expect(info.prefixPattern).to.equal(undefined); // eslint-disable-line no-undefined
   });
 
   it('returns null for an unknown type', function () {
