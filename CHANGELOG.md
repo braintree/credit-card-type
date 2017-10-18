@@ -1,5 +1,5 @@
-unreleased
-==========
+6.0.0
+=====
 
 - Update mastercard niceType property to `Mastercard` to match new brand guidelines
 
