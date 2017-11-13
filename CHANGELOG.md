@@ -1,3 +1,8 @@
+6.1.0
+=====
+
+- Add support for JCB cards of length 17, 18, and 19 (#54, thanks @zeh)
+
 6.0.0
 =====
 
