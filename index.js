@@ -9,6 +9,8 @@ var DISCOVER = 'discover';
 var JCB = 'jcb';
 var UNIONPAY = 'unionpay';
 var MAESTRO = 'maestro';
+var HIPER_CARD = 'Hipercard';
+
 var CVV = 'CVV';
 var CID = 'CID';
 var CVC = 'CVC';
@@ -21,7 +23,8 @@ var testOrder = [
   DISCOVER,
   JCB,
   UNIONPAY,
-  MAESTRO
+  MAESTRO,
+  HIPER_CARD
 ];
 
 function clone(originalObject) {
@@ -139,6 +142,26 @@ types[MAESTRO] = {
     name: CVC,
     size: 3
   }
+};
+
+types[HIPER_CARD] = {
+  code: {
+    name: CVC,
+    size: 3,
+  },
+  gaps: [4, 8, 12],
+  lengths: [16, 19],
+  // 2017-04-28 «How to validate a Hipercard number?» https://mage2.pro/t/3865
+  // 1) A validator from Moip:
+  // number != null && (
+  // 		number.matches("^606282[0-9]{10}$") || number.matches("^3841(0|4|6)0[0-9]{13}$")
+  // )
+  // https://github.com/moip/credit-card-validator/blob/4786855a/src/main/java/br/com/moip/creditcard/HipercardCreditCard.java#L6-L7
+  // 2) https://gist.github.com/fhferreira/3adc422e40bc31a39679
+  // 3) https://gist.github.com/danielfilho/9cd8fb61a39778be587c#bin-e-padrões-para-validação-de-cartão-de-crédito
+  exactPattern: /^(606282\d{10}(\d{3})?)|(3841(0|4|6)0\d{13})$/,
+  niceType: 'Hipercard',
+  type: HIPER_CARD,
 };
 
 function creditCardType(cardNumber) {
