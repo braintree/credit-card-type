@@ -53,7 +53,7 @@ types[MASTERCARD] = {
   niceType: 'Mastercard',
   type: MASTERCARD,
   prefixPattern: /^(5|5[1-5]|2|22|222|222[1-9]|2[3-6]|27|27[0-2]|2720)$/,
-  exactPattern: /^(5[1-5]|222[1-9]|2[3-6]|27[0-1]|2720)\d*$/,
+  exactPattern: /^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[0-1]|2720)\d*$/,
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
