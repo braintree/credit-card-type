@@ -1,5 +1,5 @@
-unreleased
-==========
+6.1.1
+=====
 
 - Correct Mastercard bin range for series 2 bins
 
