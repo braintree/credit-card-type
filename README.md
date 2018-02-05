@@ -117,6 +117,74 @@ creditCardType(cardNumber).filter(function(card) {
 });
 ```
 
+#### Adding Card Types
+
+You can add additional card brands not supportted by the the module with `addCard`. Pass in the configuration object. 
+
+```javascript
+creditCardType.addCard({
+  niceType: 'NewCard',
+  type: 'new-card',
+  prefixPattern: /^(2|23|234)$/,
+  exactPattern: /^(2345)\d*$/,
+  gaps: [4, 8, 12],
+  lengths: [16],
+  code: {
+    name: 'cvv',
+    size: 3
+  }
+});
+```
+
+You can also modify existing cards:
+
+```javascript
+creditCardType.addCard({
+  niceType: 'Visa with Custom Nice Type',
+  type: creditCardType.types.VISA,
+  prefixPattern: /^(4)$/,
+  exactPattern: /^(4[0-1])\d*$/, // restrict to only match visas that start with 40 or 41
+  gaps: [4, 8, 12],
+  lengths: [13, 16, 19], // add support for old, deprecated 13 digit visas
+  code: {
+    name: 'cvv',
+    size: 3
+  }
+});
+```
+
+The `exactPattern` regex is checked first. If that pattern is matched, the module takes that result over the `prefixPattern`. The `prefixPattern` is a softer matcher for when the exact card type has not yet been determined, so multiple card types may be returned.
+
+As an example, by default, the Visa `exactPattern` matches any card number that starts with 4. If you are adding a card type that has a bin range that starts with 4, you will not only have to call `addCard` with the new card type, but `addCard` with Visa to alter the `exactPattern` and `prefixPattern`;
+
+```javascript
+var visa = creditCardType.getTypeInfo(creditCardType.types.VISA);
+
+visa.prefixPattern = /^(4)$/;
+visa.exactPattern = /^(4[0-1])\d*$/; // restrict to only match visas that start with 40 or 41
+
+creditCardType.addCard(visa.type, visa);
+```
+
+Adding new cards puts them at the bottom of the priority for testing. You can adjust the order using `changeOrder`.
+
+```javascript
+creditCardType.changeOrder('my-new-card', 0); // give custom card type the highest priority
+```
+
+You can also remove cards with `removeCard`.
+
+```javscript
+creditCardType.removeCard(creditCardType.types.VISA);
+```
+
+If you need to reset the modifications you have created, simply call `resetModifications`:
+
+```javascript
+creditCardType.resetModifications();
+```
+
+
 #### Pretty Card Numbers
 
 ```javascript

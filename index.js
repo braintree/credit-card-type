@@ -1,6 +1,8 @@
 'use strict';
 
+var testOrder;
 var types = {};
+var customCards = {};
 var VISA = 'visa';
 var MASTERCARD = 'master-card';
 var AMERICAN_EXPRESS = 'american-express';
@@ -13,7 +15,7 @@ var CVV = 'CVV';
 var CID = 'CID';
 var CVC = 'CVC';
 var CVN = 'CVN';
-var testOrder = [
+var ORIGINAL_TEST_ORDER = [
   VISA,
   MASTERCARD,
   AMERICAN_EXPRESS,
@@ -35,6 +37,8 @@ function clone(originalObject) {
 
   return dupe;
 }
+
+testOrder = clone(ORIGINAL_TEST_ORDER);
 
 types[VISA] = {
   niceType: 'Visa',
@@ -141,6 +145,10 @@ types[MAESTRO] = {
   }
 };
 
+function findType(type) {
+  return customCards[type] || types[type];
+}
+
 function creditCardType(cardNumber) {
   var type, value, i;
   var prefixResults = [];
@@ -152,7 +160,7 @@ function creditCardType(cardNumber) {
 
   for (i = 0; i < testOrder.length; i++) {
     type = testOrder[i];
-    value = types[type];
+    value = findType(type);
 
     if (cardNumber.length === 0) {
       prefixResults.push(clone(value));
@@ -170,7 +178,45 @@ function creditCardType(cardNumber) {
 }
 
 creditCardType.getTypeInfo = function (type) {
-  return clone(types[type]);
+  return clone(findType(type));
+};
+
+function getCardPosition(name, ignoreErrorForNotExisting) {
+  var position = testOrder.indexOf(name);
+
+  if (!ignoreErrorForNotExisting && position === -1) {
+    throw new Error('"' + name + '" is not a supported card type.');
+  }
+
+  return position;
+}
+
+creditCardType.removeCard = function (name) {
+  var position = getCardPosition(name);
+
+  testOrder.splice(position, 1);
+};
+
+creditCardType.addCard = function (config) {
+  var existingCardPosition = getCardPosition(config.type, true);
+
+  customCards[config.type] = config;
+
+  if (existingCardPosition === -1) {
+    testOrder.push(config.type);
+  }
+};
+
+creditCardType.changeOrder = function (name, position) {
+  var currentPosition = getCardPosition(name);
+
+  testOrder.splice(currentPosition, 1);
+  testOrder.splice(position, 0, name);
+};
+
+creditCardType.resetModifications = function () {
+  testOrder = clone(ORIGINAL_TEST_ORDER);
+  customCards = {};
 };
 
 creditCardType.types = {

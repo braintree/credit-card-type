@@ -310,3 +310,238 @@ describe('getTypeInfo', function () {
     expect(creditCardType.getTypeInfo('gibberish')).to.equal(null);
   });
 });
+
+describe('resetModifications', function () {
+  it('resets card removals', function () {
+    var original = creditCardType('');
+
+    creditCardType.removeCard('master-card');
+
+    expect(creditCardType('')).to.not.deep.equal(original);
+
+    creditCardType.resetModifications();
+
+    expect(creditCardType('')).to.deep.equal(original);
+  });
+
+  it('resets card additions', function () {
+    var original = creditCardType('');
+
+    creditCardType.addCard({
+      niceType: 'NewCard',
+      type: 'new-card',
+      prefixPattern: /^(2|23|234)$/,
+      exactPattern: /^(2345)\d*$/,
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: 'cvv',
+        size: 3
+      }
+    });
+
+    expect(creditCardType('')).to.not.deep.equal(original);
+
+    creditCardType.resetModifications();
+
+    expect(creditCardType('')).to.deep.equal(original);
+  });
+
+  it('resets card modifications', function () {
+    var original = creditCardType('');
+
+    creditCardType.addCard({
+      niceType: 'Custom Visa Nice Type',
+      type: 'visa',
+      prefixPattern: /^(4)$/,
+      exactPattern: /^(4)\d*$/,
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: 'Security Code',
+        size: 3
+      }
+    });
+
+    expect(creditCardType('')).to.not.deep.equal(original);
+
+    creditCardType.resetModifications();
+
+    expect(creditCardType('')).to.deep.equal(original);
+  });
+
+  it('resets order changes', function () {
+    var original = creditCardType('');
+
+    creditCardType.changeOrder('visa', 4);
+
+    expect(creditCardType('')).to.not.deep.equal(original);
+
+    creditCardType.resetModifications();
+
+    expect(creditCardType('')).to.deep.equal(original);
+  });
+});
+
+describe('removeCard', function () {
+  afterEach(function () {
+    creditCardType.resetModifications();
+  });
+
+  it('removes card from test order array', function () {
+    var result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(2);
+    expect(result[0].type).to.equal('master-card');
+    expect(result[1].type).to.equal('jcb');
+
+    creditCardType.removeCard('master-card');
+
+    result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(1);
+    expect(result[0].type).to.equal('jcb');
+  });
+
+  it('throws an error if card type is passed which is not in the array', function () {
+    expect(function () {
+      creditCardType.removeCard('bogus');
+    }).to.throw('"bogus" is not a supported card type.');
+  });
+});
+
+describe('addCard', function () {
+  afterEach(function () {
+    creditCardType.resetModifications();
+  });
+
+  it('adds new card type', function () {
+    var result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(2);
+    expect(result[0].type).to.equal('master-card');
+    expect(result[1].type).to.equal('jcb');
+
+    creditCardType.addCard({
+      niceType: 'NewCard',
+      type: 'new-card',
+      prefixPattern: /^(2|23|234)$/,
+      exactPattern: /^(2345)\d*$/,
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: 'cvv',
+        size: 3
+      }
+    });
+
+    result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(3);
+    expect(result[0].type).to.equal('master-card');
+    expect(result[1].type).to.equal('jcb');
+    expect(result[2].type).to.equal('new-card');
+  });
+
+  it('can overwrite existing cards', function () {
+    var result = creditCardType('4');
+
+    expect(result).to.have.a.lengthOf(1);
+    expect(result[0].type).to.equal('visa');
+    expect(result[0].niceType).to.equal('Visa');
+    expect(result[0].code.name).to.equal('CVV');
+    expect(result[0].lengths).to.deep.equal([16, 18, 19]);
+
+    creditCardType.addCard({
+      niceType: 'Custom Visa Nice Type',
+      type: 'visa',
+      prefixPattern: /^(4)$/,
+      exactPattern: /^(4)\d*$/,
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: 'Security Code',
+        size: 3
+      }
+    });
+
+    result = creditCardType('4');
+
+    expect(result).to.have.a.lengthOf(1);
+    expect(result[0].type).to.equal('visa');
+    expect(result[0].niceType).to.equal('Custom Visa Nice Type');
+    expect(result[0].code.name).to.equal('Security Code');
+    expect(result[0].lengths).to.deep.equal([16]);
+  });
+
+  it('adds new card to last position in card list', function () {
+    var result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(2);
+
+    creditCardType.addCard({
+      niceType: 'NewCard',
+      type: 'new-card',
+      prefixPattern: /^(2|23|234)$/,
+      exactPattern: /^(2345)\d*$/,
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: 'cvv',
+        size: 3
+      }
+    });
+
+    result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(3);
+    expect(result[2].type).to.equal('new-card');
+
+    creditCardType.addCard({
+      niceType: 'NewCard 2',
+      type: 'another-new-card',
+      prefixPattern: /^(2|23|234)$/,
+      exactPattern: /^(2345)\d*$/,
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: 'cvv',
+        size: 3
+      }
+    });
+
+    result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(4);
+    expect(result[2].type).to.equal('new-card');
+    expect(result[3].type).to.equal('another-new-card');
+  });
+});
+
+describe('changeOrder', function () {
+  afterEach(function () {
+    creditCardType.resetModifications();
+  });
+
+  it('changes test order priority', function () {
+    var result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(2);
+    expect(result[0].type).to.equal('master-card');
+    expect(result[1].type).to.equal('jcb');
+
+    creditCardType.changeOrder('jcb', 0);
+
+    result = creditCardType('2');
+
+    expect(result).to.have.a.lengthOf(2);
+    expect(result[0].type).to.equal('jcb');
+    expect(result[1].type).to.equal('master-card');
+  });
+
+  it('throws an error if card type is passed which is not in the array', function () {
+    expect(function () {
+      creditCardType.changeOrder('bogus', 0);
+    }).to.throw('"bogus" is not a supported card type.');
+  });
+});
