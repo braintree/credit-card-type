@@ -487,7 +487,7 @@ describe('addCard', function () {
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
-        name: 'cvv',
+        name: 'CVV',
         size: 3
       }
     });
@@ -505,7 +505,7 @@ describe('addCard', function () {
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
-        name: 'cvv',
+        name: 'CVV',
         size: 3
       }
     });

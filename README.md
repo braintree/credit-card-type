@@ -130,7 +130,7 @@ creditCardType.addCard({
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
-    name: 'cvv',
+    name: 'CVV',
     size: 3
   }
 });
@@ -147,7 +147,7 @@ creditCardType.addCard({
   gaps: [4, 8, 12],
   lengths: [13, 16, 19], // add support for old, deprecated 13 digit visas
   code: {
-    name: 'cvv',
+    name: 'CVV',
     size: 3
   }
 });
