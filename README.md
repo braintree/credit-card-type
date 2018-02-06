@@ -166,10 +166,26 @@ visa.exactPattern = /^(4[0-1])\d*$/; // restrict to only match visas that start 
 creditCardType.addCard(visa.type, visa);
 ```
 
-Adding new cards puts them at the bottom of the priority for testing. You can adjust the order using `changeOrder`.
+Adding new cards puts them at the bottom of the priority for testing. Priority is determined by an array. By default, the priority looks like:
+
+```javascript
+[
+  creditCardType.types.VISA,
+  creditCardType.types.MASTERCARD,
+  creditCardType.types.AMERICAN_EXPRESS,
+  creditCardType.types.DINERS_CLUB,
+  creditCardType.types.DISCOVER,
+  creditCardType.types.JCB,
+  creditCardType.types.UNIONPAY,
+  creditCardType.types.MAESTRO
+]
+```
+
+You can adjust the order using `changeOrder`. The number you pass in as the second argument is where the card is inserted into the array. The closer to the beginning of the array, the higher priority it has.
 
 ```javascript
 creditCardType.changeOrder('my-new-card', 0); // give custom card type the highest priority
+creditCardType.changeOrder('my-new-card', 3); // give it a priority at position 3 in the test order array
 ```
 
 You can also remove cards with `removeCard`.
