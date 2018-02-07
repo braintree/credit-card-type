@@ -1,3 +1,8 @@
+6.2.0
+=====
+
+- Allow custom card brands to be added
+
 6.1.1
 =====
 
