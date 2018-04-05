@@ -11,10 +11,12 @@ var DISCOVER = 'discover';
 var JCB = 'jcb';
 var UNIONPAY = 'unionpay';
 var MAESTRO = 'maestro';
+var MIR = 'mir';
 var CVV = 'CVV';
 var CID = 'CID';
 var CVC = 'CVC';
 var CVN = 'CVN';
+var CVP2 = 'CVP2';
 var ORIGINAL_TEST_ORDER = [
   VISA,
   MASTERCARD,
@@ -23,7 +25,8 @@ var ORIGINAL_TEST_ORDER = [
   DISCOVER,
   JCB,
   UNIONPAY,
-  MAESTRO
+  MAESTRO,
+  MIR
 ];
 
 function clone(originalObject) {
@@ -141,6 +144,19 @@ types[MAESTRO] = {
   lengths: [12, 13, 14, 15, 16, 17, 18, 19],
   code: {
     name: CVC,
+    size: 3
+  }
+};
+
+types[MIR] = {
+  niceType: 'Mir',
+  type: MIR,
+  prefixPattern: /^(2|22|220|220[0-4])$/,
+  exactPattern: /^(220[0-4])\d*$/,
+  gaps: [4, 8, 12],
+  lengths: [16, 17, 18, 19],
+  code: {
+    name: CVP2,
     size: 3
   }
 };

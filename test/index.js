@@ -126,7 +126,12 @@ describe('creditCardType', function () {
       ['6221558812340000', 'unionpay'],
       ['6269992058134322', 'unionpay'],
       ['622018111111111111', 'unionpay'],
-      ['6220181111111111111', 'maestro']
+      ['6220181111111111111', 'maestro'],
+
+      ['2200', 'mir'],
+      ['2204', 'mir'],
+      ['22000000000000000', 'mir'],
+      ['22049999999999999', 'mir']
     ];
 
     tests.forEach(function (test) {
@@ -144,8 +149,8 @@ describe('creditCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro']],
-      ['2', ['master-card', 'jcb']],
+      ['', ['visa', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'mir']],
+      ['2', ['master-card', 'jcb', 'mir']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['master-card', 'maestro']],
       ['6', ['discover', 'maestro', 'unionpay']],
@@ -254,6 +259,13 @@ describe('creditCardType', function () {
       expect(code.size).to.equal(3);
       expect(code.name).to.equal('CVC');
     });
+
+    it('Mir', function () {
+      var code = creditCardType('2200000000000000')[0].code;
+
+      expect(code.size).to.equal(3);
+      expect(code.name).to.equal('CVP2');
+    });
   });
 
   describe('returns lengths for', function () {
@@ -273,6 +285,9 @@ describe('creditCardType', function () {
       expect(creditCardType('54')[0].lengths).to.deep.equal([16]);
     });
     it('JCB', function () {
+      expect(creditCardType('35')[0].lengths).to.deep.equal([16, 17, 18, 19]);
+    });
+    it('Mir', function () {
       expect(creditCardType('35')[0].lengths).to.deep.equal([16, 17, 18, 19]);
     });
   });
@@ -391,16 +406,18 @@ describe('removeCard', function () {
   it('removes card from test order array', function () {
     var result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(2);
+    expect(result).to.have.a.lengthOf(3);
     expect(result[0].type).to.equal('master-card');
     expect(result[1].type).to.equal('jcb');
+    expect(result[2].type).to.equal('mir');
 
     creditCardType.removeCard('master-card');
 
     result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(1);
+    expect(result).to.have.a.lengthOf(2);
     expect(result[0].type).to.equal('jcb');
+    expect(result[1].type).to.equal('mir');
   });
 
   it('throws an error if card type is passed which is not in the array', function () {
@@ -418,9 +435,10 @@ describe('addCard', function () {
   it('adds new card type', function () {
     var result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(2);
+    expect(result).to.have.a.lengthOf(3);
     expect(result[0].type).to.equal('master-card');
     expect(result[1].type).to.equal('jcb');
+    expect(result[2].type).to.equal('mir');
 
     creditCardType.addCard({
       niceType: 'NewCard',
@@ -437,10 +455,11 @@ describe('addCard', function () {
 
     result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(3);
+    expect(result).to.have.a.lengthOf(4);
     expect(result[0].type).to.equal('master-card');
     expect(result[1].type).to.equal('jcb');
-    expect(result[2].type).to.equal('new-card');
+    expect(result[2].type).to.equal('mir');
+    expect(result[3].type).to.equal('new-card');
   });
 
   it('can overwrite existing cards', function () {
@@ -477,7 +496,7 @@ describe('addCard', function () {
   it('adds new card to last position in card list', function () {
     var result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(2);
+    expect(result).to.have.a.lengthOf(3);
 
     creditCardType.addCard({
       niceType: 'NewCard',
@@ -494,8 +513,8 @@ describe('addCard', function () {
 
     result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(3);
-    expect(result[2].type).to.equal('new-card');
+    expect(result).to.have.a.lengthOf(4);
+    expect(result[3].type).to.equal('new-card');
 
     creditCardType.addCard({
       niceType: 'NewCard 2',
@@ -512,9 +531,9 @@ describe('addCard', function () {
 
     result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(4);
-    expect(result[2].type).to.equal('new-card');
-    expect(result[3].type).to.equal('another-new-card');
+    expect(result).to.have.a.lengthOf(5);
+    expect(result[3].type).to.equal('new-card');
+    expect(result[4].type).to.equal('another-new-card');
   });
 });
 
@@ -526,17 +545,19 @@ describe('changeOrder', function () {
   it('changes test order priority', function () {
     var result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(2);
+    expect(result).to.have.a.lengthOf(3);
     expect(result[0].type).to.equal('master-card');
     expect(result[1].type).to.equal('jcb');
+    expect(result[2].type).to.equal('mir');
 
     creditCardType.changeOrder('jcb', 0);
 
     result = creditCardType('2');
 
-    expect(result).to.have.a.lengthOf(2);
+    expect(result).to.have.a.lengthOf(3);
     expect(result[0].type).to.equal('jcb');
     expect(result[1].type).to.equal('master-card');
+    expect(result[2].type).to.equal('mir');
   });
 
   it('throws an error if card type is passed which is not in the array', function () {
