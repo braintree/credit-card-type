@@ -65,6 +65,7 @@ Named variables are provided for each of the supported card types:
 * `JCB`
 * `UNIONPAY`
 * `MAESTRO`
+* `MIR`
 
 #### `code`
 
@@ -80,6 +81,7 @@ Card brands provide different nomenclature for their security codes as well as v
 | `JCB`              | `CVV` | 3    |
 | `UnionPay`         | `CVN` | 3    |
 | `Maestro`          | `CVC` | 3    |
+| `Mir`              | `CVP` | 3    |
 
 A full response for a `Visa` card will look like this:
 
@@ -177,7 +179,8 @@ Adding new cards puts them at the bottom of the priority for testing. Priority i
   creditCardType.types.DISCOVER,
   creditCardType.types.JCB,
   creditCardType.types.UNIONPAY,
-  creditCardType.types.MAESTRO
+  creditCardType.types.MAESTRO,
+  creditCardType.types.MIR
 ]
 ```
 
