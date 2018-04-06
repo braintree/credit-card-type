@@ -243,7 +243,8 @@ creditCardType.types = {
   DISCOVER: DISCOVER,
   JCB: JCB,
   UNIONPAY: UNIONPAY,
-  MAESTRO: MAESTRO
+  MAESTRO: MAESTRO,
+  MIR: MIR
 };
 
 module.exports = creditCardType;

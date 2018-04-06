@@ -566,3 +566,12 @@ describe('changeOrder', function () {
     }).to.throw('"bogus" is not a supported card type.');
   });
 });
+
+describe('types', function () {
+  it('correspond to internals', function () {
+    var exposedTypes = Object.keys(creditCardType.types).map(function (key) { return creditCardType.types[key]; });
+    var internalTypes = creditCardType('').map(function (entry) { return entry.type; });
+
+    expect(exposedTypes).to.deep.equal(internalTypes);
+  });
+});
