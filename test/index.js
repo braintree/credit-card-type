@@ -128,6 +128,7 @@ describe('creditCardType', function () {
       ['622018111111111111', 'unionpay'],
       ['6220181111111111111', 'maestro'],
 
+      ['220', 'mir'],
       ['2200', 'mir'],
       ['2204', 'mir'],
       ['22000000000000000', 'mir'],
@@ -270,25 +271,52 @@ describe('creditCardType', function () {
 
   describe('returns lengths for', function () {
     it('Maestro', function () {
-      expect(creditCardType('6304000000000000')[0].lengths).to.deep.equal([12, 13, 14, 15, 16, 17, 18, 19]);
+      var cardType = creditCardType('6304000000000000')[0];
+
+      expect(cardType.type).to.equal('maestro');
+      expect(cardType.lengths).to.deep.equal([12, 13, 14, 15, 16, 17, 18, 19]);
     });
+
     it('Diners Club', function () {
-      expect(creditCardType('305')[0].lengths).to.deep.equal([14, 16, 19]);
+      var cardType = creditCardType('305')[0];
+
+      expect(cardType.type).to.equal('diners-club');
+      expect(cardType.lengths).to.deep.equal([14, 16, 19]);
     });
+
     it('Discover', function () {
-      expect(creditCardType('6011')[0].lengths).to.deep.equal([16, 19]);
+      var cardType = creditCardType('6011')[0];
+
+      expect(cardType.type).to.equal('discover');
+      expect(cardType.lengths).to.deep.equal([16, 19]);
     });
+
     it('Visa', function () {
-      expect(creditCardType('4')[0].lengths).to.deep.equal([16, 18, 19]);
+      var cardType = creditCardType('4')[0];
+
+      expect(cardType.type).to.equal('visa');
+      expect(cardType.lengths).to.deep.equal([16, 18, 19]);
     });
+
     it('Mastercard', function () {
-      expect(creditCardType('54')[0].lengths).to.deep.equal([16]);
+      var cardType = creditCardType('54')[0];
+
+      expect(cardType.type).to.equal('master-card');
+      expect(cardType.lengths).to.deep.equal([16]);
     });
+
     it('JCB', function () {
-      expect(creditCardType('35')[0].lengths).to.deep.equal([16, 17, 18, 19]);
+      var cardType = creditCardType('35')[0];
+
+      expect(cardType.type).to.equal('jcb');
+      expect(cardType.lengths).to.deep.equal([16, 17, 18, 19]);
     });
+
     it('Mir', function () {
-      expect(creditCardType('35')[0].lengths).to.deep.equal([16, 17, 18, 19]);
+      var cardType = creditCardType('220')[0];
+
+      expect(cardType.type).to.equal('mir');
+      expect(cardType.lengths).to.deep.equal([16, 17, 18, 19]);
     });
   });
 
@@ -568,9 +596,13 @@ describe('changeOrder', function () {
 });
 
 describe('types', function () {
-  it('correspond to internals', function () {
-    var exposedTypes = Object.keys(creditCardType.types).map(function (key) { return creditCardType.types[key]; });
-    var internalTypes = creditCardType('').map(function (entry) { return entry.type; });
+  it('corresponds to internal type codes', function () {
+    var exposedTypes = Object.keys(creditCardType.types).map(function (key) {
+      return creditCardType.types[key];
+    });
+    var internalTypes = creditCardType('').map(function (entry) {
+      return entry.type;
+    });
 
     expect(exposedTypes).to.deep.equal(internalTypes);
   });

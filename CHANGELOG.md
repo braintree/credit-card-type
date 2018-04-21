@@ -1,3 +1,8 @@
+6.3.0
+=====
+
+- Add support for `MIR` card type (thanks @antongolub)
+
 6.2.0
 =====
 
