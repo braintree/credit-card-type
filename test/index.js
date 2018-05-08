@@ -27,33 +27,33 @@ describe('creditCardType', function () {
       ['411111111111111111', 'visa'],
       ['4111111111111111110', 'visa'],
 
-      ['2221', 'master-card'],
-      ['2222', 'master-card'],
-      ['2223', 'master-card'],
-      ['2224', 'master-card'],
-      ['2225', 'master-card'],
-      ['2226', 'master-card'],
-      ['2225', 'master-card'],
-      ['2226', 'master-card'],
-      ['223', 'master-card'],
-      ['2239', 'master-card'],
-      ['23', 'master-card'],
-      ['24', 'master-card'],
-      ['25', 'master-card'],
-      ['26', 'master-card'],
-      ['27', 'master-card'],
-      ['270', 'master-card'],
-      ['271', 'master-card'],
-      ['272', 'master-card'],
-      ['2720', 'master-card'],
+      ['2221', 'mastercard'],
+      ['2222', 'mastercard'],
+      ['2223', 'mastercard'],
+      ['2224', 'mastercard'],
+      ['2225', 'mastercard'],
+      ['2226', 'mastercard'],
+      ['2225', 'mastercard'],
+      ['2226', 'mastercard'],
+      ['223', 'mastercard'],
+      ['2239', 'mastercard'],
+      ['23', 'mastercard'],
+      ['24', 'mastercard'],
+      ['25', 'mastercard'],
+      ['26', 'mastercard'],
+      ['27', 'mastercard'],
+      ['270', 'mastercard'],
+      ['271', 'mastercard'],
+      ['272', 'mastercard'],
+      ['2720', 'mastercard'],
 
-      ['51', 'master-card'],
-      ['52', 'master-card'],
-      ['53', 'master-card'],
-      ['54', 'master-card'],
-      ['55', 'master-card'],
-      ['5555555555554444', 'master-card'],
-      ['5454545454545454', 'master-card'],
+      ['51', 'mastercard'],
+      ['52', 'mastercard'],
+      ['53', 'mastercard'],
+      ['54', 'mastercard'],
+      ['55', 'mastercard'],
+      ['5555555555554444', 'mastercard'],
+      ['5454545454545454', 'mastercard'],
 
       ['34', 'american-express'],
       ['37', 'american-express'],
@@ -150,10 +150,10 @@ describe('creditCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'master-card', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'mir']],
-      ['2', ['master-card', 'jcb', 'mir']],
+      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'mir']],
+      ['2', ['mastercard', 'jcb', 'mir']],
       ['3', ['american-express', 'diners-club', 'jcb']],
-      ['5', ['master-card', 'maestro']],
+      ['5', ['mastercard', 'maestro']],
       ['6', ['discover', 'maestro', 'unionpay']],
       ['60', ['discover', 'maestro']],
       ['601', ['discover', 'maestro']],
@@ -301,7 +301,7 @@ describe('creditCardType', function () {
     it('Mastercard', function () {
       var cardType = creditCardType('54')[0];
 
-      expect(cardType.type).to.equal('master-card');
+      expect(cardType.type).to.equal('mastercard');
       expect(cardType.lengths).to.deep.equal([16]);
     });
 
@@ -358,7 +358,7 @@ describe('resetModifications', function () {
   it('resets card removals', function () {
     var original = creditCardType('');
 
-    creditCardType.removeCard('master-card');
+    creditCardType.removeCard('mastercard');
 
     expect(creditCardType('')).to.not.deep.equal(original);
 
@@ -435,11 +435,11 @@ describe('removeCard', function () {
     var result = creditCardType('2');
 
     expect(result).to.have.a.lengthOf(3);
-    expect(result[0].type).to.equal('master-card');
+    expect(result[0].type).to.equal('mastercard');
     expect(result[1].type).to.equal('jcb');
     expect(result[2].type).to.equal('mir');
 
-    creditCardType.removeCard('master-card');
+    creditCardType.removeCard('mastercard');
 
     result = creditCardType('2');
 
@@ -464,7 +464,7 @@ describe('addCard', function () {
     var result = creditCardType('2');
 
     expect(result).to.have.a.lengthOf(3);
-    expect(result[0].type).to.equal('master-card');
+    expect(result[0].type).to.equal('mastercard');
     expect(result[1].type).to.equal('jcb');
     expect(result[2].type).to.equal('mir');
 
@@ -484,7 +484,7 @@ describe('addCard', function () {
     result = creditCardType('2');
 
     expect(result).to.have.a.lengthOf(4);
-    expect(result[0].type).to.equal('master-card');
+    expect(result[0].type).to.equal('mastercard');
     expect(result[1].type).to.equal('jcb');
     expect(result[2].type).to.equal('mir');
     expect(result[3].type).to.equal('new-card');
@@ -574,7 +574,7 @@ describe('changeOrder', function () {
     var result = creditCardType('2');
 
     expect(result).to.have.a.lengthOf(3);
-    expect(result[0].type).to.equal('master-card');
+    expect(result[0].type).to.equal('mastercard');
     expect(result[1].type).to.equal('jcb');
     expect(result[2].type).to.equal('mir');
 
@@ -584,7 +584,7 @@ describe('changeOrder', function () {
 
     expect(result).to.have.a.lengthOf(3);
     expect(result[0].type).to.equal('jcb');
-    expect(result[1].type).to.equal('master-card');
+    expect(result[1].type).to.equal('mastercard');
     expect(result[2].type).to.equal('mir');
   });
 
