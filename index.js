@@ -4,7 +4,7 @@ var testOrder;
 var types = {};
 var customCards = {};
 var VISA = 'visa';
-var MASTERCARD = 'master-card'; // TODO: rename to mastercard in major version bunmp
+var MASTERCARD = 'mastercard';
 var AMERICAN_EXPRESS = 'american-express';
 var DINERS_CLUB = 'diners-club';
 var DISCOVER = 'discover';

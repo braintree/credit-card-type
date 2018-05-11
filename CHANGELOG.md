@@ -1,3 +1,8 @@
+7.0.0
+=====
+
+- Updates "master-card" enum to "mastercard"
+
 6.3.0
 =====
 
