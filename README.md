@@ -165,7 +165,7 @@ var visa = creditCardType.getTypeInfo(creditCardType.types.VISA);
 visa.prefixPattern = /^(4)$/;
 visa.exactPattern = /^(4[0-1])\d*$/; // restrict to only match visas that start with 40 or 41
 
-creditCardType.addCard(visa.type, visa);
+creditCardType.addCard(visa);
 ```
 
 Adding new cards puts them at the bottom of the priority for testing. Priority is determined by an array. By default, the priority looks like:
