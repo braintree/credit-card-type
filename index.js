@@ -49,13 +49,13 @@ testOrder = clone(ORIGINAL_TEST_ORDER);
 types[VISA] = {
   niceType: 'Visa',
   type: VISA,
-  prefixPattern: /^4$/,
+  prefixPattern: /^4/,
   exactPattern: new RegExp('^' +
     '4' +
-    '(?!(' +
+    '(?!' +
       '31274|51416|57393|0117[89]|38935|5763[12]' + // Elo cards
-    '))' +
-  '\\d*$'),
+    ')' +
+  '\\d{5,}$'),
   gaps: [4, 8, 12],
   lengths: [16, 18, 19],
   code: {
@@ -107,12 +107,12 @@ types[DINERS_CLUB] = {
 types[DISCOVER] = {
   niceType: 'Discover',
   type: DISCOVER,
-  prefixPattern: /^(6|60|601|6011|65|64|64[4-9])$/,
+  prefixPattern: /^(6|60|601|6011|65|65\d{1,4}|64|64[4-9])$/,
   exactPattern: new RegExp('^(' +
     '6011' +
     '|' +
     '65' +
-      '(?!(' + // Elo cards
+      '(?!' + // Elo cards
         '003[1-3]' +
         '|' +
         '003[5-9]|004\\d|005[0-1]' +
@@ -134,7 +134,7 @@ types[DISCOVER] = {
         '50[0-1]\\d' +
         '|' +
         '502[1-9]|50[3-4]\\d|505[0-8]' +
-      '))' +
+      ')\\d{4}' +
     '|' +
     '64[4-9]' +
   ')\\d*$'),
@@ -162,7 +162,7 @@ types[JCB] = {
 types[UNIONPAY] = {
   niceType: 'UnionPay',
   type: UNIONPAY,
-  prefixPattern: /^((6|62|62\d|(621(?!83|88|98|99))|622(?!06)|627[02,06,07]|628(?!0|1)|629[1,2])|622018)$/,
+  prefixPattern: /^((6|62|62\d|(621(?!83|88|98|99))|622(?!06)|627[0267]\d?|628(?!0|1)|629[1,2])|622018)$/,
   exactPattern: new RegExp('^(' +
     '(' +
       '620' +
@@ -175,7 +175,7 @@ types[UNIONPAY] = {
       '|' +
       '627[026]' +
       '|' +
-      '6277(?!80)' + // Elo card
+      '6277(?!80)\\d{2}' + // Elo card
       '|' +
       '628(?!0|1)' +
       '|' +
@@ -202,20 +202,20 @@ types[MAESTRO] = {
     '5[6-9]' +
     '|' +
     '50' +
-      '(?!(' + // Elo card ranges
+      '(?!' + // Elo card ranges
         '6699|067[0-6][0-9]' +
         '|' +
         '677[0-8]' +
         '|' +
         '9[0-9][0-9][0-9]' +
-      '))' +
+      ')\\d{4}' +
     '|' +
     '67' +
     '|' +
     '63' +
-      '(?!(' + // More Elo card ranges
+      '(?!' + // More Elo card ranges
         '6297|6368' +
-      '))' +
+      ')\d{4}' +
     ')\\d*$'
   ),
   gaps: [4, 8, 12],
