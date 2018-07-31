@@ -27,6 +27,21 @@ describe('creditCardType', function () {
       ['411111111111111111', 'visa'],
       ['4111111111111111110', 'visa'],
 
+      ['431274', 'elo'],
+      ['451416', 'elo'],
+      ['457393', 'elo'],
+      ['401178', 'elo'],
+      ['401179', 'elo'],
+      ['438935', 'elo'],
+      ['457631', 'elo'],
+      ['457632', 'elo'],
+      ['4576321111111111', 'elo'],
+      ['5066991111111118', 'elo'],
+      ['6277809', 'elo'],
+      ['6277809990229178', 'elo'],
+      ['650033', 'elo'],
+      ['6500331111111111', 'elo'],
+
       ['2221', 'mastercard'],
       ['2222', 'mastercard'],
       ['2223', 'mastercard'],
@@ -150,16 +165,16 @@ describe('creditCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'mir']],
+      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'elo', 'mir']],
       ['2', ['mastercard', 'jcb', 'mir']],
       ['3', ['american-express', 'diners-club', 'jcb']],
-      ['5', ['mastercard', 'maestro']],
-      ['6', ['discover', 'maestro', 'unionpay']],
+      ['5', ['mastercard', 'maestro', 'elo']],
+      ['6', ['discover', 'maestro', 'unionpay', 'elo']],
       ['60', ['discover', 'maestro']],
       ['601', ['discover', 'maestro']],
       ['64', ['discover', 'maestro']],
-      ['62', ['unionpay', 'maestro']],
-      ['627', ['unionpay', 'maestro']]
+      ['62', ['unionpay', 'maestro', 'elo']],
+      ['627', ['unionpay', 'maestro', 'elo']]
     ];
 
     ambiguous.forEach(function (group) {
@@ -172,6 +187,49 @@ describe('creditCardType', function () {
         }).sort();
 
         expect(expectedNames).to.deep.equal(actualNames);
+      });
+    });
+  });
+
+  describe('dual branded Elo cards', function () {
+    var tests = [
+      ['43', 'visa'],
+      ['431', 'visa'],
+      ['4312', 'visa'],
+      ['43127', 'visa'],
+      ['45141', 'visa'],
+      ['45739', 'visa'],
+      ['40117', 'visa'],
+      ['43893', 'visa'],
+      ['45763', 'visa'],
+      ['457631', 'elo'],
+
+      ['65', 'discover'],
+      ['655', 'discover'],
+      ['6550', 'discover'],
+      ['65502', 'discover'],
+      ['655021', 'elo'],
+
+      ['63', 'maestro'],
+      ['636', 'maestro'],
+      ['6362', 'maestro'],
+      ['63629', 'maestro'],
+      ['636297', 'elo'],
+
+      ['6277', 'unionpay'],
+      ['62778', 'unionpay'],
+      ['627780', 'elo']
+    ];
+
+    tests.forEach(function (test) {
+      var number = test[0];
+      var type = test[1];
+
+      it('returns type ' + type + ' for ' + number, function () {
+        var actual = creditCardType(number);
+
+        expect(actual).to.have.lengthOf(1);
+        expect(actual[0].type).to.equal(type);
       });
     });
   });
