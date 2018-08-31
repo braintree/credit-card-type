@@ -29,14 +29,22 @@ var ORIGINAL_TEST_ORDER = [
   MIR
 ];
 
-function clone(originalObject) {
-  var dupe;
+function clone(originalObject, persistPatterns) {
+  var dupe, prefixPattern, exactPattern;
 
   if (!originalObject) { return null; }
 
+  prefixPattern = originalObject.prefixPattern;
+  exactPattern = originalObject.exactPattern;
   dupe = JSON.parse(JSON.stringify(originalObject));
-  delete dupe.prefixPattern;
-  delete dupe.exactPattern;
+
+  if (persistPatterns) {
+    dupe.prefixPattern = prefixPattern;
+    dupe.exactPattern = exactPattern;
+  } else {
+    delete dupe.prefixPattern;
+    delete dupe.exactPattern;
+  }
 
   return dupe;
 }
@@ -221,6 +229,29 @@ creditCardType.addCard = function (config) {
   if (existingCardPosition === -1) {
     testOrder.push(config.type);
   }
+};
+
+creditCardType.updateCard = function (cardType, updates) {
+  var clonedCard;
+  var originalObject = customCards[cardType] || types[cardType];
+
+  if (!originalObject) {
+    throw new Error('"' + cardType + '" is not a recognized type. Use `addCard` instead.');
+  }
+
+  if (updates.type && originalObject.type !== updates.type) {
+    throw new Error('Cannot overwrite type parameter.');
+  }
+
+  clonedCard = clone(originalObject, true);
+
+  Object.keys(clonedCard).forEach(function (key) {
+    if (updates[key]) {
+      clonedCard[key] = updates[key];
+    }
+  });
+
+  customCards[clonedCard.type] = clonedCard;
 };
 
 creditCardType.changeOrder = function (name, position) {

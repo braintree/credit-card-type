@@ -1,3 +1,8 @@
+unreleased
+==========
+
+- Adds `updateCard` method (#77)
+
 7.0.0
 =====
 
