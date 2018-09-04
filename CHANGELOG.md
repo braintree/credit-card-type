@@ -2,6 +2,7 @@ unreleased
 ==========
 
 - Add support for `Elo` card type
+- Adds `updateCard` method (#77)
 
 7.0.0
 =====

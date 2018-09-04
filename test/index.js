@@ -601,6 +601,114 @@ describe('addCard', function () {
   });
 });
 
+describe('updateCard', function () {
+  afterEach(function () {
+    creditCardType.resetModifications();
+  });
+
+  it('throws an error if the card type does not exist', function () {
+    expect(function () {
+      creditCardType.updateCard('foo', {});
+    }).to.throw('"foo" is not a recognized type. Use `addCard` instead.');
+  });
+
+  it('throws an error if the type field in the updates object exists and does not match', function () {
+    expect(function () {
+      creditCardType.updateCard(creditCardType.types.VISA, {
+        type: 'not visa'
+      });
+    }).to.throw('Cannot overwrite type parameter.');
+  });
+
+  it('does not throw an error if the type field in the updates object exists and does match', function () {
+    expect(function () {
+      creditCardType.updateCard(creditCardType.types.VISA, {
+        type: 'visa'
+      });
+    }).to.not.throw();
+  });
+
+  it('updates existing card', function () {
+    var updatedVisa;
+
+    creditCardType.updateCard(creditCardType.types.VISA, {
+      niceType: 'Fancy Visa',
+      lengths: [11, 16, 18, 19]
+    });
+
+    updatedVisa = creditCardType.getTypeInfo(creditCardType.types.VISA);
+
+    expect(updatedVisa.niceType).to.equal('Fancy Visa');
+    expect(updatedVisa.lengths).to.deep.equal([11, 16, 18, 19]);
+    expect(updatedVisa.gaps).to.deep.equal([4, 8, 12]);
+    expect(updatedVisa.code).to.deep.equal({
+      name: 'CVV',
+      size: 3
+    });
+
+    expect(creditCardType('4')[0].niceType).to.deep.equal('Fancy Visa');
+  });
+
+  it('can update pattern', function () {
+    creditCardType.updateCard(creditCardType.types.VISA, {
+      exactPattern: /^3.*/
+    });
+
+    expect(creditCardType('3')[0].type).to.equal('visa');
+  });
+
+  it('can update more than once', function () {
+    var updatedVisa;
+
+    creditCardType.updateCard(creditCardType.types.VISA, {
+      lengths: [11]
+    });
+
+    updatedVisa = creditCardType.getTypeInfo(creditCardType.types.VISA);
+
+    expect(updatedVisa.lengths).to.deep.equal([11]);
+    expect(updatedVisa.niceType).to.equal('Visa');
+
+    creditCardType.updateCard(creditCardType.types.VISA, {
+      niceType: 'Fancy Visa'
+    });
+
+    updatedVisa = creditCardType.getTypeInfo(creditCardType.types.VISA);
+
+    expect(updatedVisa.niceType).to.equal('Fancy Visa');
+    expect(updatedVisa.lengths).to.deep.equal([11]);
+  });
+
+  it('can update custom cards', function () {
+    var card;
+
+    creditCardType.addCard({
+      niceType: 'NewCard',
+      type: 'new-card',
+      prefixPattern: /^(2|23|234)$/,
+      exactPattern: /^(2345)\d*$/,
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: 'cvv',
+        size: 3
+      }
+    });
+
+    card = creditCardType.getTypeInfo('new-card');
+
+    expect(card.niceType).to.equal('NewCard');
+
+    creditCardType.updateCard(card.type, {
+      niceType: 'Fancy NewCard'
+    });
+
+    card = creditCardType.getTypeInfo('new-card');
+
+    expect(card.niceType).to.equal('Fancy NewCard');
+  });
+});
+
 describe('changeOrder', function () {
   afterEach(function () {
     creditCardType.resetModifications();

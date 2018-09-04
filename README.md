@@ -206,6 +206,32 @@ If you need to reset the modifications you have created, simply call `resetModif
 creditCardType.resetModifications();
 ```
 
+#### Updating Card Types
+
+You can update cards with `updateCard`. Pass in the card type and the configuration object. Any properties left off will inherit from the original card object.
+
+```javascript
+creditCardType.updateCard(creditCardType.types.VISA, {
+  niceType: 'Fancy Visa',
+  lengths: [11, 16]
+});
+
+var visa = creditCardType.getCardInfo(creditCardType.types.VISA);
+
+// overwritten properties
+visa.niceType; // 'Fancy Visa'
+visa.length; // [11, 16]
+
+// unchanged properties
+visa.gaps // [4, 8, 12]
+visa.code.name // 'CVV'
+```
+
+If you need to reset the modifications you have created, simply call `resetModifications`:
+
+```javascript
+creditCardType.resetModifications();
+```
 
 #### Pretty Card Numbers
 
