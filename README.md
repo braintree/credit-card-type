@@ -39,13 +39,13 @@ console.log(ambiguousCards[2].niceType);  // 'Maestro'
 
 `creditCardType` will return an array of objects, each with the following data:
 
-| Key        | Type     | Description                                                                                                                                                                                                                                                                                                                 |
-|------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `Mastercard`<br />- `American Express`<br />- `Diners Club`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro`<br />- `Mir`                                                                                                           |
-| `type`     | `String` | A code-friendly presentation of the card brand (useful to class names in CSS). Please refer to Card Type "Constants" below for the list of possible values.<br/>- `visa`<br />- `mastercard`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb`<br />- `unionpay`<br />- `maestro`<br />- `mir` |
-| `gaps`     | `Array`  | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules.                                                                         |
-| `lengths`  | `Array`  | The expected lengths of the card number as an array of strings (excluding spaces and `/` characters).                                                                                                                                                                                                                       |
-| `code`     | `Object` | The information regarding the security code for the determined card. Learn more about the [code object](#code) below.                                                                                                                                                                                                       |
+| Key        | Type     | Description                                                                                                                                                                                                                                                                                                                              |
+|------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `Mastercard`<br />- `American Express`<br />- `Diners Club`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro`<br />- `Mir`<br />- `Elo`                                                                                                           |
+| `type`     | `String` | A code-friendly presentation of the card brand (useful to class names in CSS). Please refer to Card Type "Constants" below for the list of possible values.<br/>- `visa`<br />- `mastercard`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb`<br />- `unionpay`<br />- `maestro`<br />- `mir`<br /> - `elo` |
+| `gaps`     | `Array`  | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules.                                                                                      |
+| `lengths`  | `Array`  | The expected lengths of the card number as an array of strings (excluding spaces and `/` characters).                                                                                                                                                                                                                                    |
+| `code`     | `Object` | The information regarding the security code for the determined card. Learn more about the [code object](#code) below.                                                                                                                                                                                                                    |
 
 If no card types are found, this returns an empty array.
 
@@ -66,6 +66,7 @@ Named variables are provided for each of the supported card types:
 * `UNIONPAY`
 * `MAESTRO`
 * `MIR`
+* `ELO`
 
 #### `code`
 
@@ -82,6 +83,7 @@ Card brands provide different nomenclature for their security codes as well as v
 | `UnionPay`         | `CVN` | 3    |
 | `Maestro`          | `CVC` | 3    |
 | `Mir`              | `CVP` | 3    |
+| `Elo`              | `CVE` | 3    |
 
 A full response for a `Visa` card will look like this:
 
@@ -180,7 +182,8 @@ Adding new cards puts them at the bottom of the priority for testing. Priority i
   creditCardType.types.JCB,
   creditCardType.types.UNIONPAY,
   creditCardType.types.MAESTRO,
-  creditCardType.types.MIR
+  creditCardType.types.MIR,
+  creditCardType.types.ELO
 ]
 ```
 
