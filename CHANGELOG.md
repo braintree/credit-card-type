@@ -1,5 +1,5 @@
-unreleased
-==========
+7.1.0
+=====
 
 - Add support for `Elo` card type
 - Adds `updateCard` method (#77)
