@@ -1,3 +1,8 @@
+unreleased
+==========
+
+- Add support for `Elo` card type
+
 7.0.0
 =====
 
