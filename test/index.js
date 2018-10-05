@@ -109,7 +109,6 @@ describe('creditCardType', function () {
       ['67', 'maestro'],
       ['6304000000000000', 'maestro'],
       ['6799990100000000019', 'maestro'],
-      ['6220181111111111111', 'maestro'],
       ['62183', 'maestro'],
 
       ['1', 'jcb'],
@@ -137,7 +136,6 @@ describe('creditCardType', function () {
       ['6221558812340000', 'unionpay'],
       ['6269992058134322', 'unionpay'],
       ['622018111111111111', 'unionpay'],
-      ['6220181111111111111', 'maestro'],
 
       ['220', 'mir'],
       ['2200', 'mir'],
@@ -378,13 +376,6 @@ describe('getTypeInfo', function () {
     expect(info.niceType).to.equal('Visa');
   });
 
-  it('removes pattern attributes', function () {
-    var info = creditCardType.getTypeInfo(creditCardType.types.VISA);
-
-    expect(info.exactPattern).to.equal(undefined); // eslint-disable-line no-undefined
-    expect(info.prefixPattern).to.equal(undefined); // eslint-disable-line no-undefined
-  });
-
   it('returns null for an unknown type', function () {
     expect(creditCardType.getTypeInfo('gibberish')).to.equal(null);
   });
@@ -409,8 +400,9 @@ describe('resetModifications', function () {
     creditCardType.addCard({
       niceType: 'NewCard',
       type: 'new-card',
-      prefixPattern: /^(2|23|234)$/,
-      exactPattern: /^(2345)\d*$/,
+      patterns: [
+        2345
+      ],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
@@ -432,8 +424,7 @@ describe('resetModifications', function () {
     creditCardType.addCard({
       niceType: 'Custom Visa Nice Type',
       type: 'visa',
-      prefixPattern: /^(4)$/,
-      exactPattern: /^(4)\d*$/,
+      patterns: [4],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
@@ -507,8 +498,7 @@ describe('addCard', function () {
     creditCardType.addCard({
       niceType: 'NewCard',
       type: 'new-card',
-      prefixPattern: /^(2|23|234)$/,
-      exactPattern: /^(2345)\d*$/,
+      patterns: [2345],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
@@ -538,8 +528,7 @@ describe('addCard', function () {
     creditCardType.addCard({
       niceType: 'Custom Visa Nice Type',
       type: 'visa',
-      prefixPattern: /^(4)$/,
-      exactPattern: /^(4)\d*$/,
+      patterns: [4],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
@@ -565,8 +554,7 @@ describe('addCard', function () {
     creditCardType.addCard({
       niceType: 'NewCard',
       type: 'new-card',
-      prefixPattern: /^(2|23|234)$/,
-      exactPattern: /^(2345)\d*$/,
+      patterns: [2345],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
@@ -583,8 +571,7 @@ describe('addCard', function () {
     creditCardType.addCard({
       niceType: 'NewCard 2',
       type: 'another-new-card',
-      prefixPattern: /^(2|23|234)$/,
-      exactPattern: /^(2345)\d*$/,
+      patterns: [2345],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
@@ -651,7 +638,7 @@ describe('updateCard', function () {
 
   it('can update pattern', function () {
     creditCardType.updateCard(creditCardType.types.VISA, {
-      exactPattern: /^3.*/
+      patterns: [3]
     });
 
     expect(creditCardType('3')[0].type).to.equal('visa');
@@ -685,8 +672,7 @@ describe('updateCard', function () {
     creditCardType.addCard({
       niceType: 'NewCard',
       type: 'new-card',
-      prefixPattern: /^(2|23|234)$/,
-      exactPattern: /^(2345)\d*$/,
+      patterns: [2345],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {
