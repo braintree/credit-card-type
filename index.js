@@ -352,6 +352,7 @@ function matchesPattern(cardNumber, pattern) {
   return pattern.substring(0, cardNumber.length) === cardNumber.substring(0, pattern.length);
 }
 
+// Adapted from https://github.com/polvo-labs/card-type/blob/aaab11f80fa1939bccc8f24905a06ae3cd864356/src/cardType.js#L37-L42
 function matchesRange(cardNumber, min, max) {
   var maxLengthToCheck = String(min).length;
   var substr = cardNumber.substr(0, maxLengthToCheck);
