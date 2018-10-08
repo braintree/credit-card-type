@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "pretest": "npm run lint",
     "test": "mocha test/**/*.js",
     "build": "npm run lint && gulp build"
   },
