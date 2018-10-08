@@ -171,7 +171,7 @@ describe('creditCardType', function () {
       ['62', ['unionpay', 'maestro', 'elo']],
       ['627', ['unionpay', 'maestro', 'elo']],
 
-      ['4', ['visa', 'elo']],
+      ['4', ['visa', 'maestro', 'elo']],
       ['43', ['visa', 'elo']],
       ['431', ['visa', 'elo']],
       ['4312', ['visa', 'elo']],

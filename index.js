@@ -209,7 +209,7 @@ types[MAESTRO] = {
   niceType: 'Maestro',
   type: MAESTRO,
   patterns: [
-    // TODO - do we support UK Maestro cards that start with 4?
+    493698,
     [500000, 506698],
     [506779, 508999],
 
