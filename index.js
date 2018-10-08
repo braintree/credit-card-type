@@ -1,38 +1,5 @@
 'use strict';
 
-/*******************************************************************************
- How card pattern detection works
-********************************************************************************
- Each card type has a patterns attribute that is an array of numbers or arrays
- representing a range of numbers.
-
- If the pattern is a number, we compare it against the card number. Partial
- matches for card numbers that are shorter than the pattern also match. Given
- the pattern `123`, then the card numbers `1`, `12`, `123`, `1234` will all
- match, but `2`, `13`, and `124` will not.
-
- If the pattern is an array of numbers, then the card number is checked to be
- within the range of those numbers. Again, partial matches are accepted. Given
- the range `[100, 123]`, then the card numbers `1`, `10`, `100`, `12`, `120`,
- `123` will all match, but `2`, `13`, and `124` will not.
-
- For detection, we loop over each card types patterns array, and if a match
- occurs, that card type is added to the results.
-
- If the detection for one card is a perfect match, we go with just that result.
- For instance, Visa cards match anything that starts with a 4, but there are
- some Elo cards that begin with a 4. One example is `401178`. So for the card
- numbers, `4`, `40`, `401`, `4011`, `40117`, the module will report that this
- card is _either_ a Visa or an Elo card. Once the card number becomes `401178`,
- we see that an exact match for the ELO bin has been made, and the module reports
- that the card can only be an Elo card.
-
- Ultimately, this method this should give a few results when only a few numbers
- from the credit card are entered and multiple card potential card types are
- detected, but should narrow down to a single result once 6 or more digits
- (the bing) have been entered.
-*******************************************************************************/
-
 var testOrder;
 var types = {};
 var customCards = {};
