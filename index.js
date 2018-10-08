@@ -84,7 +84,6 @@ types[AMERICAN_EXPRESS] = {
     34,
     37
   ],
-  isAmex: true,
   gaps: [4, 10],
   lengths: [15],
   code: {
