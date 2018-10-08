@@ -254,12 +254,20 @@ function isValidInputType(cardNumber) {
   return typeof cardNumber === 'string' || cardNumber instanceof String;
 }
 
-function findBestMatch(results) {
-  var resultsWithMatchStrengthValue = results.filter(function (result) {
+function hasEnoughResultsToDetermineBestMatch(results) {
+  var numberOfResultsWithMaxStrengthProperty = results.filter(function (result) {
     return result.matchStrength;
-  });
+  }).length;
 
-  if (resultsWithMatchStrengthValue.length === 0 || resultsWithMatchStrengthValue.length !== results.length) {
+  // if all possible results have a maxStrength property
+  // that means the card number is sufficiently long
+  // enough to determine conclusively what the type is
+  return numberOfResultsWithMaxStrengthProperty > 0 &&
+    numberOfResultsWithMaxStrengthProperty === results.length;
+}
+
+function findBestMatch(results) {
+  if (!hasEnoughResultsToDetermineBestMatch(results)) {
     return;
   }
 
