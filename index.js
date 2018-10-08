@@ -283,85 +283,109 @@ function findType(type) {
   return customCards[type] || types[type];
 }
 
+function isValidInputType(cardNumber) {
+  return typeof cardNumber === 'string' || cardNumber instanceof String
+}
+
+function findBestMatch(results) {
+  var resultsWithMatchStrengthValue = results.filter(function (result) {
+    return result.matchStrength;
+  });
+
+  if (resultsWithMatchStrengthValue.length === 0 || resultsWithMatchStrengthValue.length !== results.length) {
+    return;
+  }
+
+  return results.reduce(function (bestMatch, result) {
+    if (!bestMatch) {
+      return result;
+    }
+
+    // if the current best match pattern is less specific
+    // than this result, set the result as the new best match
+    if (bestMatch.matchStrength < result.matchStrength) {
+      return result;
+    }
+
+    return bestMatch;
+  });
+}
+
+function getAllCardTypes() {
+  return testOrder.map(function (type) {
+    return clone(findType(type));
+  });
+}
+
 function creditCardType(cardNumber) {
-  var type, value, i;
+  var bestMatch;
   var results = [];
 
-  if (!(typeof cardNumber === 'string' || cardNumber instanceof String)) {
+  if (!(isValidInputType(cardNumber))) {
     return [];
   }
 
-  for (i = 0; i < testOrder.length; i++) {
-    type = testOrder[i];
-    value = findType(type);
-
-    if (cardNumber.length === 0) {
-      results.push(clone(value));
-      continue;
-    }
-
-    loopOverPatterns(cardNumber, value, results);
+  if (cardNumber.length === 0) {
+    return getAllCardTypes();
   }
 
-  var resultsWithExactMatches = results.filter(function (result) {
-    return result.exactMatchPattern;
+  testOrder.forEach(function (type) {
+    var cardConfiguration = findType(type);
+
+    loopOverCardPatterns(cardNumber, cardConfiguration, results);
   });
 
-  if (resultsWithExactMatches.length > 0 && resultsWithExactMatches.length === results.length) {
-    var bestMatch;
+  bestMatch = findBestMatch(results);
 
-    results.forEach(function (res) {
-      if (!bestMatch) {
-        bestMatch = res;
-        return;
-      }
-
-      if (bestMatch.exactMatchPattern.length < res.exactMatchPattern.length) {
-        bestMatch = res;
-      }
-    });
-
+  if (bestMatch) {
     return [bestMatch];
   }
 
   return results;
 }
 
-function loopOverPatterns(cardNumber, value, results) {
-  var i, pattern, clonedValue;
+function loopOverCardPatterns(cardNumber, cardConfiguration, results) {
+  var i, pattern, patternLength, clonedCardConfiguration;
 
-  for (i = 0; i < value.patterns.length; i++) {
-    pattern = value.patterns[i];
+  for (i = 0; i < cardConfiguration.patterns.length; i++) {
+    pattern = cardConfiguration.patterns[i];
+
+    if (!matches(cardNumber, pattern)) {
+      continue;
+    }
+
+    clonedCardConfiguration = clone(cardConfiguration);
 
     if (Array.isArray(pattern)) {
-      if (checkRange(cardNumber, pattern[0], pattern[1])) {
-        clonedValue = clone(value);
-
-        if (cardNumber.length >= String(pattern[0]).length) {
-          clonedValue.exactMatchPattern = String(pattern[0]);
-        }
-
-        results.push(clonedValue);
-        break;
-      }
+      patternLength = String(pattern[0]).length;
     } else {
-      pattern = String(pattern);
-
-      if (pattern.substring(0, cardNumber.length) === cardNumber.substring(0, pattern.length)) {
-        clonedValue = clone(value);
-
-        if (cardNumber.length >= pattern.length) {
-          clonedValue.exactMatchPattern = pattern;
-        }
-
-        results.push(clonedValue);
-        break;
-      }
+      patternLength = String(pattern).length;
     }
+
+    if (cardNumber.length >= patternLength) {
+      clonedCardConfiguration.matchStrength = patternLength;
+    }
+
+    results.push(clonedCardConfiguration);
+    break;
   }
 }
 
-function checkRange (cardNumber, min, max) {
+function matches(cardNumber, pattern) {
+  if (Array.isArray(pattern)) {
+    return matchesRange(cardNumber, pattern[0], pattern[1]);
+  } else {
+    return matchesPattern(cardNumber, pattern);
+  }
+}
+
+function matchesPattern (cardNumber, pattern) {
+  pattern = String(pattern);
+
+  return pattern.substring(0, cardNumber.length) === cardNumber.substring(0, pattern.length);
+}
+
+function matchesRange (cardNumber, min, max) {
   var length = min.toString().length
   var substr = cardNumber.substr(0, length)
 
