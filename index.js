@@ -1,5 +1,27 @@
 'use strict';
 
+/*******************************************************************************
+ How card pattern detection works
+********************************************************************************
+ Each card type has a patterns attribute that is an array of numbers or arrays
+ representing a range of numbers.
+
+ If the pattern is a number, we compare it against the card number. Partial
+ matches for card numbers that are shorter than the pattern also match. Given
+ the pattern `123`, then the card numbers `1`, `12`, `123`, `1234` will all
+ match, but `2`, `13`, and `124` will not.
+
+ If the pattern is an array of numbers, then the card number is checked to be
+ within the range of those numbers. Again, partial matches are accepted. Given
+ the range `[100, 123]`, then the card numbers `1`, `10`, `100`, `12`, `120`,
+ `123` will all match, but `2`, `13`, and `124` will not.
+
+ For detection, we loop over each card types patterns array, and if a match
+ occurs, that card type is added to the results. This should give a few
+ results when only a few numbers from the credit card are entered, but should
+ narrow down to a single result once 6 or more digits have been entered.
+*/
+
 var testOrder;
 var types = {};
 var customCards = {};
