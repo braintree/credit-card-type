@@ -251,7 +251,7 @@ function findType(type) {
 }
 
 function isValidInputType(cardNumber) {
-  return typeof cardNumber === 'string' || cardNumber instanceof String
+  return typeof cardNumber === 'string' || cardNumber instanceof String;
 }
 
 function findBestMatch(results) {
@@ -263,7 +263,7 @@ function findBestMatch(results) {
     return;
   }
 
-  return results.reduce(function (bestMatch, result) {
+  return results.reduce(function (bestMatch, result) { // eslint-disable-line consistent-return
     if (!bestMatch) {
       return result;
     }
@@ -288,7 +288,7 @@ function creditCardType(cardNumber) {
   var bestMatch;
   var results = [];
 
-  if (!(isValidInputType(cardNumber))) {
+  if (!isValidInputType(cardNumber)) {
     return [];
   }
 
@@ -341,26 +341,26 @@ function loopOverCardPatterns(cardNumber, cardConfiguration, results) {
 function matches(cardNumber, pattern) {
   if (Array.isArray(pattern)) {
     return matchesRange(cardNumber, pattern[0], pattern[1]);
-  } else {
-    return matchesPattern(cardNumber, pattern);
   }
+
+  return matchesPattern(cardNumber, pattern);
 }
 
-function matchesPattern (cardNumber, pattern) {
+function matchesPattern(cardNumber, pattern) {
   pattern = String(pattern);
 
   return pattern.substring(0, cardNumber.length) === cardNumber.substring(0, pattern.length);
 }
 
-function matchesRange (cardNumber, min, max) {
-  var length = min.toString().length
-  var substr = cardNumber.substr(0, length)
+function matchesRange(cardNumber, min, max) {
+  var maxLengthToCheck = String(min).length;
+  var substr = cardNumber.substr(0, maxLengthToCheck);
+  var integerRepresentationOfCardNumber = parseInt(substr, 10);
 
-  min = parseInt(String(min).substr(0, substr.length));
-  max = parseInt(String(max).substr(0, substr.length));
-  var value = parseInt(substr);
+  min = parseInt(String(min).substr(0, substr.length), 10);
+  max = parseInt(String(max).substr(0, substr.length), 10);
 
-  return value >= min && value <= max
+  return integerRepresentationOfCardNumber >= min && integerRepresentationOfCardNumber <= max;
 }
 
 creditCardType.getTypeInfo = function (type) {
