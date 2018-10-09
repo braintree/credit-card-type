@@ -121,16 +121,45 @@ creditCardType(cardNumber).filter(function(card) {
 });
 ```
 
+#### Pattern Detection
+
+Each card type has a `patterns` attribute that is an array of numbers and ranges of numbers (represented by an array of 2 values, a min and a max).
+
+If the pattern is a number, the modules compares it against the card number. Partial matches for card numbers that are shorter than the pattern also match. Given the pattern `123`, then the card numbers `1`, `12`, `123`, `1234` will all match, but `2`, `13`, and `124` will not.
+
+If the pattern is an array of numbers, then the card number is checked to be within the range of those numbers. Again, partial matches are accepted. Given the range `[100, 123]`, then the card numbers `1`, `10`, `100`, `12`, `120`,
+`123` will all match, but `2`, `13`, and `124` will not.
+
+For detection, the module loops over each card type's `patterns` array, and if a match occurs, that card type is added to the array of results.
+
+In the case where multiple matches are made, if the entirety of the pattern is matched, the card type with the stronger pattern is preferred. For instance, Visa cards match anything that starts with a 4, but there are
+some Elo cards that begin with a 4. One example is `401178`. So for the card
+numbers, `4`, `40`, `401`, `4011`, `40117`, the module will report that this
+card is _either_ a Visa or an Elo card. Once the card number becomes `401178`,
+the modules sees that an exact match for the ELO bin has been made, and the module reports
+that the card can only be an Elo card.
+
+```javascript
+var visa = creditCardType.getTypeInfo(creditCardType.types.VISA);
+
+visa.prefixPattern = /^(4)$/;
+visa.exactPattern = /^(4[0-1])\d*$/; // restrict to only match visas that start with 40 or 41
+
+creditCardType.addCard(visa);
+```
+
 #### Adding Card Types
 
-You can add additional card brands not supportted by the the module with `addCard`. Pass in the configuration object. 
+You can add additional card brands not supportted by the the module with `addCard`. Pass in the configuration object.
 
 ```javascript
 creditCardType.addCard({
   niceType: 'NewCard',
   type: 'new-card',
-  prefixPattern: /^(2|23|234)$/,
-  exactPattern: /^(2345)\d*$/,
+  patterns: [
+    2345,
+    2376
+  ],
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
@@ -140,14 +169,16 @@ creditCardType.addCard({
 });
 ```
 
-You can also modify existing cards:
+If you add a card that already exists in the module, it will overwrite it.
 
 ```javascript
 creditCardType.addCard({
   niceType: 'Visa with Custom Nice Type',
   type: creditCardType.types.VISA,
-  prefixPattern: /^(4)$/,
-  exactPattern: /^(4[0-1])\d*$/, // restrict to only match visas that start with 40 or 41
+  patterns: [
+    41111
+    [44, 47]
+  ],
   gaps: [4, 8, 12],
   lengths: [13, 16, 19], // add support for old, deprecated 13 digit visas
   code: {
@@ -155,19 +186,6 @@ creditCardType.addCard({
     size: 3
   }
 });
-```
-
-The `exactPattern` regex is checked first. If that pattern is matched, the module takes that result over the `prefixPattern`. The `prefixPattern` is a softer matcher for when the exact card type has not yet been determined, so multiple card types may be returned.
-
-As an example, by default, the Visa `exactPattern` matches any card number that starts with 4. If you are adding a card type that has a bin range that starts with 4, you will not only have to call `addCard` with the new card type, but `addCard` with Visa to alter the `exactPattern` and `prefixPattern`;
-
-```javascript
-var visa = creditCardType.getTypeInfo(creditCardType.types.VISA);
-
-visa.prefixPattern = /^(4)$/;
-visa.exactPattern = /^(4[0-1])\d*$/; // restrict to only match visas that start with 40 or 41
-
-creditCardType.addCard(visa);
 ```
 
 Adding new cards puts them at the bottom of the priority for testing. Priority is determined by an array. By default, the priority looks like:
