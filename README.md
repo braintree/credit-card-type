@@ -139,15 +139,6 @@ card is _either_ a Visa or an Elo card. Once the card number becomes `401178`,
 the modules sees that an exact match for the ELO bin has been made, and the module reports
 that the card can only be an Elo card.
 
-```javascript
-var visa = creditCardType.getTypeInfo(creditCardType.types.VISA);
-
-visa.prefixPattern = /^(4)$/;
-visa.exactPattern = /^(4[0-1])\d*$/; // restrict to only match visas that start with 40 or 41
-
-creditCardType.addCard(visa);
-```
-
 #### Adding Card Types
 
 You can add additional card brands not supportted by the the module with `addCard`. Pass in the configuration object.
