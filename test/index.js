@@ -1,6 +1,5 @@
 'use strict';
 
-var expect = require('chai').expect;
 var creditCardType = require('../index');
 
 describe('creditCardType', function () {
