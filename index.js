@@ -1,5 +1,5 @@
 'use strict';
 
-var creditCardType = require('./validator/creditCardType');
+var creditCardType = require('./validator');
 
 module.exports = creditCardType;
