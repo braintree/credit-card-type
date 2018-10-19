@@ -1,13 +1,11 @@
 'use strict';
 
-var types = require('./validator/cardTypes');
-var clone = require('./validator/helpers/clone');
-var findBestMatch = require('./validator/helpers/findBestMatch');
-var findType = require('./validator/helpers/findType');
-var getAllCardTypes = require('./validator/helpers/getAllCardTypes');
-var getCardPosition = require('./validator/helpers/getCardPosition');
-var isValidInputType = require('./validator/helpers/isValidInputType');
-var loopOverCardPatterns = require('./validator/helpers/loopOverCardPatterns');
+var types = require('./lib/cardTypes');
+var clone = require('./lib/clone');
+var findBestMatch = require('./lib/findBestMatch');
+var findType = require('./lib/findType');
+var isValidInputType = require('./lib/isValidInputType');
+var loopOverCardPatterns = require('./lib/loopOverCardPatterns');
 
 var testOrder;
 var customCards = {};
@@ -40,6 +38,22 @@ var ORIGINAL_TEST_ORDER = [
 
 testOrder = clone(ORIGINAL_TEST_ORDER);
 
+function getAllCardTypes() {
+  return testOrder.map(function (type) {
+    return clone(findType(type, customCards));
+  });
+}
+
+function getCardPosition(name, ignoreErrorForNotExisting) {
+  var position = testOrder.indexOf(name);
+
+  if (!ignoreErrorForNotExisting && position === -1) {
+    throw new Error('"' + name + '" is not a supported card type.');
+  }
+
+  return position;
+}
+
 function creditCardType(cardNumber) {
   var bestMatch;
   var results = [];
@@ -49,7 +63,7 @@ function creditCardType(cardNumber) {
   }
 
   if (cardNumber.length === 0) {
-    return getAllCardTypes(testOrder, customCards);
+    return getAllCardTypes(testOrder);
   }
 
   testOrder.forEach(function (type) {
@@ -72,13 +86,13 @@ creditCardType.getTypeInfo = function (type) {
 };
 
 creditCardType.removeCard = function (name) {
-  var position = getCardPosition(name, false, testOrder);
+  var position = getCardPosition(name);
 
   testOrder.splice(position, 1);
 };
 
 creditCardType.addCard = function (config) {
-  var existingCardPosition = getCardPosition(config.type, true, testOrder);
+  var existingCardPosition = getCardPosition(config.type, true);
 
   customCards[config.type] = config;
 
@@ -111,7 +125,7 @@ creditCardType.updateCard = function (cardType, updates) {
 };
 
 creditCardType.changeOrder = function (name, position) {
-  var currentPosition = getCardPosition(name, false, testOrder);
+  var currentPosition = getCardPosition(name);
 
   testOrder.splice(currentPosition, 1);
   testOrder.splice(position, 0, name);
