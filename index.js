@@ -1,6 +1,6 @@
 'use strict';
 
-var types = require('./validator/cardTypes.json');
+var types = require('./validator/cardTypes');
 var clone = require('./validator/helpers/clone');
 var findBestMatch = require('./validator/helpers/findBestMatch');
 var findType = require('./validator/helpers/findType');
