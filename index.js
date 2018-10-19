@@ -1,11 +1,11 @@
 'use strict';
 
-var types = require('./lib/cardTypes');
+var types = require('./lib/card-types');
 var clone = require('./lib/clone');
-var findBestMatch = require('./lib/findBestMatch');
-var findType = require('./lib/findType');
-var isValidInputType = require('./lib/isValidInputType');
-var loopOverCardPatterns = require('./lib/loopOverCardPatterns');
+var findBestMatch = require('./lib/find-best-match');
+var findType = require('./lib/find-type');
+var isValidInputType = require('./lib/is-valid-input-type');
+var loopOverCardPatterns = require('./lib/loop-over-card-patterns');
 
 var testOrder;
 var customCards = {};
