@@ -19,7 +19,9 @@ var cardNames = {
   UNIONPAY: 'unionpay',
   MAESTRO: 'maestro',
   ELO: 'elo',
-  MIR: 'mir'
+  MIR: 'mir',
+  HIPER: 'hiper',
+  HIPERCARD: 'hipercard'
 };
 
 var ORIGINAL_TEST_ORDER = [
@@ -32,7 +34,9 @@ var ORIGINAL_TEST_ORDER = [
   cardNames.UNIONPAY,
   cardNames.MAESTRO,
   cardNames.ELO,
-  cardNames.MIR
+  cardNames.MIR,
+  cardNames.HIPER,
+  cardNames.HIPERCARD
 ];
 
 testOrder = clone(ORIGINAL_TEST_ORDER);
