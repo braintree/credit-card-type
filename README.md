@@ -74,7 +74,6 @@ Named variables are provided for each of the supported card types:
 
 Card brands provide different nomenclature for their security codes as well as varying lengths.
 
-TODO: make sure the cvv2 codes for Hiper and Hipercard are correct
 | Brand              | Name   | Size |
 |--------------------|--------|------|
 | `Visa`             | `CVV`  | 3    |
