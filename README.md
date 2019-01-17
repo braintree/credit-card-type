@@ -74,20 +74,20 @@ Named variables are provided for each of the supported card types:
 
 Card brands provide different nomenclature for their security codes as well as varying lengths.
 
-| Brand              | Name   | Size |
-|--------------------|--------|------|
-| `Visa`             | `CVV`  | 3    |
-| `Mastercard`       | `CVC`  | 3    |
-| `American Express` | `CID`  | 4    |
-| `Diners Club`      | `CVV`  | 3    |
-| `Discover`         | `CID`  | 3    |
-| `JCB`              | `CVV`  | 3    |
-| `UnionPay`         | `CVN`  | 3    |
-| `Maestro`          | `CVC`  | 3    |
-| `Mir`              | `CVP`  | 3    |
-| `Elo`              | `CVE`  | 3    |
-| `Hiper`            | `CVV2` | 3    |
-| `Hipercard`        | `CVV2` | 3    |
+| Brand              | Name  | Size |
+|--------------------|-------|------|
+| `Visa`             | `CVV` | 3    |
+| `Mastercard`       | `CVC` | 3    |
+| `American Express` | `CID` | 4    |
+| `Diners Club`      | `CVV` | 3    |
+| `Discover`         | `CID` | 3    |
+| `JCB`              | `CVV` | 3    |
+| `UnionPay`         | `CVN` | 3    |
+| `Maestro`          | `CVC` | 3    |
+| `Mir`              | `CVP` | 3    |
+| `Elo`              | `CVE` | 3    |
+| `Hiper`            | `CVC` | 3    |
+| `Hipercard`        | `CVC` | 4    |
 
 A full response for a `Visa` card will look like this:
 
