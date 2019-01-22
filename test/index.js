@@ -140,7 +140,14 @@ describe('creditCardType', function () {
       ['2200', 'mir'],
       ['2204', 'mir'],
       ['22000000000000000', 'mir'],
-      ['22049999999999999', 'mir']
+      ['22049999999999999', 'mir'],
+
+      ['6062820000', 'hipercard'],
+      ['637095', 'hiper'],
+      ['637609', 'hiper'],
+      ['637599', 'hiper'],
+      ['637612', 'hiper'],
+      ['637568', 'hiper']
     ];
 
     tests.forEach(function (test) {
@@ -150,7 +157,12 @@ describe('creditCardType', function () {
       it('returns type ' + type + ' for ' + number, function () {
         var actual = creditCardType(number);
 
-        expect(actual).to.have.lengthOf(1);
+        try {
+          expect(actual).to.have.lengthOf(1);
+        } catch (e) {
+          console.log(actual);
+          throw e;
+        }
         expect(actual[0].type).to.equal(type);
       });
     });
@@ -158,17 +170,16 @@ describe('creditCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'elo', 'mir']],
+      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'elo', 'mir', 'hiper', 'hipercard']],
       ['2', ['mastercard', 'jcb', 'mir']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['mastercard', 'maestro', 'elo']],
       ['50', ['maestro', 'elo']],
-      ['6', ['discover', 'maestro', 'unionpay', 'elo']],
-      ['60', ['discover', 'maestro']],
+      ['6', ['discover', 'maestro', 'unionpay', 'elo', 'hiper', 'hipercard']],
+      ['60', ['discover', 'maestro', 'hipercard']],
       ['601', ['discover', 'maestro']],
       ['64', ['discover', 'maestro']],
       ['62', ['unionpay', 'maestro', 'elo']],
-      ['627', ['unionpay', 'maestro', 'elo']],
 
       ['4', ['visa', 'maestro', 'elo']],
       ['43', ['visa', 'elo']],
@@ -181,18 +192,25 @@ describe('creditCardType', function () {
       ['43893', ['visa', 'elo']],
       ['45763', ['visa', 'elo']],
 
-      ['65', ['discover', 'elo', 'maestro']],
-      ['655', ['discover', 'elo', 'maestro']],
-      ['6550', ['discover', 'elo', 'maestro']],
-      ['65502', ['discover', 'elo', 'maestro']],
+      ['6277', ['unionpay', 'maestro', 'elo']],
+      ['62778', ['unionpay', 'maestro', 'elo']],
 
-      ['63', ['maestro', 'elo']],
+      ['63', ['maestro', 'elo', 'hiper']],
       ['636', ['maestro', 'elo']],
       ['6362', ['maestro', 'elo']],
       ['63629', ['maestro', 'elo']],
 
-      ['6277', ['unionpay', 'maestro', 'elo']],
-      ['62778', ['unionpay', 'maestro', 'elo']]
+      ['637', ['maestro', 'hiper']],
+      ['606', ['maestro', 'hipercard']],
+      ['627', ['unionpay', 'maestro', 'elo']],
+      ['6062', ['maestro', 'hipercard']],
+      ['6370', ['maestro', 'hiper']],
+      ['6376', ['maestro', 'hiper']],
+      ['6375', ['maestro', 'hiper']],
+      ['65', ['discover', 'elo', 'maestro']],
+      ['655', ['discover', 'elo', 'maestro']],
+      ['6550', ['discover', 'elo', 'maestro']],
+      ['65502', ['discover', 'elo', 'maestro']]
     ];
 
     ambiguous.forEach(function (group) {

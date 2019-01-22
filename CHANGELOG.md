@@ -1,3 +1,9 @@
+unreleased
+==========
+
+- Add support for Hiper cards
+- Add support for Hipercard cards
+
 8.0.0
 =====
 
