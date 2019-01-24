@@ -1,5 +1,5 @@
-unreleased
-==========
+8.1.0
+=====
 
 - Add support for Hiper cards
 - Add support for Hipercard cards
