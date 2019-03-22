@@ -231,7 +231,7 @@ creditCardType.updateCard(creditCardType.types.VISA, {
   lengths: [11, 16]
 });
 
-var visa = creditCardType.getCardInfo(creditCardType.types.VISA);
+var visa = creditCardType.getTypeInfo(creditCardType.types.VISA);
 
 // overwritten properties
 visa.niceType; // 'Fancy Visa'
