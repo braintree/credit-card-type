@@ -1,5 +1,5 @@
-unreleased
-==========
+8.2.0
+=====
 
 - Add 14 and 15 length configuration to UnionPay cards
 
