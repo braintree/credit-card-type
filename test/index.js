@@ -98,8 +98,11 @@ describe('creditCardType', function () {
       ['6011111111111117', 'discover'],
       ['6011000990139424', 'discover'],
 
+      ['62123456789002', 'unionpay'],
+      ['621234567890003', 'unionpay'],
       ['6221258812340000', 'unionpay'],
       ['622018111111111111', 'unionpay'],
+      ['6212345678900000003', 'unionpay'],
 
       ['56', 'maestro'],
       ['57', 'maestro'],

@@ -1,3 +1,8 @@
+unreleased
+==========
+
+- Add 14 and 15 length configuration to UnionPay cards
+
 8.1.0
 =====
 
