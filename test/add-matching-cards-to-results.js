@@ -31,7 +31,7 @@ describe('addMatchingCardsToResults', function () {
     expect(results[0]).to.equal(a);
   });
 
-  it('adds a matchStrength property to configuration if card number matcehs and the length equals or is greater than the pattern length', function () {
+  it('adds a matchStrength property to configuration if card number matches and the length equals or is greater than the pattern length', function () {
     var results = [];
 
     addMatchingCardsToResults('304', {
