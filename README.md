@@ -33,6 +33,9 @@ console.log(ambiguousCards[1].niceType);  // 'UnionPay'
 console.log(ambiguousCards[2].niceType);  // 'Maestro'
 ```
 
+## Live Demo
+[Live demo with CodeSandBox](https://codesandbox.io/s/7z1kz177q)
+
 ## API
 
 ### `creditCardType(number: String)`
