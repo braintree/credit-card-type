@@ -84,7 +84,7 @@ Card brands provide different nomenclature for their security codes as well as v
 | `JCB`              | `CVV` | 3    |
 | `UnionPay`         | `CVN` | 3    |
 | `Maestro`          | `CVC` | 3    |
-| `Mir`              | `CVP` | 3    |
+| `Mir`              | `CVP2` | 3    |
 | `Elo`              | `CVE` | 3    |
 | `Hiper`            | `CVC` | 3    |
 | `Hipercard`        | `CVC` | 4    |
