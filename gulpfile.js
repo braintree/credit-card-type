@@ -12,9 +12,7 @@ var del = require('del');
 var config = {
   src: {
     js: {
-      all: './src/**/*.js',
       main: './index.js',
-      watch: './**/*.js',
       output: 'app.built.js',
       min: 'app.built.min.js'
     }
@@ -37,12 +35,6 @@ function js() {
     .pipe(gulp.dest(config.dist.js));
 }
 
-function watch() {
-  return gulp.series(js, function watchJS() {
-    gulp.watch(config.src.js.watch, js);
-  });
-}
-
 function clean() {
   return del([config.dist.js]);
 }
@@ -52,6 +44,5 @@ function build() {
 }
 
 exports.js = js();
-exports.watch = watch();
 exports.clean = clean();
 exports.build = build();
