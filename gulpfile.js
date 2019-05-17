@@ -14,7 +14,7 @@ var config = {
     js: {
       all: './src/**/*.js',
       main: './index.js',
-      watch: './public/js/**/*.js',
+      watch: './**/*.js',
       output: 'app.built.js',
       min: 'app.built.min.js'
     }
@@ -25,7 +25,7 @@ var config = {
   dist: {js: 'dist/js'}
 };
 
-gulp.task('js', function () {
+function js() {
   return browserify(config.src.js.main, config.options)
     .bundle()
     .pipe(source(config.src.js.output))
@@ -35,14 +35,23 @@ gulp.task('js', function () {
     .pipe(streamify(size()))
     .pipe(rename(config.src.js.min))
     .pipe(gulp.dest(config.dist.js));
-});
+}
 
-gulp.task('watch', ['js'], function () {
-  gulp.watch(config.src.js.watch, ['js']);
-});
+function watch() {
+  return gulp.series(js, function watchJS() {
+    gulp.watch(config.src.js.watch, js);
+  });
+}
 
-gulp.task('clean', function (done) {
-  del([config.dist.js], done);
-});
+function clean() {
+  return del([config.dist.js]);
+}
 
-gulp.task('build', ['clean', 'js']);
+function build() {
+  return gulp.series(clean, js);
+}
+
+exports.js = js();
+exports.watch = watch();
+exports.clean = clean();
+exports.build = build();
