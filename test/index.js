@@ -138,6 +138,11 @@ describe('creditCardType', function () {
       ['6221558812340000', 'unionpay'],
       ['6269992058134322', 'unionpay'],
       ['622018111111111111', 'unionpay'],
+      ['8100513433325374', 'unionpay'],
+      ['8111700872004845', 'unionpay'],
+      ['8141618644273338', 'unionpay'],
+      ['8158163233706018', 'unionpay'],
+      ['8168524506870054', 'unionpay'],
 
       ['220', 'mir'],
       ['2200', 'mir'],
@@ -249,7 +254,6 @@ describe('creditCardType', function () {
       '32',
       '33',
       '7',
-      '8',
       '9'
     ];
 
