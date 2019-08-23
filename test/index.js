@@ -152,7 +152,10 @@ describe('creditCardType', function () {
       ['637609', 'hiper'],
       ['637599', 'hiper'],
       ['637612', 'hiper'],
-      ['637568', 'hiper']
+      ['637568', 'hiper'],
+
+      ['507860', 'aura'],
+      ['5078601529671654', 'aura']
     ];
 
     tests.forEach(function (test) {
@@ -175,11 +178,11 @@ describe('creditCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'elo', 'mir', 'hiper', 'hipercard']],
+      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'elo', 'mir', 'hiper', 'hipercard', 'aura']],
       ['2', ['mastercard', 'jcb', 'mir']],
       ['3', ['american-express', 'diners-club', 'jcb']],
-      ['5', ['mastercard', 'maestro', 'elo']],
-      ['50', ['maestro', 'elo']],
+      ['5', ['mastercard', 'maestro', 'elo', 'aura']],
+      ['50', ['maestro', 'elo', 'aura']],
       ['6', ['discover', 'maestro', 'unionpay', 'elo', 'hiper', 'hipercard']],
       ['60', ['discover', 'maestro', 'hipercard']],
       ['601', ['discover', 'maestro']],
@@ -215,7 +218,8 @@ describe('creditCardType', function () {
       ['65', ['discover', 'elo', 'maestro']],
       ['655', ['discover', 'elo', 'maestro']],
       ['6550', ['discover', 'elo', 'maestro']],
-      ['65502', ['discover', 'elo', 'maestro']]
+      ['65502', ['discover', 'elo', 'maestro']],
+      ['507860', ['aura']]
     ];
 
     ambiguous.forEach(function (group) {
