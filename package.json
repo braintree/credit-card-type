@@ -17,17 +17,17 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^16.2.3",
+    "browserify": "^16.5.0",
     "chai": "^4.2.0",
-    "del": "^4.1.1",
-    "eslint": "^5.16.0",
-    "eslint-config-braintree": "^2.0.0",
+    "del": "^5.1.0",
+    "eslint": "^6.2.2",
+    "eslint-config-braintree": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-rename": "^1.2.0",
     "gulp-size": "^3.0.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^3.0.2",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "vinyl-source-stream": "^2.0.0"
   }
 }
