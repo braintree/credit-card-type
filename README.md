@@ -171,7 +171,7 @@ creditCardType.addCard({
   niceType: 'Visa with Custom Nice Type',
   type: creditCardType.types.VISA,
   patterns: [
-    41111
+    41111,
     [44, 47]
   ],
   gaps: [4, 8, 12],
