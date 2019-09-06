@@ -1,3 +1,8 @@
+8.3.0
+=====
+
+- Add support for series 8 UnionPay cards (fixes #95 thanks @leebradley)
+
 8.2.0
 =====
 
