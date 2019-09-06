@@ -20,7 +20,7 @@
     "browserify": "^16.5.0",
     "chai": "^4.2.0",
     "del": "^5.1.0",
-    "eslint": "^6.2.2",
+    "eslint": "^6.3.0",
     "eslint-config-braintree": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-rename": "^1.2.0",
