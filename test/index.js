@@ -108,10 +108,13 @@ describe('creditCardType', function () {
       ['57', 'maestro'],
       ['58', 'maestro'],
       ['59', 'maestro'],
-      ['67', 'maestro'],
       ['6304000000000000', 'maestro'],
       ['6799990100000000019', 'maestro'],
       ['62183', 'maestro'],
+
+      ['4936980000000000019', 'uk-maestro'],
+      ['6759380000000000', 'uk-maestro'],
+      ['676755', 'uk-maestro'],
 
       ['1', 'jcb'],
       ['35', 'jcb'],
@@ -181,18 +184,18 @@ describe('creditCardType', function () {
 
   describe('ambiguous card types', function () {
     var ambiguous = [
-      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'elo', 'mir', 'hiper', 'hipercard']],
+      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'uk-maestro', 'elo', 'mir', 'hiper', 'hipercard']],
       ['2', ['mastercard', 'jcb', 'mir']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['mastercard', 'maestro', 'elo']],
       ['50', ['maestro', 'elo']],
-      ['6', ['discover', 'maestro', 'unionpay', 'elo', 'hiper', 'hipercard']],
+      ['6', ['discover', 'maestro', 'uk-maestro', 'unionpay', 'elo', 'hiper', 'hipercard']],
       ['60', ['discover', 'maestro', 'hipercard']],
       ['601', ['discover', 'maestro']],
       ['64', ['discover', 'maestro']],
       ['62', ['unionpay', 'maestro', 'elo']],
 
-      ['4', ['visa', 'maestro', 'elo']],
+      ['4', ['visa', 'uk-maestro', 'elo']],
       ['43', ['visa', 'elo']],
       ['431', ['visa', 'elo']],
       ['4312', ['visa', 'elo']],
@@ -206,7 +209,7 @@ describe('creditCardType', function () {
       ['6277', ['unionpay', 'maestro', 'elo']],
       ['62778', ['unionpay', 'maestro', 'elo']],
 
-      ['63', ['maestro', 'elo', 'hiper']],
+      ['63', ['maestro', 'uk-maestro', 'elo', 'hiper']],
       ['636', ['maestro', 'elo']],
       ['6362', ['maestro', 'elo']],
       ['63629', ['maestro', 'elo']],

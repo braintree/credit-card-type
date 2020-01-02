@@ -21,7 +21,8 @@ var cardNames = {
   ELO: 'elo',
   MIR: 'mir',
   HIPER: 'hiper',
-  HIPERCARD: 'hipercard'
+  HIPERCARD: 'hipercard',
+  UK_MAESTRO: 'uk-maestro'
 };
 
 var ORIGINAL_TEST_ORDER = [
@@ -36,7 +37,8 @@ var ORIGINAL_TEST_ORDER = [
   cardNames.ELO,
   cardNames.MIR,
   cardNames.HIPER,
-  cardNames.HIPERCARD
+  cardNames.HIPERCARD,
+  cardNames.UK_MAESTRO
 ];
 
 testOrder = clone(ORIGINAL_TEST_ORDER);
