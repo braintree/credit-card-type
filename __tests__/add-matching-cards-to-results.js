@@ -51,11 +51,11 @@ describe('addMatchingCardsToResults', () => {
     expect(results.length).toBe(4);
     expect(results[0].matchStrength).toBe(3);
     expect(results[1].matchStrength).toBe(2);
-    expect(results[2].matchStrength).toBeUndefined(); // eslint-disable-line no-undefined
+    expect(results[2].matchStrength).toBeUndefined();
     expect(results[3].matchStrength).toBe(1);
   });
 
-  it('adds a matchStrength property to configuration if card number matcehs and the length equals or is greater than an entry of the pattern range', () => {
+  it('adds a matchStrength property to configuration if card number matches and the length equals or is greater than an entry of the pattern range', () => {
     const results = [];
 
     addMatchingCardsToResults('304', {
@@ -77,7 +77,7 @@ describe('addMatchingCardsToResults', () => {
     expect(results.length).toBe(4);
     expect(results[0].matchStrength).toBe(3);
     expect(results[1].matchStrength).toBe(2);
-    expect(results[2].matchStrength).toBeUndefined(); // eslint-disable-line no-undefined
+    expect(results[2].matchStrength).toBeUndefined();
     expect(results[3].matchStrength).toBe(1);
   });
 });

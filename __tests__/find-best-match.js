@@ -2,7 +2,7 @@ const findBestMatch = require('../lib/find-best-match');
 
 describe('findBestMatch', () => {
   it('returns nothing if there are not enough results to try to match', () => {
-    expect(findBestMatch([])).toBeUndefined(); // eslint-disable-line no-undefined
+    expect(findBestMatch([])).toBeUndefined();
   });
 
   it('returns nothing if not every element has a matchStrength property', () => {
@@ -11,7 +11,7 @@ describe('findBestMatch', () => {
     }, {
     }, {
       matchStrength: 5
-    }])).toBeUndefined(); // eslint-disable-line no-undefined
+    }])).toBeUndefined();
   });
 
   it('returns the result with the greatest matchStrength value', () => {
@@ -32,4 +32,3 @@ describe('findBestMatch', () => {
     expect(findBestMatch(results)).toBe(c);
   });
 });
-

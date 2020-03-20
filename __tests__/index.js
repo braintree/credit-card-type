@@ -226,7 +226,7 @@ describe('creditCardType', () => {
       const number = group[0];
       const expectedNames = group[1].sort();
 
-      it('returns ' + expectedNames.join(' and ') + ' for ' + number, () => {
+      it(`returns ${expectedNames.join(' and ')} for ${number}`, () => {
         const actualNames = creditCardType(number).map(function (type) {
           return type.type;
         }).sort();
