@@ -179,7 +179,23 @@ describe('creditCardType', () => {
 
   describe('ambiguous card types', () => {
     const ambiguous = [
-      ['', ['visa', 'mastercard', 'american-express', 'diners-club', 'discover', 'jcb', 'unionpay', 'maestro', 'elo', 'mir', 'hiper', 'hipercard']],
+      [
+        '',
+        [
+          'visa',
+          'mastercard',
+          'american-express',
+          'diners-club',
+          'discover',
+          'jcb',
+          'unionpay',
+          'maestro',
+          'elo',
+          'mir',
+          'hiper',
+          'hipercard'
+        ]
+      ],
       ['2', ['mastercard', 'jcb', 'mir']],
       ['3', ['american-express', 'diners-club', 'jcb']],
       ['5', ['mastercard', 'maestro', 'elo']],
@@ -227,9 +243,11 @@ describe('creditCardType', () => {
       const expectedNames = group[1].sort();
 
       it(`returns ${expectedNames.join(' and ')} for ${number}`, () => {
-        const actualNames = creditCardType(number).map(function (type) {
-          return type.type;
-        }).sort();
+        const actualNames = creditCardType(number)
+          .map(function (type) {
+            return type.type;
+          })
+          .sort();
 
         expect(expectedNames).toEqual(actualNames);
       });
@@ -425,9 +443,7 @@ describe('resetModifications', () => {
     creditCardType.addCard({
       niceType: 'NewCard',
       type: 'new-card',
-      patterns: [
-        2345
-      ],
+      patterns: [2345],
       gaps: [4, 8, 12],
       lengths: [16],
       code: {

@@ -11,10 +11,9 @@ describe('isValidInputType', () => {
 
   it('returns false for non-string values', () => {
     expect(isValidInputType(12)).toBe(false);
-    expect(isValidInputType({foo: 'bar'})).toBe(false);
+    expect(isValidInputType({ foo: 'bar' })).toBe(false);
     expect(isValidInputType([])).toBe(false);
     expect(isValidInputType(false)).toBe(false);
     expect(isValidInputType(true)).toBe(false);
   });
 });
-

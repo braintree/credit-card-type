@@ -2,12 +2,13 @@
   "name": "credit-card-type",
   "version": "8.3.0",
   "description": "A library for determining credit card type",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "eslint .",
     "posttest": "npm run lint",
     "test": "jest",
-    "build": "npm run lint && gulp build"
+    "prebuild": "prettier --write .",
+    "build": "webpack && tsc"
   },
   "repository": {
     "type": "git",
@@ -17,16 +18,17 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^16.5.0",
-    "del": "^5.1.0",
+    "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-config-braintree": "^4.0.0",
-    "gulp": "^4.0.2",
-    "gulp-rename": "^2.0.0",
-    "gulp-size": "^3.0.0",
-    "gulp-streamify": "^1.0.2",
-    "gulp-uglify": "^3.0.2",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "jest": "^25.1.0",
-    "vinyl-source-stream": "^2.0.0"
+    "prettier": "2.0.2",
+    "ts-loader": "^6.2.2",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }

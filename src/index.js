@@ -113,7 +113,9 @@ creditCardType.updateCard = function (cardType, updates) {
   var originalObject = customCards[cardType] || types[cardType];
 
   if (!originalObject) {
-    throw new Error('"' + cardType + '" is not a recognized type. Use `addCard` instead.');
+    throw new Error(
+      '"' + cardType + '" is not a recognized type. Use `addCard` instead.'
+    );
   }
 
   if (updates.type && originalObject.type !== updates.type) {

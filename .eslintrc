@@ -1,3 +1,20 @@
 {
-  "extends": "braintree/client"
+  "extends": [
+    "plugin:prettier/recommended",
+    "braintree/client"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "object-curly-spacing": ["error", "always", { "objectsInObjects": false }]
+  },
+  "overrides": [
+    {
+      "files": ["webpack.config.js"],
+      "env": {
+        "es6": true,
+        "node": true
+      }
+    }
+  ]
 }

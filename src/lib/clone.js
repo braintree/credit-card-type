@@ -3,7 +3,9 @@
 function clone(originalObject) {
   var dupe;
 
-  if (!originalObject) { return null; }
+  if (!originalObject) {
+    return null;
+  }
 
   dupe = JSON.parse(JSON.stringify(originalObject));
 

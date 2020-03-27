@@ -9,13 +9,19 @@ function matchesRange(cardNumber, min, max) {
   min = parseInt(String(min).substr(0, substr.length), 10);
   max = parseInt(String(max).substr(0, substr.length), 10);
 
-  return integerRepresentationOfCardNumber >= min && integerRepresentationOfCardNumber <= max;
+  return (
+    integerRepresentationOfCardNumber >= min &&
+    integerRepresentationOfCardNumber <= max
+  );
 }
 
 function matchesPattern(cardNumber, pattern) {
   pattern = String(pattern);
 
-  return pattern.substring(0, cardNumber.length) === cardNumber.substring(0, pattern.length);
+  return (
+    pattern.substring(0, cardNumber.length) ===
+    cardNumber.substring(0, pattern.length)
+  );
 }
 
 function matches(cardNumber, pattern) {

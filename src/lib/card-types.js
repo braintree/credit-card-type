@@ -4,9 +4,7 @@ var cardTypes = {
   visa: {
     niceType: 'Visa',
     type: 'visa',
-    patterns: [
-      4
-    ],
+    patterns: [4],
     gaps: [4, 8, 12],
     lengths: [16, 18, 19],
     code: {
@@ -17,14 +15,7 @@ var cardTypes = {
   mastercard: {
     niceType: 'Mastercard',
     type: 'mastercard',
-    patterns: [
-      [51, 55],
-      [2221, 2229],
-      [223, 229],
-      [23, 26],
-      [270, 271],
-      2720
-    ],
+    patterns: [[51, 55], [2221, 2229], [223, 229], [23, 26], [270, 271], 2720],
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
@@ -35,10 +26,7 @@ var cardTypes = {
   'american-express': {
     niceType: 'American Express',
     type: 'american-express',
-    patterns: [
-      34,
-      37
-    ],
+    patterns: [34, 37],
     gaps: [4, 10],
     lengths: [15],
     code: {
@@ -49,12 +37,7 @@ var cardTypes = {
   'diners-club': {
     niceType: 'Diners Club',
     type: 'diners-club',
-    patterns: [
-      [300, 305],
-      36,
-      38,
-      39
-    ],
+    patterns: [[300, 305], 36, 38, 39],
     gaps: [4, 10],
     lengths: [14, 16, 19],
     code: {
@@ -65,11 +48,7 @@ var cardTypes = {
   discover: {
     niceType: 'Discover',
     type: 'discover',
-    patterns: [
-      6011,
-      [644, 649],
-      65
-    ],
+    patterns: [6011, [644, 649], 65],
     gaps: [4, 8, 12],
     lengths: [16, 19],
     code: {
@@ -80,11 +59,7 @@ var cardTypes = {
   jcb: {
     niceType: 'JCB',
     type: 'jcb',
-    patterns: [
-      2131,
-      1800,
-      [3528, 3589]
-    ],
+    patterns: [2131, 1800, [3528, 3589]],
     gaps: [4, 8, 12],
     lengths: [16, 17, 18, 19],
     code: {
@@ -132,15 +107,7 @@ var cardTypes = {
   maestro: {
     niceType: 'Maestro',
     type: 'maestro',
-    patterns: [
-      493698,
-      [500000, 506698],
-      [506779, 508999],
-      [56, 59],
-      63,
-      67,
-      6
-    ],
+    patterns: [493698, [500000, 506698], [506779, 508999], [56, 59], 63, 67, 6],
     gaps: [4, 8, 12],
     lengths: [12, 13, 14, 15, 16, 17, 18, 19],
     code: {
@@ -188,9 +155,7 @@ var cardTypes = {
   mir: {
     niceType: 'Mir',
     type: 'mir',
-    patterns: [
-      [2200, 2204]
-    ],
+    patterns: [[2200, 2204]],
     gaps: [4, 8, 12],
     lengths: [16, 17, 18, 19],
     code: {
@@ -201,13 +166,7 @@ var cardTypes = {
   hiper: {
     niceType: 'Hiper',
     type: 'hiper',
-    patterns: [
-      637095,
-      637568,
-      637599,
-      637609,
-      637612
-    ],
+    patterns: [637095, 637568, 637599, 637609, 637612],
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
@@ -218,9 +177,7 @@ var cardTypes = {
   hipercard: {
     niceType: 'Hipercard',
     type: 'hipercard',
-    patterns: [
-      606282
-    ],
+    patterns: [606282],
     gaps: [4, 8, 12],
     lengths: [16],
     code: {

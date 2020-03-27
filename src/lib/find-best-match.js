@@ -1,23 +1,28 @@
 'use strict';
 
 function hasEnoughResultsToDetermineBestMatch(results) {
-  var numberOfResultsWithMaxStrengthProperty = results.filter(function (result) {
+  var numberOfResultsWithMaxStrengthProperty = results.filter(function (
+    result
+  ) {
     return result.matchStrength;
   }).length;
 
   // if all possible results have a maxStrength property
   // that means the card number is sufficiently long
   // enough to determine conclusively what the type is
-  return numberOfResultsWithMaxStrengthProperty > 0 &&
-    numberOfResultsWithMaxStrengthProperty === results.length;
+  return (
+    numberOfResultsWithMaxStrengthProperty > 0 &&
+    numberOfResultsWithMaxStrengthProperty === results.length
+  );
 }
 
 function findBestMatch(results) {
   if (!hasEnoughResultsToDetermineBestMatch(results)) {
-    return;
+    return null;
   }
 
-  return results.reduce(function (bestMatch, result) { // eslint-disable-line consistent-return
+  return results.reduce(function (bestMatch, result) {
+    // eslint-disable-line consistent-return
     if (!bestMatch) {
       return result;
     }
