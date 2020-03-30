@@ -159,11 +159,11 @@ describe('creditCardType', () => {
       ['637568', 'hiper']
     ];
 
-    tests.forEach(function (test) {
+    tests.forEach(test => {
       const number = test[0];
       const type = test[1];
 
-      it('returns type ' + type + ' for ' + number, () => {
+      it(`returns type ${type} for ${number}`, () => {
         const actual = creditCardType(number);
 
         try {
@@ -238,15 +238,13 @@ describe('creditCardType', () => {
       ['65502', ['discover', 'elo', 'maestro']]
     ];
 
-    ambiguous.forEach(function (group) {
+    ambiguous.forEach(group => {
       const number = group[0];
       const expectedNames = group[1].sort();
 
       it(`returns ${expectedNames.join(' and ')} for ${number}`, () => {
         const actualNames = creditCardType(number)
-          .map(function (type) {
-            return type.type;
-          })
+          .map(type => type.type)
           .sort();
 
         expect(expectedNames).toEqual(actualNames);
@@ -274,8 +272,8 @@ describe('creditCardType', () => {
       '9'
     ];
 
-    unknowns.forEach(function (unknown) {
-      it('returns an empty array for ' + unknown, () => {
+    unknowns.forEach(unknown => {
+      it(`returns an empty array for ${unknown}`, () => {
         expect(creditCardType(unknown)).toHaveLength(0);
       });
     });
@@ -517,7 +515,7 @@ describe('removeCard', () => {
   });
 
   it('throws an error if card type is passed which is not in the array', () => {
-    expect(function () {
+    expect(() => {
       creditCardType.removeCard('bogus');
     }).toThrowError('"bogus" is not a supported card type.');
   });
@@ -635,13 +633,13 @@ describe('updateCard', () => {
   });
 
   it('throws an error if the card type does not exist', () => {
-    expect(function () {
+    expect(() => {
       creditCardType.updateCard('foo', {});
     }).toThrowError('"foo" is not a recognized type. Use `addCard` instead.');
   });
 
   it('throws an error if the type field in the updates object exists and does not match', () => {
-    expect(function () {
+    expect(() => {
       creditCardType.updateCard(creditCardType.types.VISA, {
         type: 'not visa'
       });
@@ -649,7 +647,7 @@ describe('updateCard', () => {
   });
 
   it('does not throw an error if the type field in the updates object exists and does match', () => {
-    expect(function () {
+    expect(() => {
       creditCardType.updateCard(creditCardType.types.VISA, {
         type: 'visa'
       });
@@ -760,7 +758,7 @@ describe('changeOrder', () => {
   });
 
   it('throws an error if card type is passed which is not in the array', () => {
-    expect(function () {
+    expect(() => {
       creditCardType.changeOrder('bogus', 0);
     }).toThrowError('"bogus" is not a supported card type.');
   });
@@ -768,12 +766,10 @@ describe('changeOrder', () => {
 
 describe('types', () => {
   it('corresponds to internal type codes', () => {
-    const exposedTypes = Object.keys(creditCardType.types).map(function (key) {
-      return creditCardType.types[key];
-    });
-    const internalTypes = creditCardType('').map(function (entry) {
-      return entry.type;
-    });
+    const exposedTypes = Object.keys(creditCardType.types).map(
+      key => creditCardType.types[key]
+    );
+    const internalTypes = creditCardType('').map(entry => entry.type);
 
     expect(exposedTypes).toEqual(internalTypes);
   });

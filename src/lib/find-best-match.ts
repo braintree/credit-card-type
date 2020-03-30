@@ -1,11 +1,7 @@
-'use strict';
-
 function hasEnoughResultsToDetermineBestMatch(results) {
-  var numberOfResultsWithMaxStrengthProperty = results.filter(function (
-    result
-  ) {
-    return result.matchStrength;
-  }).length;
+  const numberOfResultsWithMaxStrengthProperty = results.filter(
+    result => result.matchStrength
+  ).length;
 
   // if all possible results have a maxStrength property
   // that means the card number is sufficiently long
@@ -16,19 +12,20 @@ function hasEnoughResultsToDetermineBestMatch(results) {
   );
 }
 
-function findBestMatch(results) {
+export default function findBestMatch(results) {
   if (!hasEnoughResultsToDetermineBestMatch(results)) {
     return null;
   }
 
-  return results.reduce(function (bestMatch, result) {
+  return results.reduce((bestMatch, result) => {
     // eslint-disable-line consistent-return
     if (!bestMatch) {
       return result;
     }
 
-    // if the current best match pattern is less specific
-    // than this result, set the result as the new best match
+    /*
+     * if the current best match pattern is less specific than this result, set the result as the new best match
+     * */
     if (bestMatch.matchStrength < result.matchStrength) {
       return result;
     }
@@ -36,5 +33,3 @@ function findBestMatch(results) {
     return bestMatch;
   });
 }
-
-module.exports = findBestMatch;

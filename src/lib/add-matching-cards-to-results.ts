@@ -1,10 +1,10 @@
 'use strict';
 
-var clone = require('./clone');
-var matches = require('./matches');
+const clone = require('./clone');
+const matches = require('./matches');
 
 function addMatchingCardsToResults(cardNumber, cardConfiguration, results) {
-  var i, pattern, patternLength, clonedCardConfiguration;
+  let i, pattern, patternLength, clonedCardConfiguration;
 
   for (i = 0; i < cardConfiguration.patterns.length; i++) {
     pattern = cardConfiguration.patterns[i];

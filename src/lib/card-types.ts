@@ -1,6 +1,6 @@
 'use strict';
 
-var cardTypes = {
+const cardTypes = {
   visa: {
     niceType: 'Visa',
     type: 'visa',

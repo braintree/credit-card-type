@@ -1,7 +1,7 @@
 'use strict';
 
 function clone(originalObject) {
-  var dupe;
+  let dupe;
 
   if (!originalObject) {
     return null;

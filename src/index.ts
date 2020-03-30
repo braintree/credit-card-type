@@ -1,15 +1,15 @@
 'use strict';
 
-var types = require('./lib/card-types');
-var clone = require('./lib/clone');
-var findBestMatch = require('./lib/find-best-match');
-var isValidInputType = require('./lib/is-valid-input-type');
-var addMatchingCardsToResults = require('./lib/add-matching-cards-to-results');
+const types = require('./lib/card-types');
+const clone = require('./lib/clone');
+const findBestMatch = require('./lib/find-best-match');
+const isValidInputType = require('./lib/is-valid-input-type');
+const addMatchingCardsToResults = require('./lib/add-matching-cards-to-results');
 
-var testOrder;
-var customCards = {};
+let testOrder;
+let customCards = {};
 
-var cardNames = {
+const cardNames = {
   VISA: 'visa',
   MASTERCARD: 'mastercard',
   AMERICAN_EXPRESS: 'american-express',
@@ -24,7 +24,7 @@ var cardNames = {
   HIPERCARD: 'hipercard'
 };
 
-var ORIGINAL_TEST_ORDER = [
+const ORIGINAL_TEST_ORDER = [
   cardNames.VISA,
   cardNames.MASTERCARD,
   cardNames.AMERICAN_EXPRESS,
@@ -46,24 +46,22 @@ function findType(type) {
 }
 
 function getAllCardTypes() {
-  return testOrder.map(function (type) {
-    return clone(findType(type));
-  });
+  return testOrder.map(type => clone(findType(type)));
 }
 
 function getCardPosition(name, ignoreErrorForNotExisting) {
-  var position = testOrder.indexOf(name);
+  const position = testOrder.indexOf(name);
 
   if (!ignoreErrorForNotExisting && position === -1) {
-    throw new Error('"' + name + '" is not a supported card type.');
+    throw new Error(`"${name}" is not a supported card type.`);
   }
 
   return position;
 }
 
 function creditCardType(cardNumber) {
-  var bestMatch;
-  var results = [];
+  let bestMatch;
+  const results = [];
 
   if (!isValidInputType(cardNumber)) {
     return [];
@@ -73,8 +71,8 @@ function creditCardType(cardNumber) {
     return getAllCardTypes(testOrder);
   }
 
-  testOrder.forEach(function (type) {
-    var cardConfiguration = findType(type);
+  testOrder.forEach(type => {
+    const cardConfiguration = findType(type);
 
     addMatchingCardsToResults(cardNumber, cardConfiguration, results);
   });
@@ -93,13 +91,13 @@ creditCardType.getTypeInfo = function (type) {
 };
 
 creditCardType.removeCard = function (name) {
-  var position = getCardPosition(name);
+  const position = getCardPosition(name);
 
   testOrder.splice(position, 1);
 };
 
 creditCardType.addCard = function (config) {
-  var existingCardPosition = getCardPosition(config.type, true);
+  const existingCardPosition = getCardPosition(config.type, true);
 
   customCards[config.type] = config;
 
@@ -109,12 +107,12 @@ creditCardType.addCard = function (config) {
 };
 
 creditCardType.updateCard = function (cardType, updates) {
-  var clonedCard;
-  var originalObject = customCards[cardType] || types[cardType];
+  let clonedCard;
+  const originalObject = customCards[cardType] || types[cardType];
 
   if (!originalObject) {
     throw new Error(
-      '"' + cardType + '" is not a recognized type. Use `addCard` instead.'
+      `"${cardType}" is not a recognized type. Use 'addCard' instead.`
     );
   }
 
@@ -124,7 +122,7 @@ creditCardType.updateCard = function (cardType, updates) {
 
   clonedCard = clone(originalObject, true);
 
-  Object.keys(clonedCard).forEach(function (key) {
+  Object.keys(clonedCard).forEach(key => {
     if (updates[key]) {
       clonedCard[key] = updates[key];
     }
@@ -134,7 +132,7 @@ creditCardType.updateCard = function (cardType, updates) {
 };
 
 creditCardType.changeOrder = function (name, position) {
-  var currentPosition = getCardPosition(name);
+  const currentPosition = getCardPosition(name);
 
   testOrder.splice(currentPosition, 1);
   testOrder.splice(position, 0, name);
