@@ -1,30 +1,32 @@
-function hasEnoughResultsToDetermineBestMatch(results) {
+function hasEnoughResultsToDetermineBestMatch(results: Array<any>): boolean {
   const numberOfResultsWithMaxStrengthProperty = results.filter(
     result => result.matchStrength
   ).length;
 
-  // if all possible results have a maxStrength property
-  // that means the card number is sufficiently long
-  // enough to determine conclusively what the type is
+  /*
+   * if all possible results have a maxStrength property that means the card
+   * number is sufficiently long enough to determine conclusively what the type
+   * is
+   * */
   return (
     numberOfResultsWithMaxStrengthProperty > 0 &&
     numberOfResultsWithMaxStrengthProperty === results.length
   );
 }
 
-export default function findBestMatch(results) {
+export default function findBestMatch(results: Array<any>) {
   if (!hasEnoughResultsToDetermineBestMatch(results)) {
     return null;
   }
 
   return results.reduce((bestMatch, result) => {
-    // eslint-disable-line consistent-return
     if (!bestMatch) {
       return result;
     }
 
     /*
-     * if the current best match pattern is less specific than this result, set the result as the new best match
+     * If the current best match pattern is less specific than this result, set
+     * the result as the new best match
      * */
     if (bestMatch.matchStrength < result.matchStrength) {
       return result;

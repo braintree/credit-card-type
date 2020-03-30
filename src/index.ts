@@ -1,10 +1,18 @@
-'use strict';
+import types from './lib/card-types';
+import addMatchingCardsToResults from './lib/add-matching-cards-to-results';
+import isValidInputType from './lib/is-valid-input-type';
+import findBestMatch from './lib/find-best-match';
+import clone from './lib/clone';
 
-const types = require('./lib/card-types');
-const clone = require('./lib/clone');
-const findBestMatch = require('./lib/find-best-match');
-const isValidInputType = require('./lib/is-valid-input-type');
-const addMatchingCardsToResults = require('./lib/add-matching-cards-to-results');
+export interface CreditCardType {
+  niceType?: string;
+  type?: string;
+  patterns?: number[] | string[] | [string[]];
+  gaps?: number[] | string[];
+  lengths?: number[] | string[];
+  code?: { size: number; name: string };
+  [x: string]: any;
+}
 
 let testOrder;
 let customCards = {};
@@ -41,25 +49,28 @@ const ORIGINAL_TEST_ORDER = [
 
 testOrder = clone(ORIGINAL_TEST_ORDER);
 
-function findType(type) {
+function findType(type: string | number): CreditCardType {
   return customCards[type] || types[type];
 }
 
-function getAllCardTypes() {
+function getAllCardTypes(): CreditCardType[] {
   return testOrder.map(type => clone(findType(type)));
 }
 
-function getCardPosition(name, ignoreErrorForNotExisting) {
+function getCardPosition(
+  name: string,
+  ignoreErrorForNotExisting = false
+): number {
   const position = testOrder.indexOf(name);
 
   if (!ignoreErrorForNotExisting && position === -1) {
-    throw new Error(`"${name}" is not a supported card type.`);
+    throw new Error('"' + name + '" is not a supported card type.');
   }
 
   return position;
 }
 
-function creditCardType(cardNumber) {
+function creditCardType(cardNumber = null): Array<CreditCardType> {
   let bestMatch;
   const results = [];
 
@@ -68,7 +79,7 @@ function creditCardType(cardNumber) {
   }
 
   if (cardNumber.length === 0) {
-    return getAllCardTypes(testOrder);
+    return getAllCardTypes();
   }
 
   testOrder.forEach(type => {
@@ -86,17 +97,16 @@ function creditCardType(cardNumber) {
   return results;
 }
 
-creditCardType.getTypeInfo = function (type) {
-  return clone(findType(type));
-};
+creditCardType.getTypeInfo = (type: string): CreditCardType =>
+  clone(findType(type));
 
-creditCardType.removeCard = function (name) {
+creditCardType.removeCard = (name: string) => {
   const position = getCardPosition(name);
 
   testOrder.splice(position, 1);
 };
 
-creditCardType.addCard = function (config) {
+creditCardType.addCard = (config: CreditCardType) => {
   const existingCardPosition = getCardPosition(config.type, true);
 
   customCards[config.type] = config;
@@ -106,13 +116,13 @@ creditCardType.addCard = function (config) {
   }
 };
 
-creditCardType.updateCard = function (cardType, updates) {
+creditCardType.updateCard = (cardType: string, updates: CreditCardType) => {
   let clonedCard;
   const originalObject = customCards[cardType] || types[cardType];
 
   if (!originalObject) {
     throw new Error(
-      `"${cardType}" is not a recognized type. Use 'addCard' instead.`
+      `"${cardType}" is not a recognized type. Use \`addCard\` instead.'`
     );
   }
 
@@ -120,7 +130,7 @@ creditCardType.updateCard = function (cardType, updates) {
     throw new Error('Cannot overwrite type parameter.');
   }
 
-  clonedCard = clone(originalObject, true);
+  clonedCard = clone(originalObject);
 
   Object.keys(clonedCard).forEach(key => {
     if (updates[key]) {
@@ -131,18 +141,18 @@ creditCardType.updateCard = function (cardType, updates) {
   customCards[clonedCard.type] = clonedCard;
 };
 
-creditCardType.changeOrder = function (name, position) {
+creditCardType.changeOrder = (name: string, position: number) => {
   const currentPosition = getCardPosition(name);
 
   testOrder.splice(currentPosition, 1);
   testOrder.splice(position, 0, name);
 };
 
-creditCardType.resetModifications = function () {
+creditCardType.resetModifications = () => {
   testOrder = clone(ORIGINAL_TEST_ORDER);
   customCards = {};
 };
 
 creditCardType.types = cardNames;
 
-module.exports = creditCardType;
+export default creditCardType;

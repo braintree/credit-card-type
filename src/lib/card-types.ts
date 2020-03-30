@@ -1,5 +1,3 @@
-'use strict';
-
 const cardTypes = {
   visa: {
     niceType: 'Visa',
@@ -187,4 +185,4 @@ const cardTypes = {
   }
 };
 
-module.exports = cardTypes;
+export default cardTypes;

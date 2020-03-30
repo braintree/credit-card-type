@@ -1,9 +1,12 @@
-'use strict';
+import clone from './clone';
+import matches from './matches';
+import { CreditCardType } from '../index';
 
-const clone = require('./clone');
-const matches = require('./matches');
-
-function addMatchingCardsToResults(cardNumber, cardConfiguration, results) {
+export default function addMatchingCardsToResults(
+  cardNumber: string,
+  cardConfiguration: CreditCardType,
+  results: Array<object>
+) {
   let i, pattern, patternLength, clonedCardConfiguration;
 
   for (i = 0; i < cardConfiguration.patterns.length; i++) {
@@ -29,5 +32,3 @@ function addMatchingCardsToResults(cardNumber, cardConfiguration, results) {
     break;
   }
 }
-
-module.exports = addMatchingCardsToResults;

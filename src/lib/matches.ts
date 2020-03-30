@@ -1,7 +1,12 @@
-'use strict';
+/*
+ * Adapted from https://github.com/polvo-labs/card-type/blob/aaab11f80fa1939bccc8f24905a06ae3cd864356/src/cardType.js#L37-L42
+ * */
 
-// Adapted from https://github.com/polvo-labs/card-type/blob/aaab11f80fa1939bccc8f24905a06ae3cd864356/src/cardType.js#L37-L42
-function matchesRange(cardNumber, min, max) {
+function matchesRange(
+  cardNumber: string,
+  min: number | string,
+  max: number | string
+): boolean {
   const maxLengthToCheck = String(min).length;
   const substr = cardNumber.substr(0, maxLengthToCheck);
   const integerRepresentationOfCardNumber = parseInt(substr, 10);
@@ -15,7 +20,7 @@ function matchesRange(cardNumber, min, max) {
   );
 }
 
-function matchesPattern(cardNumber, pattern) {
+function matchesPattern(cardNumber: string, pattern: string): boolean {
   pattern = String(pattern);
 
   return (
@@ -24,12 +29,13 @@ function matchesPattern(cardNumber, pattern) {
   );
 }
 
-function matches(cardNumber, pattern) {
+export default function matches(
+  cardNumber: string,
+  pattern: string[] | number[]
+): boolean {
   if (Array.isArray(pattern)) {
     return matchesRange(cardNumber, pattern[0], pattern[1]);
   }
 
   return matchesPattern(cardNumber, pattern);
 }
-
-module.exports = matches;

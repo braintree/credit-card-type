@@ -1,6 +1,4 @@
-'use strict';
-
-function clone(originalObject) {
+export default function (originalObject: Object): Object {
   let dupe;
 
   if (!originalObject) {
@@ -11,5 +9,3 @@ function clone(originalObject) {
 
   return dupe;
 }
-
-module.exports = clone;

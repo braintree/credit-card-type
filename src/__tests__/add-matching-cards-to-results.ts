@@ -1,8 +1,9 @@
-const addMatchingCardsToResults = require('../lib/add-matching-cards-to-results');
+import addMatchingCardsToResults from '../lib/add-matching-cards-to-results';
+import { CreditCardType } from '../index';
 
 describe('addMatchingCardsToResults', () => {
   it('adds a clone of matching card configurations to results array', () => {
-    const a = {};
+    const a: CreditCardType = {};
     const b = {
       patterns: ['1', '2']
     };

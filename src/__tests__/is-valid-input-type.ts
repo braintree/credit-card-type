@@ -1,4 +1,4 @@
-const isValidInputType = require('../lib/is-valid-input-type');
+import isValidInputType from '../lib/is-valid-input-type';
 
 describe('isValidInputType', () => {
   it('returns true if value is a string', () => {
@@ -6,7 +6,7 @@ describe('isValidInputType', () => {
   });
 
   it('returns true if value is a string object', () => {
-    expect(isValidInputType(new String('string'))).toBe(true); // eslint-disable-line no-new-wrappers
+    expect(isValidInputType(String('string'))).toBe(true);
   });
 
   it('returns false for non-string values', () => {

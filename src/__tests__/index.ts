@@ -1,4 +1,4 @@
-const creditCardType = require('../index');
+import creditCardType from '../index';
 
 describe('creditCardType', () => {
   it('returns an empty array if passed non-strings', () => {
@@ -178,7 +178,7 @@ describe('creditCardType', () => {
   });
 
   describe('ambiguous card types', () => {
-    const ambiguous = [
+    const ambiguous: Array<[string, string[]]> = [
       [
         '',
         [

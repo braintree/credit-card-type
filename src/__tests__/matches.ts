@@ -1,4 +1,4 @@
-const matches = require('../lib/matches');
+import matches from '../lib/matches';
 
 describe('matches', () => {
   describe('Array', () => {

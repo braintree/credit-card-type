@@ -1,4 +1,4 @@
-const clone = require('../lib/clone');
+import clone from '../lib/clone';
 
 describe('clone', () => {
   it('makes a deep copy of an object', () => {
