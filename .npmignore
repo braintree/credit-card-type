@@ -5,4 +5,4 @@ gulpfile.js
 .eslintignore
 .nvmrc
 bower.json
-.npmignore
+.github
