@@ -6,17 +6,17 @@ export default function addMatchingCardsToResults(
   cardNumber: string,
   cardConfiguration: CreditCardType,
   results: Array<object>
-) {
-  let i, pattern, patternLength, clonedCardConfiguration;
+): void {
+  let i, patternLength;
 
   for (i = 0; i < cardConfiguration.patterns.length; i++) {
-    pattern = cardConfiguration.patterns[i];
+    const pattern = cardConfiguration.patterns[i];
 
     if (!matches(cardNumber, pattern)) {
       continue;
     }
 
-    clonedCardConfiguration = clone(cardConfiguration);
+    const clonedCardConfiguration = clone(cardConfiguration);
 
     if (Array.isArray(pattern)) {
       patternLength = String(pattern[0]).length;

@@ -169,7 +169,7 @@ describe('creditCardType', () => {
         try {
           expect(actual).toHaveLength(1);
         } catch (e) {
-          console.log(actual);
+          console.log(actual); // eslint-disable-line no-console
           throw e;
         }
         expect(actual[0].type).toBe(type);
@@ -655,14 +655,12 @@ describe('updateCard', () => {
   });
 
   it('updates existing card', () => {
-    let updatedVisa;
-
     creditCardType.updateCard(creditCardType.types.VISA, {
       niceType: 'Fancy Visa',
       lengths: [11, 16, 18, 19]
     });
 
-    updatedVisa = creditCardType.getTypeInfo(creditCardType.types.VISA);
+    const updatedVisa = creditCardType.getTypeInfo(creditCardType.types.VISA);
 
     expect(updatedVisa.niceType).toBe('Fancy Visa');
     expect(updatedVisa.lengths).toEqual([11, 16, 18, 19]);

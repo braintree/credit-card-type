@@ -1,11 +1,11 @@
-export default function (originalObject: Object): Object {
-  let dupe;
-
+export default function (
+  originalObject: Record<string, any>
+): Record<string, any> {
   if (!originalObject) {
     return null;
   }
 
-  dupe = JSON.parse(JSON.stringify(originalObject));
+  const dupe = JSON.parse(JSON.stringify(originalObject));
 
   return dupe;
 }

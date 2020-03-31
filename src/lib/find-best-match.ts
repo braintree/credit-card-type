@@ -14,7 +14,7 @@ function hasEnoughResultsToDetermineBestMatch(results: Array<any>): boolean {
   );
 }
 
-export default function findBestMatch(results: Array<any>) {
+export default function findBestMatch(results: Array<any>): any {
   if (!hasEnoughResultsToDetermineBestMatch(results)) {
     return null;
   }

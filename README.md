@@ -12,12 +12,6 @@ To install via npm:
 npm install credit-card-type
 ```
 
-To install via Bower:
-
-```bash
-bower install credit-card-type
-```
-
 ## Example
 
 ```javascript

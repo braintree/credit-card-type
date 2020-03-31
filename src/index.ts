@@ -71,7 +71,6 @@ function getCardPosition(
 }
 
 function creditCardType(cardNumber = null): Array<CreditCardType> {
-  let bestMatch;
   const results = [];
 
   if (!isValidInputType(cardNumber)) {
@@ -88,7 +87,7 @@ function creditCardType(cardNumber = null): Array<CreditCardType> {
     addMatchingCardsToResults(cardNumber, cardConfiguration, results);
   });
 
-  bestMatch = findBestMatch(results);
+  const bestMatch = findBestMatch(results);
 
   if (bestMatch) {
     return [bestMatch];
@@ -100,13 +99,13 @@ function creditCardType(cardNumber = null): Array<CreditCardType> {
 creditCardType.getTypeInfo = (type: string): CreditCardType =>
   clone(findType(type));
 
-creditCardType.removeCard = (name: string) => {
+creditCardType.removeCard = (name: string): void => {
   const position = getCardPosition(name);
 
   testOrder.splice(position, 1);
 };
 
-creditCardType.addCard = (config: CreditCardType) => {
+creditCardType.addCard = (config: CreditCardType): void => {
   const existingCardPosition = getCardPosition(config.type, true);
 
   customCards[config.type] = config;
@@ -116,8 +115,10 @@ creditCardType.addCard = (config: CreditCardType) => {
   }
 };
 
-creditCardType.updateCard = (cardType: string, updates: CreditCardType) => {
-  let clonedCard;
+creditCardType.updateCard = (
+  cardType: string,
+  updates: CreditCardType
+): void => {
   const originalObject = customCards[cardType] || types[cardType];
 
   if (!originalObject) {
@@ -130,7 +131,7 @@ creditCardType.updateCard = (cardType: string, updates: CreditCardType) => {
     throw new Error('Cannot overwrite type parameter.');
   }
 
-  clonedCard = clone(originalObject);
+  const clonedCard = clone(originalObject);
 
   Object.keys(clonedCard).forEach(key => {
     if (updates[key]) {
@@ -141,14 +142,14 @@ creditCardType.updateCard = (cardType: string, updates: CreditCardType) => {
   customCards[clonedCard.type] = clonedCard;
 };
 
-creditCardType.changeOrder = (name: string, position: number) => {
+creditCardType.changeOrder = (name: string, position: number): void => {
   const currentPosition = getCardPosition(name);
 
   testOrder.splice(currentPosition, 1);
   testOrder.splice(position, 0, name);
 };
 
-creditCardType.resetModifications = () => {
+creditCardType.resetModifications = (): void => {
   testOrder = clone(ORIGINAL_TEST_ORDER);
   customCards = {};
 };
