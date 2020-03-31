@@ -4,6 +4,7 @@
   "description": "A library for determining credit card type",
   "main": "dist/index.js",
   "scripts": {
+    "prepare": "npm run build",
     "lint": "eslint .",
     "posttest": "npm run lint",
     "test": "jest",
