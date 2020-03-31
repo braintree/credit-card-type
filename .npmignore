@@ -1,8 +1,8 @@
-test/
+__tests__/
 gulpfile.js
 .travis.yml
 .eslintrc
 .eslintignore
 .nvmrc
 bower.json
-.npmignore
+.github

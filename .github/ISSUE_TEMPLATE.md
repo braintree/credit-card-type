@@ -1,7 +1,7 @@
 ### General information
 
-* Library version: <!-- Example: 5.0.0 -->
-* Browser and OS <!-- Example: Chrome 56.0.2924.87 (64-bit) on MacOS 10.12.3 -->
+- Library version: <!-- Example: 5.0.0 -->
+- Browser and OS <!-- Example: Chrome 56.0.2924.87 (64-bit) on MacOS 10.12.3 -->
 
 ### Issue description
 
