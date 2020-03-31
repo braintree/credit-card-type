@@ -1,9 +1,7 @@
-'use strict';
-
 const { resolve } = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const config = {
+module.exports = {
   entry: './src/index.js',
   output: {
     library: 'creditCardType',
@@ -25,5 +23,3 @@ const config = {
     extensions: ['.tsx', '.ts', '.js']
   }
 };
-
-module.exports = config;

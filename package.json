@@ -18,6 +18,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^25.1.4",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-config-braintree": "^4.0.0",
@@ -25,10 +26,15 @@
     "eslint-plugin-prettier": "^3.1.2",
     "jest": "^25.1.0",
     "prettier": "2.0.2",
+    "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.2",
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }

@@ -1,7 +1,8 @@
 {
   "extends": [
     "plugin:prettier/recommended",
-    "braintree/client"
+    "braintree/client",
+    "braintree/es6"
   ],
   "plugins": ["prettier"],
   "rules": {
@@ -12,7 +13,6 @@
     {
       "files": ["webpack.config.js"],
       "env": {
-        "es6": true,
         "node": true
       }
     }
