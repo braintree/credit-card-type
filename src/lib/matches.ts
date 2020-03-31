@@ -20,7 +20,7 @@ function matchesRange(
   );
 }
 
-function matchesPattern(cardNumber: string, pattern: string): boolean {
+function matchesPattern(cardNumber: string, pattern: string | number): boolean {
   pattern = String(pattern);
 
   return (
@@ -31,7 +31,7 @@ function matchesPattern(cardNumber: string, pattern: string): boolean {
 
 export default function matches(
   cardNumber: string,
-  pattern: string[] | number[]
+  pattern: string | number | string[] | number[]
 ): boolean {
   if (Array.isArray(pattern)) {
     return matchesRange(cardNumber, pattern[0], pattern[1]);
