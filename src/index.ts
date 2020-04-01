@@ -3,16 +3,7 @@ import addMatchingCardsToResults from './lib/add-matching-cards-to-results';
 import isValidInputType from './lib/is-valid-input-type';
 import findBestMatch from './lib/find-best-match';
 import clone from './lib/clone';
-
-export interface CreditCardType {
-  niceType?: string;
-  type?: string;
-  patterns?: number[] | string[] | [string[]];
-  gaps?: number[] | string[];
-  lengths?: number[] | string[];
-  code?: { size: number; name: string };
-  [x: string]: any;
-}
+import type { CreditCardType } from './types';
 
 let testOrder;
 let customCards = {};
@@ -156,4 +147,4 @@ creditCardType.resetModifications = (): void => {
 
 creditCardType.types = cardNames;
 
-export default creditCardType;
+export = creditCardType;

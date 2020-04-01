@@ -1,4 +1,4 @@
-import creditCardType from '../index';
+import creditCardType = require('../index');
 
 describe('creditCardType', () => {
   it('returns an empty array if passed non-strings', () => {

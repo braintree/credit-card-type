@@ -1,5 +1,5 @@
 import addMatchingCardsToResults from '../lib/add-matching-cards-to-results';
-import { CreditCardType } from '../index';
+import type { CreditCardType } from '../types';
 
 describe('addMatchingCardsToResults', () => {
   it('adds a clone of matching card configurations to results array', () => {
