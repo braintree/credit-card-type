@@ -254,15 +254,15 @@ describe('creditCardType', () => {
   });
 
   it.each([
-    ['Mastercard', '5454545454545454', {size: 3, name: 'CVC'}],
-    ['Visa', '4111111111111111', {size: 3, name: 'CVV'}],
-    ['American Express', '378734493671000', {size: 4, name: 'CID'}],
-    ['Discover', '6011000990139424', {size: 3, name: 'CID'}],
-    ['JCB', '30569309025904', {size: 3, name: 'CVV'}],
-    ['Diners Club', '30569309025904', {size: 3, name: 'CVV'}],
-    ['UnionPay', '6220558812340000', {size: 3, name: 'CVN'}],
-    ['Maestro', '6304000000000000', {size: 3, name: 'CVC'}],
-    ['Mir', '2200000000000000', {size: 3, name: 'CVP2'}]
+    ['Mastercard', '5454545454545454', { size: 3, name: 'CVC' }],
+    ['Visa', '4111111111111111', { size: 3, name: 'CVV' }],
+    ['American Express', '378734493671000', { size: 4, name: 'CID' }],
+    ['Discover', '6011000990139424', { size: 3, name: 'CID' }],
+    ['JCB', '30569309025904', { size: 3, name: 'CVV' }],
+    ['Diners Club', '30569309025904', { size: 3, name: 'CVV' }],
+    ['UnionPay', '6220558812340000', { size: 3, name: 'CVN' }],
+    ['Maestro', '6304000000000000', { size: 3, name: 'CVC' }],
+    ['Mir', '2200000000000000', { size: 3, name: 'CVP2' }]
   ])('returns security codes for %s', (brand, number, code) => {
     const parsedCode = creditCardType(number)[0].code;
 
@@ -273,14 +273,14 @@ describe('creditCardType', () => {
     [
       'Maestro',
       '6304000000000000',
-      {type: 'maestro', lengths: [12, 13, 14, 15, 16, 17, 18, 19]}
+      { type: 'maestro', lengths: [12, 13, 14, 15, 16, 17, 18, 19] }
     ],
-    ['Diners Club', '305', {type: 'diners-club', lengths: [14, 16, 19]}],
-    ['Discover', '6011', {type: 'discover', lengths: [16, 19]}],
-    ['Visa', '4', {type: 'visa', lengths: [16, 18, 19]}],
-    ['Mastercard', '54', {type: 'mastercard', lengths: [16]}],
-    ['JCB', '35', {type: 'jcb', lengths: [16, 17, 18, 19]}],
-    ['Mir', '220', {type: 'mir', lengths: [16, 17, 18, 19]}]
+    ['Diners Club', '305', { type: 'diners-club', lengths: [14, 16, 19] }],
+    ['Discover', '6011', { type: 'discover', lengths: [16, 19] }],
+    ['Visa', '4', { type: 'visa', lengths: [16, 18, 19] }],
+    ['Mastercard', '54', { type: 'mastercard', lengths: [16] }],
+    ['JCB', '35', { type: 'jcb', lengths: [16, 17, 18, 19] }],
+    ['Mir', '220', { type: 'mir', lengths: [16, 17, 18, 19] }]
   ])('returns lengths for %s', (brand, number, meta) => {
     const cardType = creditCardType(number)[0];
 
