@@ -12,387 +12,279 @@ describe('creditCardType', () => {
     expect(creditCardType({})).toEqual([]);
   });
 
-  describe('matches card numbers to brand', () => {
-    const tests = [
-      ['411', 'visa'],
-      ['4111111111111111', 'visa'],
-      ['4012888888881881', 'visa'],
-      ['4222222222222', 'visa'],
-      ['4462030000000000', 'visa'],
-      ['4484070000000000', 'visa'],
-      ['411111111111111111', 'visa'],
-      ['4111111111111111110', 'visa'],
+  it.each([
+    ['411', 'visa'],
+    ['4111111111111111', 'visa'],
+    ['4012888888881881', 'visa'],
+    ['4222222222222', 'visa'],
+    ['4462030000000000', 'visa'],
+    ['4484070000000000', 'visa'],
+    ['411111111111111111', 'visa'],
+    ['4111111111111111110', 'visa'],
 
-      ['431274', 'elo'],
-      ['451416', 'elo'],
-      ['457393', 'elo'],
-      ['401178', 'elo'],
-      ['401179', 'elo'],
-      ['438935', 'elo'],
-      ['457631', 'elo'],
-      ['457632', 'elo'],
-      ['4576321111111111', 'elo'],
-      ['5066991111111118', 'elo'],
-      ['6277809', 'elo'],
-      ['6277809990229178', 'elo'],
-      ['650033', 'elo'],
-      ['6500331111111111', 'elo'],
+    ['431274', 'elo'],
+    ['451416', 'elo'],
+    ['457393', 'elo'],
+    ['401178', 'elo'],
+    ['401179', 'elo'],
+    ['438935', 'elo'],
+    ['457631', 'elo'],
+    ['457632', 'elo'],
+    ['4576321111111111', 'elo'],
+    ['5066991111111118', 'elo'],
+    ['6277809', 'elo'],
+    ['6277809990229178', 'elo'],
+    ['650033', 'elo'],
+    ['6500331111111111', 'elo'],
 
-      ['2221', 'mastercard'],
-      ['2222', 'mastercard'],
-      ['2223', 'mastercard'],
-      ['2224', 'mastercard'],
-      ['2225', 'mastercard'],
-      ['2226', 'mastercard'],
-      ['2225', 'mastercard'],
-      ['2226', 'mastercard'],
-      ['223', 'mastercard'],
-      ['2239', 'mastercard'],
-      ['23', 'mastercard'],
-      ['24', 'mastercard'],
-      ['25', 'mastercard'],
-      ['26', 'mastercard'],
-      ['27', 'mastercard'],
-      ['270', 'mastercard'],
-      ['271', 'mastercard'],
-      ['272', 'mastercard'],
-      ['2720', 'mastercard'],
+    ['2221', 'mastercard'],
+    ['2222', 'mastercard'],
+    ['2223', 'mastercard'],
+    ['2224', 'mastercard'],
+    ['2225', 'mastercard'],
+    ['2226', 'mastercard'],
+    ['2225', 'mastercard'],
+    ['2226', 'mastercard'],
+    ['223', 'mastercard'],
+    ['2239', 'mastercard'],
+    ['23', 'mastercard'],
+    ['24', 'mastercard'],
+    ['25', 'mastercard'],
+    ['26', 'mastercard'],
+    ['27', 'mastercard'],
+    ['270', 'mastercard'],
+    ['271', 'mastercard'],
+    ['272', 'mastercard'],
+    ['2720', 'mastercard'],
 
-      ['51', 'mastercard'],
-      ['52', 'mastercard'],
-      ['53', 'mastercard'],
-      ['54', 'mastercard'],
-      ['55', 'mastercard'],
-      ['5555555555554444', 'mastercard'],
-      ['5454545454545454', 'mastercard'],
+    ['51', 'mastercard'],
+    ['52', 'mastercard'],
+    ['53', 'mastercard'],
+    ['54', 'mastercard'],
+    ['55', 'mastercard'],
+    ['5555555555554444', 'mastercard'],
+    ['5454545454545454', 'mastercard'],
 
-      ['34', 'american-express'],
-      ['37', 'american-express'],
-      ['341', 'american-express'],
-      ['34343434343434', 'american-express'],
-      ['378282246310005', 'american-express'],
-      ['371449635398431', 'american-express'],
-      ['378734493671000', 'american-express'],
+    ['34', 'american-express'],
+    ['37', 'american-express'],
+    ['341', 'american-express'],
+    ['34343434343434', 'american-express'],
+    ['378282246310005', 'american-express'],
+    ['371449635398431', 'american-express'],
+    ['378734493671000', 'american-express'],
 
-      ['30', 'diners-club'],
-      ['300', 'diners-club'],
-      ['36', 'diners-club'],
-      ['38', 'diners-club'],
-      ['39', 'diners-club'],
-      ['30569309025904', 'diners-club'],
-      ['38520000023237', 'diners-club'],
-      ['36700102000000', 'diners-club'],
-      ['36148900647913', 'diners-club'],
+    ['30', 'diners-club'],
+    ['300', 'diners-club'],
+    ['36', 'diners-club'],
+    ['38', 'diners-club'],
+    ['39', 'diners-club'],
+    ['30569309025904', 'diners-club'],
+    ['38520000023237', 'diners-club'],
+    ['36700102000000', 'diners-club'],
+    ['36148900647913', 'diners-club'],
 
-      ['6011', 'discover'],
-      ['644', 'discover'],
-      ['644', 'discover'],
-      ['645', 'discover'],
-      ['646', 'discover'],
-      ['647', 'discover'],
-      ['648', 'discover'],
-      ['649', 'discover'],
-      ['6011000400000000', 'discover'],
-      ['6011111111111117', 'discover'],
-      ['6011000990139424', 'discover'],
+    ['6011', 'discover'],
+    ['644', 'discover'],
+    ['644', 'discover'],
+    ['645', 'discover'],
+    ['646', 'discover'],
+    ['647', 'discover'],
+    ['648', 'discover'],
+    ['649', 'discover'],
+    ['6011000400000000', 'discover'],
+    ['6011111111111117', 'discover'],
+    ['6011000990139424', 'discover'],
 
-      ['62123456789002', 'unionpay'],
-      ['621234567890003', 'unionpay'],
-      ['6221258812340000', 'unionpay'],
-      ['622018111111111111', 'unionpay'],
-      ['6212345678900000003', 'unionpay'],
+    ['62123456789002', 'unionpay'],
+    ['621234567890003', 'unionpay'],
+    ['6221258812340000', 'unionpay'],
+    ['622018111111111111', 'unionpay'],
+    ['6212345678900000003', 'unionpay'],
 
-      ['56', 'maestro'],
-      ['57', 'maestro'],
-      ['58', 'maestro'],
-      ['59', 'maestro'],
-      ['67', 'maestro'],
-      ['6304000000000000', 'maestro'],
-      ['6799990100000000019', 'maestro'],
-      ['62183', 'maestro'],
+    ['56', 'maestro'],
+    ['57', 'maestro'],
+    ['58', 'maestro'],
+    ['59', 'maestro'],
+    ['67', 'maestro'],
+    ['6304000000000000', 'maestro'],
+    ['6799990100000000019', 'maestro'],
+    ['62183', 'maestro'],
 
-      ['1', 'jcb'],
-      ['35', 'jcb'],
-      ['2131', 'jcb'],
-      ['21312', 'jcb'],
-      ['1800', 'jcb'],
-      ['18002', 'jcb'],
-      ['3530111333300000', 'jcb'],
-      ['3566002020360505', 'jcb'],
-      ['35308796121637357', 'jcb'],
-      ['353445444300732639', 'jcb'],
-      ['3537286818376838569', 'jcb'],
+    ['1', 'jcb'],
+    ['35', 'jcb'],
+    ['2131', 'jcb'],
+    ['21312', 'jcb'],
+    ['1800', 'jcb'],
+    ['18002', 'jcb'],
+    ['3530111333300000', 'jcb'],
+    ['3566002020360505', 'jcb'],
+    ['35308796121637357', 'jcb'],
+    ['353445444300732639', 'jcb'],
+    ['3537286818376838569', 'jcb'],
 
-      ['6221260000000000', 'unionpay'],
-      ['6221260000000000000', 'unionpay'],
-      ['6222000000000000', 'unionpay'],
-      ['6228000000000000', 'unionpay'],
-      ['6229250000000000', 'unionpay'],
-      ['6229250000000000000', 'unionpay'],
-      ['6240000000000000', 'unionpay'],
-      ['6260000000000000000', 'unionpay'],
-      ['6282000000000000', 'unionpay'],
-      ['6289000000000000000', 'unionpay'],
-      ['6221558812340000', 'unionpay'],
-      ['6269992058134322', 'unionpay'],
-      ['622018111111111111', 'unionpay'],
-      ['8', 'unionpay'],
-      ['8100513433325374', 'unionpay'],
-      ['8111700872004845', 'unionpay'],
-      ['8141618644273338', 'unionpay'],
-      ['8158163233706018', 'unionpay'],
-      ['8168524506870054', 'unionpay'],
+    ['6221260000000000', 'unionpay'],
+    ['6221260000000000000', 'unionpay'],
+    ['6222000000000000', 'unionpay'],
+    ['6228000000000000', 'unionpay'],
+    ['6229250000000000', 'unionpay'],
+    ['6229250000000000000', 'unionpay'],
+    ['6240000000000000', 'unionpay'],
+    ['6260000000000000000', 'unionpay'],
+    ['6282000000000000', 'unionpay'],
+    ['6289000000000000000', 'unionpay'],
+    ['6221558812340000', 'unionpay'],
+    ['6269992058134322', 'unionpay'],
+    ['622018111111111111', 'unionpay'],
+    ['8', 'unionpay'],
+    ['8100513433325374', 'unionpay'],
+    ['8111700872004845', 'unionpay'],
+    ['8141618644273338', 'unionpay'],
+    ['8158163233706018', 'unionpay'],
+    ['8168524506870054', 'unionpay'],
 
-      ['220', 'mir'],
-      ['2200', 'mir'],
-      ['2204', 'mir'],
-      ['22000000000000000', 'mir'],
-      ['22049999999999999', 'mir'],
+    ['220', 'mir'],
+    ['2200', 'mir'],
+    ['2204', 'mir'],
+    ['22000000000000000', 'mir'],
+    ['22049999999999999', 'mir'],
 
-      ['6062820524845321', 'hipercard'],
-      ['6062820000', 'hipercard'],
-      ['6370950000000005', 'hiper'],
-      ['637095', 'hiper'],
-      ['637609', 'hiper'],
-      ['637599', 'hiper'],
-      ['637612', 'hiper'],
-      ['637568', 'hiper']
-    ];
+    ['6062820524845321', 'hipercard'],
+    ['6062820000', 'hipercard'],
+    ['6370950000000005', 'hiper'],
+    ['637095', 'hiper'],
+    ['637609', 'hiper'],
+    ['637599', 'hiper'],
+    ['637612', 'hiper'],
+    ['637568', 'hiper']
+  ])('Matches %s to brand %s', (number, type) => {
+    const actual = creditCardType(number);
 
-    tests.forEach(test => {
-      const number = test[0];
-      const type = test[1];
-
-      it(`returns type ${type} for ${number}`, () => {
-        const actual = creditCardType(number);
-
-        try {
-          expect(actual).toHaveLength(1);
-        } catch (e) {
-          console.log(actual); // eslint-disable-line no-console
-          throw e;
-        }
-        expect(actual[0].type).toBe(type);
-      });
-    });
+    try {
+      expect(actual).toHaveLength(1);
+    } catch (e) {
+      console.log(actual); // eslint-disable-line no-console
+      throw e;
+    }
+    expect(actual[0].type).toBe(type);
   });
 
-  describe('ambiguous card types', () => {
-    const ambiguous: Array<[string, string[]]> = [
+  it.each([
+    [
+      '',
       [
-        '',
-        [
-          'visa',
-          'mastercard',
-          'american-express',
-          'diners-club',
-          'discover',
-          'jcb',
-          'unionpay',
-          'maestro',
-          'elo',
-          'mir',
-          'hiper',
-          'hipercard'
-        ]
-      ],
-      ['2', ['mastercard', 'jcb', 'mir']],
-      ['3', ['american-express', 'diners-club', 'jcb']],
-      ['5', ['mastercard', 'maestro', 'elo']],
-      ['50', ['maestro', 'elo']],
-      ['6', ['discover', 'maestro', 'unionpay', 'elo', 'hiper', 'hipercard']],
-      ['60', ['discover', 'maestro', 'hipercard']],
-      ['601', ['discover', 'maestro']],
-      ['64', ['discover', 'maestro']],
-      ['62', ['unionpay', 'maestro', 'elo']],
+        'visa',
+        'mastercard',
+        'american-express',
+        'diners-club',
+        'discover',
+        'jcb',
+        'unionpay',
+        'maestro',
+        'elo',
+        'mir',
+        'hiper',
+        'hipercard'
+      ]
+    ],
+    ['2', ['mastercard', 'jcb', 'mir']],
+    ['3', ['american-express', 'diners-club', 'jcb']],
+    ['5', ['mastercard', 'maestro', 'elo']],
+    ['50', ['maestro', 'elo']],
+    ['6', ['discover', 'unionpay', 'maestro', 'elo', 'hiper', 'hipercard']],
+    ['60', ['discover', 'maestro', 'hipercard']],
+    ['601', ['discover', 'maestro']],
+    ['64', ['discover', 'maestro']],
+    ['62', ['unionpay', 'maestro', 'elo']],
 
-      ['4', ['visa', 'maestro', 'elo']],
-      ['43', ['visa', 'elo']],
-      ['431', ['visa', 'elo']],
-      ['4312', ['visa', 'elo']],
-      ['43127', ['visa', 'elo']],
-      ['45141', ['visa', 'elo']],
-      ['45739', ['visa', 'elo']],
-      ['40117', ['visa', 'elo']],
-      ['43893', ['visa', 'elo']],
-      ['45763', ['visa', 'elo']],
+    ['4', ['visa', 'maestro', 'elo']],
+    ['43', ['visa', 'elo']],
+    ['431', ['visa', 'elo']],
+    ['4312', ['visa', 'elo']],
+    ['43127', ['visa', 'elo']],
+    ['45141', ['visa', 'elo']],
+    ['45739', ['visa', 'elo']],
+    ['40117', ['visa', 'elo']],
+    ['43893', ['visa', 'elo']],
+    ['45763', ['visa', 'elo']],
 
-      ['6277', ['unionpay', 'maestro', 'elo']],
-      ['62778', ['unionpay', 'maestro', 'elo']],
+    ['6277', ['unionpay', 'maestro', 'elo']],
+    ['62778', ['unionpay', 'maestro', 'elo']],
 
-      ['63', ['maestro', 'elo', 'hiper']],
-      ['636', ['maestro', 'elo']],
-      ['6362', ['maestro', 'elo']],
-      ['63629', ['maestro', 'elo']],
+    ['63', ['maestro', 'elo', 'hiper']],
+    ['636', ['maestro', 'elo']],
+    ['6362', ['maestro', 'elo']],
+    ['63629', ['maestro', 'elo']],
 
-      ['637', ['maestro', 'hiper']],
-      ['606', ['maestro', 'hipercard']],
-      ['627', ['unionpay', 'maestro', 'elo']],
-      ['6062', ['maestro', 'hipercard']],
-      ['6370', ['maestro', 'hiper']],
-      ['6376', ['maestro', 'hiper']],
-      ['6375', ['maestro', 'hiper']],
-      ['65', ['discover', 'elo', 'maestro']],
-      ['655', ['discover', 'elo', 'maestro']],
-      ['6550', ['discover', 'elo', 'maestro']],
-      ['65502', ['discover', 'elo', 'maestro']]
-    ];
+    ['637', ['maestro', 'hiper']],
+    ['606', ['maestro', 'hipercard']],
+    ['627', ['unionpay', 'maestro', 'elo']],
+    ['6062', ['maestro', 'hipercard']],
+    ['6370', ['maestro', 'hiper']],
+    ['6376', ['maestro', 'hiper']],
+    ['6375', ['maestro', 'hiper']],
+    ['65', ['discover', 'maestro', 'elo']],
+    ['655', ['discover', 'maestro', 'elo']],
+    ['6550', ['discover', 'maestro', 'elo']],
+    ['65502', ['discover', 'maestro', 'elo']]
+  ])('Matches %s to array %p', (number, expectedNames) => {
+    const actualNames = creditCardType(number).map(type => type.type);
 
-    ambiguous.forEach(group => {
-      const number = group[0];
-      const expectedNames = group[1].sort();
-
-      it(`returns ${expectedNames.join(' and ')} for ${number}`, () => {
-        const actualNames = creditCardType(number)
-          .map(type => type.type)
-          .sort();
-
-        expect(expectedNames).toEqual(actualNames);
-      });
-    });
+    expect(expectedNames).toEqual(actualNames);
   });
 
-  describe('unknown card types', () => {
-    const unknowns = [
-      '0',
-      '12',
-      '123',
-      '181',
-      '1802',
-      '221',
-      '222099',
-      '2721',
-      '212',
-      '2132',
-      '306',
-      '31',
-      '32',
-      '33',
-      '7',
-      '9'
-    ];
-
-    unknowns.forEach(unknown => {
-      it(`returns an empty array for ${unknown}`, () => {
-        expect(creditCardType(unknown)).toHaveLength(0);
-      });
-    });
+  it.each([
+    '0',
+    '12',
+    '123',
+    '181',
+    '1802',
+    '221',
+    '222099',
+    '2721',
+    '212',
+    '2132',
+    '306',
+    '31',
+    '32',
+    '33',
+    '7',
+    '9'
+  ])('returns an empty array for %s', unknown => {
+    expect(creditCardType(unknown)).toHaveLength(0);
   });
 
-  describe('returns security codes for', () => {
-    it('Mastercard', () => {
-      const code = creditCardType('5454545454545454')[0].code;
+  it.each([
+    ['Mastercard', '5454545454545454', { size: 3, name: 'CVC' }],
+    ['Visa', '4111111111111111', { size: 3, name: 'CVV' }],
+    ['American Express', '378734493671000', { size: 4, name: 'CID' }],
+    ['Discover', '6011000990139424', { size: 3, name: 'CID' }],
+    ['JCB', '30569309025904', { size: 3, name: 'CVV' }],
+    ['Diners Club', '30569309025904', { size: 3, name: 'CVV' }],
+    ['UnionPay', '6220558812340000', { size: 3, name: 'CVN' }],
+    ['Maestro', '6304000000000000', { size: 3, name: 'CVC' }],
+    ['Mir', '2200000000000000', { size: 3, name: 'CVP2' }]
+  ])('returns security codes for %s', (brand, number, code) => {
+    const parsedCode = creditCardType(number)[0].code;
 
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CVC');
-    });
-
-    it('Visa', () => {
-      const code = creditCardType('4111111111111111')[0].code;
-
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CVV');
-    });
-
-    it('American Express', () => {
-      const code = creditCardType('378734493671000')[0].code;
-
-      expect(code.size).toBe(4);
-      expect(code.name).toBe('CID');
-    });
-
-    it('Discover', () => {
-      const code = creditCardType('6011000990139424')[0].code;
-
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CID');
-    });
-
-    it('JCB', () => {
-      const code = creditCardType('30569309025904')[0].code;
-
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CVV');
-    });
-
-    it('Diners Club', () => {
-      const code = creditCardType('30569309025904')[0].code;
-
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CVV');
-    });
-
-    it('UnionPay', () => {
-      const code = creditCardType('6220558812340000')[0].code;
-
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CVN');
-    });
-
-    it('Maestro', () => {
-      const code = creditCardType('6304000000000000')[0].code;
-
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CVC');
-    });
-
-    it('Mir', () => {
-      const code = creditCardType('2200000000000000')[0].code;
-
-      expect(code.size).toBe(3);
-      expect(code.name).toBe('CVP2');
-    });
+    expect(parsedCode).toMatchObject(code);
   });
 
-  describe('returns lengths for', () => {
-    it('Maestro', () => {
-      const cardType = creditCardType('6304000000000000')[0];
+  it.each([
+    [
+      'Maestro',
+      '6304000000000000',
+      { type: 'maestro', lengths: [12, 13, 14, 15, 16, 17, 18, 19] }
+    ],
+    ['Diners Club', '305', { type: 'diners-club', lengths: [14, 16, 19] }],
+    ['Discover', '6011', { type: 'discover', lengths: [16, 19] }],
+    ['Visa', '4', { type: 'visa', lengths: [16, 18, 19] }],
+    ['Mastercard', '54', { type: 'mastercard', lengths: [16] }],
+    ['JCB', '35', { type: 'jcb', lengths: [16, 17, 18, 19] }],
+    ['Mir', '220', { type: 'mir', lengths: [16, 17, 18, 19] }]
+  ])('returns lengths for %s', (brand, number, meta) => {
+    const cardType = creditCardType(number)[0];
 
-      expect(cardType.type).toBe('maestro');
-      expect(cardType.lengths).toEqual([12, 13, 14, 15, 16, 17, 18, 19]);
-    });
-
-    it('Diners Club', () => {
-      const cardType = creditCardType('305')[0];
-
-      expect(cardType.type).toBe('diners-club');
-      expect(cardType.lengths).toEqual([14, 16, 19]);
-    });
-
-    it('Discover', () => {
-      const cardType = creditCardType('6011')[0];
-
-      expect(cardType.type).toBe('discover');
-      expect(cardType.lengths).toEqual([16, 19]);
-    });
-
-    it('Visa', () => {
-      const cardType = creditCardType('4')[0];
-
-      expect(cardType.type).toBe('visa');
-      expect(cardType.lengths).toEqual([16, 18, 19]);
-    });
-
-    it('Mastercard', () => {
-      const cardType = creditCardType('54')[0];
-
-      expect(cardType.type).toBe('mastercard');
-      expect(cardType.lengths).toEqual([16]);
-    });
-
-    it('JCB', () => {
-      const cardType = creditCardType('35')[0];
-
-      expect(cardType.type).toBe('jcb');
-      expect(cardType.lengths).toEqual([16, 17, 18, 19]);
-    });
-
-    it('Mir', () => {
-      const cardType = creditCardType('220')[0];
-
-      expect(cardType.type).toBe('mir');
-      expect(cardType.lengths).toEqual([16, 17, 18, 19]);
-    });
+    expect(cardType).toMatchObject(meta);
   });
 
   it('works for String objects', () => {
