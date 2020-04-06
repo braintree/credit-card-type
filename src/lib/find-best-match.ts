@@ -1,6 +1,6 @@
 function hasEnoughResultsToDetermineBestMatch(results: Array<any>): boolean {
   const numberOfResultsWithMaxStrengthProperty = results.filter(
-    result => result.matchStrength
+    (result) => result.matchStrength
   ).length;
 
   /*

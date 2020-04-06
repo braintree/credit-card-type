@@ -1,26 +1,26 @@
-import types from './lib/card-types';
-import addMatchingCardsToResults from './lib/add-matching-cards-to-results';
-import isValidInputType from './lib/is-valid-input-type';
-import findBestMatch from './lib/find-best-match';
-import clone from './lib/clone';
-import type { CreditCardType } from './types';
+import types from "./lib/card-types";
+import addMatchingCardsToResults from "./lib/add-matching-cards-to-results";
+import isValidInputType from "./lib/is-valid-input-type";
+import findBestMatch from "./lib/find-best-match";
+import clone from "./lib/clone";
+import type { CreditCardType } from "./types";
 
 let testOrder;
 let customCards = {};
 
 const cardNames = {
-  VISA: 'visa',
-  MASTERCARD: 'mastercard',
-  AMERICAN_EXPRESS: 'american-express',
-  DINERS_CLUB: 'diners-club',
-  DISCOVER: 'discover',
-  JCB: 'jcb',
-  UNIONPAY: 'unionpay',
-  MAESTRO: 'maestro',
-  ELO: 'elo',
-  MIR: 'mir',
-  HIPER: 'hiper',
-  HIPERCARD: 'hipercard'
+  VISA: "visa",
+  MASTERCARD: "mastercard",
+  AMERICAN_EXPRESS: "american-express",
+  DINERS_CLUB: "diners-club",
+  DISCOVER: "discover",
+  JCB: "jcb",
+  UNIONPAY: "unionpay",
+  MAESTRO: "maestro",
+  ELO: "elo",
+  MIR: "mir",
+  HIPER: "hiper",
+  HIPERCARD: "hipercard",
 };
 
 const ORIGINAL_TEST_ORDER = [
@@ -35,7 +35,7 @@ const ORIGINAL_TEST_ORDER = [
   cardNames.ELO,
   cardNames.MIR,
   cardNames.HIPER,
-  cardNames.HIPERCARD
+  cardNames.HIPERCARD,
 ];
 
 testOrder = clone(ORIGINAL_TEST_ORDER);
@@ -45,7 +45,7 @@ function findType(type: string | number): CreditCardType {
 }
 
 function getAllCardTypes(): CreditCardType[] {
-  return testOrder.map(type => clone(findType(type)));
+  return testOrder.map((type) => clone(findType(type)));
 }
 
 function getCardPosition(
@@ -72,7 +72,7 @@ function creditCardType(cardNumber = null): Array<CreditCardType> {
     return getAllCardTypes();
   }
 
-  testOrder.forEach(type => {
+  testOrder.forEach((type) => {
     const cardConfiguration = findType(type);
 
     addMatchingCardsToResults(cardNumber, cardConfiguration, results);
@@ -119,12 +119,12 @@ creditCardType.updateCard = (
   }
 
   if (updates.type && originalObject.type !== updates.type) {
-    throw new Error('Cannot overwrite type parameter.');
+    throw new Error("Cannot overwrite type parameter.");
   }
 
   const clonedCard = clone(originalObject);
 
-  Object.keys(clonedCard).forEach(key => {
+  Object.keys(clonedCard).forEach((key) => {
     if (updates[key]) {
       clonedCard[key] = updates[key];
     }

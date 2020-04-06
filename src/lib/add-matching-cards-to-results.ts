@@ -1,6 +1,6 @@
-import clone from './clone';
-import matches from './matches';
-import type { CreditCardType } from '../types';
+import clone from "./clone";
+import matches from "./matches";
+import type { CreditCardType } from "../types";
 
 export default function addMatchingCardsToResults(
   cardNumber: string,

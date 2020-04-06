@@ -15,12 +15,12 @@ npm install credit-card-type
 ## Example
 
 ```javascript
-var creditCardType = require('credit-card-type');
+var creditCardType = require("credit-card-type");
 
-var visaCards = creditCardType('4111');
+var visaCards = creditCardType("4111");
 console.log(visaCards[0].type); // 'visa'
 
-var ambiguousCards = creditCardType('6');
+var ambiguousCards = creditCardType("6");
 console.log(ambiguousCards.length); // 3
 console.log(ambiguousCards[0].niceType); // 'Discover'
 console.log(ambiguousCards[1].niceType); // 'UnionPay'
@@ -100,9 +100,9 @@ A full response for a `Visa` card will look like this:
 CommonJS:
 
 ```javascript
-var creditCardType = require('credit-card-type');
-var getTypeInfo = require('credit-card-type').getTypeInfo;
-var CardType = require('credit-card-type').types;
+var creditCardType = require("credit-card-type");
+var getTypeInfo = require("credit-card-type").getTypeInfo;
+var CardType = require("credit-card-type").types;
 ```
 
 ES6:
@@ -110,8 +110,8 @@ ES6:
 ```javascript
 import creditCardType, {
   getTypeInfo,
-  types as CardType
-} from 'credit-card-type';
+  types as CardType,
+} from "credit-card-type";
 ```
 
 #### Filtering
@@ -146,15 +146,15 @@ You can add additional card brands not supportted by the the module with `addCar
 
 ```javascript
 creditCardType.addCard({
-  niceType: 'NewCard',
-  type: 'new-card',
+  niceType: "NewCard",
+  type: "new-card",
   patterns: [2345, 2376],
   gaps: [4, 8, 12],
   lengths: [16],
   code: {
-    name: 'CVV',
-    size: 3
-  }
+    name: "CVV",
+    size: 3,
+  },
 });
 ```
 
@@ -162,15 +162,15 @@ If you add a card that already exists in the module, it will overwrite it.
 
 ```javascript
 creditCardType.addCard({
-  niceType: 'Visa with Custom Nice Type',
+  niceType: "Visa with Custom Nice Type",
   type: creditCardType.types.VISA,
   patterns: [41111, [44, 47]],
   gaps: [4, 8, 12],
   lengths: [13, 16, 19], // add support for old, deprecated 13 digit visas
   code: {
-    name: 'CVV',
-    size: 3
-  }
+    name: "CVV",
+    size: 3,
+  },
 });
 ```
 
@@ -189,15 +189,15 @@ Adding new cards puts them at the bottom of the priority for testing. Priority i
   creditCardType.types.ELO,
   creditCardType.types.MIR,
   creditCardType.types.HIPER,
-  creditCardType.types.HIPERCARD
+  creditCardType.types.HIPERCARD,
 ];
 ```
 
 You can adjust the order using `changeOrder`. The number you pass in as the second argument is where the card is inserted into the array. The closer to the beginning of the array, the higher priority it has.
 
 ```javascript
-creditCardType.changeOrder('my-new-card', 0); // give custom card type the highest priority
-creditCardType.changeOrder('my-new-card', 3); // give it a priority at position 3 in the test order array
+creditCardType.changeOrder("my-new-card", 0); // give custom card type the highest priority
+creditCardType.changeOrder("my-new-card", 3); // give it a priority at position 3 in the test order array
 ```
 
 You can also remove cards with `removeCard`.
@@ -218,8 +218,8 @@ You can update cards with `updateCard`. Pass in the card type and the configurat
 
 ```javascript
 creditCardType.updateCard(creditCardType.types.VISA, {
-  niceType: 'Fancy Visa',
-  lengths: [11, 16]
+  niceType: "Fancy Visa",
+  lengths: [11, 16],
 });
 
 var visa = creditCardType.getTypeInfo(creditCardType.types.VISA);
@@ -255,13 +255,13 @@ function prettyCardNumber(cardNumber, cardType) {
       components.push(cardNumber.substring(start, end));
     }
 
-    return components.join(' ');
+    return components.join(" ");
   }
 
   return cardNumber;
 }
 
-prettyCardNumber('xxxxxxxxxx343', CardType.AMERICAN_EXPRESS); // 'xxxx xxxxxx 343'
+prettyCardNumber("xxxxxxxxxx343", CardType.AMERICAN_EXPRESS); // 'xxxx xxxxxx 343'
 ```
 
 ### Development
