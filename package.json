@@ -3,13 +3,14 @@
   "version": "8.3.0",
   "description": "A library for determining credit card type",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint --ext js,ts .",
     "posttest": "npm run lint",
     "test": "jest",
     "prepublishOnly": "npm run build",
     "prebuild": "prettier --write .",
-    "build": "tsc"
+    "build": "tsc --declaration"
   },
   "repository": {
     "type": "git",
