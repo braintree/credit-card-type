@@ -1,3 +1,5 @@
+import type { BuiltInCreditCardType } from "../types";
+
 const cardTypes = {
   visa: {
     niceType: "Visa",
@@ -9,7 +11,7 @@ const cardTypes = {
       name: "CVV",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   mastercard: {
     niceType: "Mastercard",
     type: "mastercard",
@@ -20,7 +22,7 @@ const cardTypes = {
       name: "CVC",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   "american-express": {
     niceType: "American Express",
     type: "american-express",
@@ -31,7 +33,7 @@ const cardTypes = {
       name: "CID",
       size: 4,
     },
-  },
+  } as BuiltInCreditCardType,
   "diners-club": {
     niceType: "Diners Club",
     type: "diners-club",
@@ -42,7 +44,7 @@ const cardTypes = {
       name: "CVV",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   discover: {
     niceType: "Discover",
     type: "discover",
@@ -53,7 +55,7 @@ const cardTypes = {
       name: "CID",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   jcb: {
     niceType: "JCB",
     type: "jcb",
@@ -64,7 +66,7 @@ const cardTypes = {
       name: "CVV",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   unionpay: {
     niceType: "UnionPay",
     type: "unionpay",
@@ -101,7 +103,7 @@ const cardTypes = {
       name: "CVN",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   maestro: {
     niceType: "Maestro",
     type: "maestro",
@@ -112,7 +114,7 @@ const cardTypes = {
       name: "CVC",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   elo: {
     niceType: "Elo",
     type: "elo",
@@ -149,7 +151,7 @@ const cardTypes = {
       name: "CVE",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   mir: {
     niceType: "Mir",
     type: "mir",
@@ -160,7 +162,7 @@ const cardTypes = {
       name: "CVP2",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   hiper: {
     niceType: "Hiper",
     type: "hiper",
@@ -171,7 +173,7 @@ const cardTypes = {
       name: "CVC",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
   hipercard: {
     niceType: "Hipercard",
     type: "hipercard",
@@ -182,7 +184,7 @@ const cardTypes = {
       name: "CVC",
       size: 3,
     },
-  },
+  } as BuiltInCreditCardType,
 };
 
 export default cardTypes;

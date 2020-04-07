@@ -1,11 +1,11 @@
 import clone from "./clone";
 import matches from "./matches";
-import type { CreditCardType } from "../types";
+import type { CreditCardType, CreditCardTypeWithMatchStrength } from "../types";
 
 export default function addMatchingCardsToResults(
   cardNumber: string,
   cardConfiguration: CreditCardType,
-  results: Array<object>
+  results: Array<CreditCardType>
 ): void {
   let i, patternLength;
 
@@ -16,7 +16,9 @@ export default function addMatchingCardsToResults(
       continue;
     }
 
-    const clonedCardConfiguration = clone(cardConfiguration);
+    const clonedCardConfiguration = clone(
+      cardConfiguration
+    ) as CreditCardTypeWithMatchStrength;
 
     if (Array.isArray(pattern)) {
       patternLength = String(pattern[0]).length;

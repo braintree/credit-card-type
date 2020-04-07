@@ -1,4 +1,8 @@
-function hasEnoughResultsToDetermineBestMatch(results: Array<any>): boolean {
+import type { CreditCardTypeWithMatchStrength } from "../types";
+
+function hasEnoughResultsToDetermineBestMatch(
+  results: Array<CreditCardTypeWithMatchStrength>
+): boolean {
   const numberOfResultsWithMaxStrengthProperty = results.filter(
     (result) => result.matchStrength
   ).length;
@@ -14,7 +18,9 @@ function hasEnoughResultsToDetermineBestMatch(results: Array<any>): boolean {
   );
 }
 
-export default function findBestMatch(results: Array<any>): any {
+export default function findBestMatch(
+  results: Array<CreditCardTypeWithMatchStrength>
+): CreditCardTypeWithMatchStrength {
   if (!hasEnoughResultsToDetermineBestMatch(results)) {
     return null;
   }
