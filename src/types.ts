@@ -26,7 +26,13 @@ type CreditCardTypeCardBrandNiceType =
   | "UnionPay"
   | "Visa";
 
-type CodeName = "CVV" | "CVC" | "CID" | "CVN" | "CVE" | "CVP2";
+type CreditCardTypeSecurityCodeLabel =
+  | "CVV"
+  | "CVC"
+  | "CID"
+  | "CVN"
+  | "CVE"
+  | "CVP2";
 
 export type CreditCardType = {
   niceType?: string;
@@ -49,6 +55,6 @@ export interface BuiltInCreditCardType extends CreditCardType {
   type: CreditCardTypeCardBrandId;
   code: {
     size: 3 | 4;
-    name: CodeName;
+    name: CreditCardTypeSecurityCodeLabel;
   };
 }
