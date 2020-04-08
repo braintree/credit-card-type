@@ -1,4 +1,4 @@
-import types from "./lib/card-types";
+import cardTypes from "./lib/card-types";
 import addMatchingCardsToResults from "./lib/add-matching-cards-to-results";
 import isValidInputType from "./lib/is-valid-input-type";
 import findBestMatch from "./lib/find-best-match";
@@ -40,8 +40,8 @@ const ORIGINAL_TEST_ORDER = [
 
 testOrder = clone(ORIGINAL_TEST_ORDER);
 
-function findType(type: string | number): CreditCardType {
-  return customCards[type] || types[type];
+function findType(cardType: string | number): CreditCardType {
+  return customCards[cardType] || cardTypes[cardType];
 }
 
 function getAllCardTypes(): CreditCardType[] {
@@ -110,7 +110,7 @@ creditCardType.updateCard = (
   cardType: string,
   updates: CreditCardType
 ): void => {
-  const originalObject = customCards[cardType] || types[cardType];
+  const originalObject = customCards[cardType] || cardTypes[cardType];
 
   if (!originalObject) {
     throw new Error(
