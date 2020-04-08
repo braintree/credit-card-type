@@ -1,4 +1,4 @@
-type CardBrandId =
+type CreditCardTypeCardBrandId =
   | "american-express"
   | "diners-club"
   | "discover"
@@ -12,7 +12,7 @@ type CardBrandId =
   | "unionpay"
   | "visa";
 
-type CardBrandNiceType =
+type CreditCardTypeCardBrandNiceType =
   | "American Express"
   | "Diners Club"
   | "Discover"
@@ -45,8 +45,8 @@ export interface CreditCardTypeWithMatchStrength extends CreditCardType {
 }
 
 export interface BuiltInCreditCardType extends CreditCardType {
-  niceType: CardBrandNiceType;
-  type: CardBrandId;
+  niceType: CreditCardTypeCardBrandNiceType;
+  type: CreditCardTypeCardBrandId;
   code: {
     size: 3 | 4;
     name: CodeName;
