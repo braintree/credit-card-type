@@ -45,7 +45,7 @@ function findType(cardType: string | number): CreditCardType {
 }
 
 function getAllCardTypes(): CreditCardType[] {
-  return testOrder.map((type) => clone(findType(type)));
+  return testOrder.map((cardType) => clone(findType(cardType)));
 }
 
 function getCardPosition(
@@ -72,8 +72,8 @@ function creditCardType(cardNumber = null): Array<CreditCardType> {
     return getAllCardTypes();
   }
 
-  testOrder.forEach((type) => {
-    const cardConfiguration = findType(type);
+  testOrder.forEach((cardType) => {
+    const cardConfiguration = findType(cardType);
 
     addMatchingCardsToResults(cardNumber, cardConfiguration, results);
   });
@@ -87,8 +87,8 @@ function creditCardType(cardNumber = null): Array<CreditCardType> {
   return results;
 }
 
-creditCardType.getTypeInfo = (type: string): CreditCardType =>
-  clone(findType(type));
+creditCardType.getTypeInfo = (cardType: string): CreditCardType =>
+  clone(findType(cardType));
 
 creditCardType.removeCard = (name: string): void => {
   const position = getCardPosition(name);
