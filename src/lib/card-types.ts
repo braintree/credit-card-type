@@ -1,6 +1,6 @@
-import type { BuiltInCreditCardType } from "../types";
+import type { BuiltInCreditCardType, CardCollection } from "../types";
 
-const cardTypes = {
+const cardTypes: CardCollection = {
   visa: {
     niceType: "Visa",
     type: "visa",

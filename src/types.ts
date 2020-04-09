@@ -35,20 +35,17 @@ type CreditCardTypeSecurityCodeLabel =
   | "CVP2";
 
 export type CreditCardType = {
-  niceType?: string;
-  type?: string;
-  patterns?: number[] | [number[]];
-  gaps?: number[];
-  lengths?: number[];
-  code?: {
-    size?: number;
-    name?: string;
+  niceType: string;
+  type: string;
+  patterns: number[] | [number[]];
+  gaps: number[];
+  lengths: number[];
+  code: {
+    size: number;
+    name: string;
   };
+  [propName: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
-
-export interface CreditCardTypeWithMatchStrength extends CreditCardType {
-  matchStrength?: number;
-}
 
 export interface BuiltInCreditCardType extends CreditCardType {
   niceType: CreditCardTypeCardBrandNiceType;
@@ -57,4 +54,8 @@ export interface BuiltInCreditCardType extends CreditCardType {
     size: 3 | 4;
     name: CreditCardTypeSecurityCodeLabel;
   };
+}
+
+export interface CardCollection {
+  [propName: string]: CreditCardType;
 }
