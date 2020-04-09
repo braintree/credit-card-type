@@ -1,8 +1,4 @@
-export default function (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  originalObject: Record<string, any>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Record<string, any> {
+export default function <T>(originalObject: T): T | null {
   if (!originalObject) {
     return null;
   }
