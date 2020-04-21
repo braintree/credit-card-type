@@ -44,7 +44,7 @@ export type CreditCardType = {
     size: number;
     name: string;
   };
-  [propName: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  matchStrength?: number;
 };
 
 export interface BuiltInCreditCardType extends CreditCardType {
