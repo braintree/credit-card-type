@@ -5,6 +5,7 @@
 _Breaking Changes_
 
 - Drop Bower Support
+- Drop support for card numbers instantiated with `new String(number)`
 
 # 8.3.0
 

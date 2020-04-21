@@ -1,17 +1,6 @@
 import creditCardType = require("../index");
 
 describe("creditCardType", () => {
-  it("returns an empty array if passed non-strings", () => {
-    expect(creditCardType()).toEqual([]);
-    expect(creditCardType(null)).toEqual([]);
-    expect(creditCardType(true)).toEqual([]);
-    expect(creditCardType(false)).toEqual([]);
-    expect(creditCardType("ren hoek")).toEqual([]);
-    expect(creditCardType(3920342)).toEqual([]);
-    expect(creditCardType([])).toEqual([]);
-    expect(creditCardType({})).toEqual([]);
-  });
-
   it.each([
     ["411", "visa"],
     ["4111111111111111", "visa"],
@@ -285,12 +274,6 @@ describe("creditCardType", () => {
     const cardType = creditCardType(number)[0];
 
     expect(cardType).toMatchObject(meta);
-  });
-
-  it("works for String objects", () => {
-    const number = new String("4111111111111111"); // eslint-disable-line no-new-wrappers
-
-    expect(creditCardType(number)[0].type).toBe("visa");
   });
 
   it("preserves integrity of returned values", () => {

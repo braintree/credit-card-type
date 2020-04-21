@@ -5,6 +5,8 @@ import findBestMatch from "./lib/find-best-match";
 import clone from "./lib/clone";
 import type { CreditCardType, CardCollection } from "./types";
 
+type CreditCardTypeUpdateOptions = Partial<CreditCardType>;
+
 let customCards = {} as CardCollection;
 
 const cardNames = {
@@ -109,7 +111,7 @@ creditCardType.addCard = (config: CreditCardType): void => {
 
 creditCardType.updateCard = (
   cardType: string,
-  updates: CreditCardType
+  updates: CreditCardTypeUpdateOptions
 ): void => {
   const originalObject = customCards[cardType] || cardTypes[cardType];
 
