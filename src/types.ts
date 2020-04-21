@@ -1,4 +1,4 @@
-type CreditCardTypeCardBrandId =
+export type CreditCardTypeCardBrandId =
   | "american-express"
   | "diners-club"
   | "discover"

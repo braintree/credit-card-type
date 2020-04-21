@@ -1,4 +1,5 @@
 import addMatchingCardsToResults from "../lib/add-matching-cards-to-results";
+import { CreditCardType } from "../types";
 import { createFakeCreditCardType } from "./helper";
 
 describe("addMatchingCardsToResults", () => {
@@ -31,7 +32,7 @@ describe("addMatchingCardsToResults", () => {
   });
 
   it("adds a matchStrength property to configuration if card number matches and the length equals or is greater than the pattern length", () => {
-    const results = [];
+    const results: CreditCardType[] = [];
 
     addMatchingCardsToResults(
       "304",
@@ -62,7 +63,7 @@ describe("addMatchingCardsToResults", () => {
   });
 
   it("adds a matchStrength property to configuration if card number matches and the length equals or is greater than an entry of the pattern range", () => {
-    const results = [];
+    const results: CreditCardType[] = [];
 
     addMatchingCardsToResults(
       "304",

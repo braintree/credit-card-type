@@ -640,7 +640,7 @@ describe("changeOrder", () => {
 describe("types", () => {
   it("corresponds to internal type codes", () => {
     const exposedTypes = Object.keys(creditCardType.types).map(
-      (key) => creditCardType.types[key]
+      (key: string) => creditCardType.types[key]
     );
     const internalTypes = creditCardType("").map((entry) => entry.type);
 

@@ -3,13 +3,15 @@ import addMatchingCardsToResults from "./lib/add-matching-cards-to-results";
 import isValidInputType from "./lib/is-valid-input-type";
 import findBestMatch from "./lib/find-best-match";
 import clone from "./lib/clone";
-import type { CreditCardType, CardCollection } from "./types";
-
-type CreditCardTypeUpdateOptions = Partial<CreditCardType>;
+import type {
+  CreditCardType,
+  CardCollection,
+  CreditCardTypeCardBrandId,
+} from "./types";
 
 let customCards = {} as CardCollection;
 
-const cardNames = {
+const cardNames: Record<string, CreditCardTypeCardBrandId> = {
   VISA: "visa",
   MASTERCARD: "mastercard",
   AMERICAN_EXPRESS: "american-express",
@@ -111,7 +113,7 @@ creditCardType.addCard = (config: CreditCardType): void => {
 
 creditCardType.updateCard = (
   cardType: string,
-  updates: CreditCardTypeUpdateOptions
+  updates: Partial<CreditCardType>
 ): void => {
   const originalObject = customCards[cardType] || cardTypes[cardType];
 
@@ -125,13 +127,9 @@ creditCardType.updateCard = (
     throw new Error("Cannot overwrite type parameter.");
   }
 
-  const clonedCard = clone(originalObject) as CreditCardType;
+  let clonedCard = clone(originalObject) as CreditCardType;
 
-  Object.keys(clonedCard).forEach((key) => {
-    if (updates[key]) {
-      clonedCard[key] = updates[key];
-    }
-  });
+  clonedCard = { ...clonedCard, ...updates };
 
   customCards[clonedCard.type] = clonedCard;
 };
