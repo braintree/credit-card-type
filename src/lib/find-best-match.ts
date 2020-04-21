@@ -30,14 +30,11 @@ export default function findBestMatch(
       return result;
     }
 
-    const currentMatchStrength = bestMatch.matchStrength as number;
-    const newMatchStrength = result.matchStrength as number;
-
     /*
      * If the current best match pattern is less specific than this result, set
      * the result as the new best match
      * */
-    if (currentMatchStrength < newMatchStrength) {
+    if (Number(bestMatch.matchStrength) < Number(result.matchStrength)) {
       return result;
     }
 
