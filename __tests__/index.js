@@ -155,7 +155,9 @@ describe('creditCardType', () => {
     ['637609', 'hiper'],
     ['637599', 'hiper'],
     ['637612', 'hiper'],
-    ['637568', 'hiper']
+    ['637568', 'hiper'],
+
+    ['5019', 'dankort']
   ])('Matches %s to brand %s', (number, type) => {
     const actual = creditCardType(number);
 
@@ -183,13 +185,15 @@ describe('creditCardType', () => {
         'elo',
         'mir',
         'hiper',
-        'hipercard'
+        'hipercard',
+        'dankort'
       ]
     ],
     ['2', ['mastercard', 'jcb', 'mir']],
     ['3', ['american-express', 'diners-club', 'jcb']],
-    ['5', ['mastercard', 'maestro', 'elo']],
-    ['50', ['maestro', 'elo']],
+    ['5', ['mastercard', 'maestro', 'elo', 'dankort']],
+    ['50', ['maestro', 'elo', 'dankort']],
+    ['501', ['maestro', 'dankort']],
     ['6', ['discover', 'unionpay', 'maestro', 'elo', 'hiper', 'hipercard']],
     ['60', ['discover', 'maestro', 'hipercard']],
     ['601', ['discover', 'maestro']],
@@ -262,7 +266,8 @@ describe('creditCardType', () => {
     ['Diners Club', '30569309025904', {size: 3, name: 'CVV'}],
     ['UnionPay', '6220558812340000', {size: 3, name: 'CVN'}],
     ['Maestro', '6304000000000000', {size: 3, name: 'CVC'}],
-    ['Mir', '2200000000000000', {size: 3, name: 'CVP2'}]
+    ['Mir', '2200000000000000', {size: 3, name: 'CVP2'}],
+    ['Dankort', '501912345678', {size: 3, name: 'CVC'}]
   ])('returns security codes for %s', (brand, number, code) => {
     const parsedCode = creditCardType(number)[0].code;
 
@@ -280,7 +285,8 @@ describe('creditCardType', () => {
     ['Visa', '4', {type: 'visa', lengths: [16, 18, 19]}],
     ['Mastercard', '54', {type: 'mastercard', lengths: [16]}],
     ['JCB', '35', {type: 'jcb', lengths: [16, 17, 18, 19]}],
-    ['Mir', '220', {type: 'mir', lengths: [16, 17, 18, 19]}]
+    ['Mir', '220', {type: 'mir', lengths: [16, 17, 18, 19]}],
+    ['Dankort', '5019', {type: 'dankort', lengths: [16]}]
   ])('returns lengths for %s', (brand, number, meta) => {
     const cardType = creditCardType(number)[0];
 

@@ -41,8 +41,8 @@ console.log(ambiguousCards[2].niceType); // 'Maestro'
 
 | Key        | Type     | Description                                                                                                                                                                                                                                                                                                                                                                  |
 | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `Mastercard`<br />- `American Express`<br />- `Diners Club`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro`<br />- `Mir`<br />- `Elo`<br />- `Hiper`<br />- `Hipercard`                                                                                                             |
-| `type`     | `String` | A code-friendly presentation of the card brand (useful to class names in CSS). Please refer to Card Type "Constants" below for the list of possible values.<br/>- `visa`<br />- `mastercard`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb`<br />- `unionpay`<br />- `maestro`<br />- `mir`<br /> - `elo`<br /> - `hiper`<br /> - `hipercard` |
+| `niceType` | `String` | A pretty printed representation of the card brand.<br/>- `Visa`<br />- `Mastercard`<br />- `American Express`<br />- `Diners Club`<br />- `Discover`<br />- `JCB`<br />- `UnionPay`<br />- `Maestro`<br />- `Mir`<br />- `Elo`<br />- `Hiper`<br />- `Hipercard`<br />- `Dankort`                                                                                                             |
+| `type`     | `String` | A code-friendly presentation of the card brand (useful to class names in CSS). Please refer to Card Type "Constants" below for the list of possible values.<br/>- `visa`<br />- `mastercard`<br />- `american-express`<br />- `diners-club`<br />- `discover`<br />- `jcb`<br />- `unionpay`<br />- `maestro`<br />- `mir`<br /> - `elo`<br /> - `hiper`<br /> - `hipercard`<br /> - `dankort` |
 | `gaps`     | `Array`  | The expected indeces of gaps in a string representation of the card number. For example, in a Visa card, `4111 1111 1111 1111`, there are expected spaces in the 4th, 8th, and 12th positions. This is useful in setting your own formatting rules.                                                                                                                          |
 | `lengths`  | `Array`  | The expected lengths of the card number as an array of strings (excluding spaces and `/` characters).                                                                                                                                                                                                                                                                        |
 | `code`     | `Object` | The information regarding the security code for the determined card. Learn more about the [code object](#code) below.                                                                                                                                                                                                                                                        |
@@ -58,6 +58,7 @@ If no card types are found, this returns an empty array.
 Named variables are provided for each of the supported card types:
 
 - `AMERICAN_EXPRESS`
+- `DANKORT`
 - `DINERS_CLUB`
 - `DISCOVER`
 - `ELO`
@@ -88,6 +89,7 @@ Card brands provide different nomenclature for their security codes as well as v
 | `Elo`              | `CVE`  | 3    |
 | `Hiper`            | `CVC`  | 3    |
 | `Hipercard`        | `CVC`  | 4    |
+| `Dankort`          | `CVC`  | 3    |
 
 A full response for a `Visa` card will look like this:
 
@@ -146,6 +148,8 @@ card is _either_ a Visa or an Elo card. Once the card number becomes `401178`,
 the modules sees that an exact match for the ELO bin has been made, and the module reports
 that the card can only be an Elo card.
 
+The above rule is also applied for identifying Dankort cards, which starts with `5019`.
+
 #### Adding Card Types
 
 You can add additional card brands not supportted by the the module with `addCard`. Pass in the configuration object.
@@ -195,7 +199,8 @@ Adding new cards puts them at the bottom of the priority for testing. Priority i
   creditCardType.types.ELO,
   creditCardType.types.MIR,
   creditCardType.types.HIPER,
-  creditCardType.types.HIPERCARD
+	creditCardType.types.HIPERCARD,
+	creditCardType.types.DANKORT
 ];
 ```
 
