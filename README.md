@@ -148,7 +148,7 @@ card is _either_ a Visa or an Elo card. Once the card number becomes `401178`,
 the modules sees that an exact match for the ELO bin has been made, and the module reports
 that the card can only be an Elo card.
 
-The above rule is also applied for identifying Dankort cards, which starts with `5019`.
+The above rule is also applied for identifying Dankort cards, which start with `5019`.
 
 #### Adding Card Types
 
