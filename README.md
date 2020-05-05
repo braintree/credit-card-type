@@ -199,8 +199,8 @@ Adding new cards puts them at the bottom of the priority for testing. Priority i
   creditCardType.types.ELO,
   creditCardType.types.MIR,
   creditCardType.types.HIPER,
-	creditCardType.types.HIPERCARD,
-	creditCardType.types.DANKORT
+  creditCardType.types.HIPERCARD,
+  creditCardType.types.DANKORT
 ];
 ```
 
