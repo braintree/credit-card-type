@@ -3,7 +3,5 @@ export default function <T>(originalObject: T): T | null {
     return null;
   }
 
-  const dupe = JSON.parse(JSON.stringify(originalObject));
-
-  return dupe;
+  return JSON.parse(JSON.stringify(originalObject));
 }

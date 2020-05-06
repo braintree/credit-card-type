@@ -9,8 +9,8 @@ function hasEnoughResultsToDetermineBestMatch(
 
   /*
    * if all possible results have a maxStrength property that means the card
-   * number is sufficiently long enough to determine conclusively what the type
-   * is
+   * number is sufficiently long enough to determine conclusively what the card
+   * type is
    * */
   return (
     numberOfResultsWithMaxStrengthProperty > 0 &&

@@ -145,7 +145,7 @@ describe("creditCardType", () => {
     ["637599", "hiper"],
     ["637612", "hiper"],
     ["637568", "hiper"],
-  ])("Matches %s to brand %s", (number, type) => {
+  ])("Matches %s to brand %s", (number, cardType) => {
     const actual = creditCardType(number);
 
     try {
@@ -154,7 +154,7 @@ describe("creditCardType", () => {
       console.log(actual); // eslint-disable-line no-console
       throw e;
     }
-    expect(actual[0].type).toBe(type);
+    expect(actual[0].type).toBe(cardType);
   });
 
   it.each([
@@ -216,7 +216,7 @@ describe("creditCardType", () => {
     ["6550", ["discover", "maestro", "elo"]],
     ["65502", ["discover", "maestro", "elo"]],
   ])("Matches %s to array %p", (number, expectedNames) => {
-    const actualNames = creditCardType(number).map((type) => type.type);
+    const actualNames = creditCardType(number).map((cardType) => cardType.type);
 
     expect(expectedNames).toEqual(actualNames);
   });
@@ -285,14 +285,14 @@ describe("creditCardType", () => {
 });
 
 describe("getTypeInfo", () => {
-  it("returns type information", () => {
+  it("returns card type information", () => {
     const info = creditCardType.getTypeInfo(creditCardType.types.VISA);
 
     expect(info.type).toBe("visa");
     expect(info.niceType).toBe("Visa");
   });
 
-  it("returns null for an unknown type", () => {
+  it("returns null for an unknown card type", () => {
     expect(creditCardType.getTypeInfo("gibberish")).toBeNull();
   });
 });
@@ -373,16 +373,9 @@ describe("removeCard", () => {
   });
 
   it("removes card from test order array", () => {
-    let result = creditCardType("2");
-
-    expect(result).toHaveLength(3);
-    expect(result[0].type).toBe("mastercard");
-    expect(result[1].type).toBe("jcb");
-    expect(result[2].type).toBe("mir");
-
     creditCardType.removeCard("mastercard");
 
-    result = creditCardType("2");
+    const result = creditCardType("2");
 
     expect(result).toHaveLength(2);
     expect(result[0].type).toBe("jcb");
@@ -402,13 +395,6 @@ describe("addCard", () => {
   });
 
   it("adds new card type", () => {
-    let result = creditCardType("2");
-
-    expect(result).toHaveLength(3);
-    expect(result[0].type).toBe("mastercard");
-    expect(result[1].type).toBe("jcb");
-    expect(result[2].type).toBe("mir");
-
     creditCardType.addCard({
       niceType: "NewCard",
       type: "new-card",
@@ -421,7 +407,7 @@ describe("addCard", () => {
       },
     });
 
-    result = creditCardType("2");
+    const result = creditCardType("2");
 
     expect(result).toHaveLength(4);
     expect(result[0].type).toBe("mastercard");
@@ -613,16 +599,9 @@ describe("changeOrder", () => {
   });
 
   it("changes test order priority", () => {
-    let result = creditCardType("2");
-
-    expect(result).toHaveLength(3);
-    expect(result[0].type).toBe("mastercard");
-    expect(result[1].type).toBe("jcb");
-    expect(result[2].type).toBe("mir");
-
     creditCardType.changeOrder("jcb", 0);
 
-    result = creditCardType("2");
+    const result = creditCardType("2");
 
     expect(result).toHaveLength(3);
     expect(result[0].type).toBe("jcb");
