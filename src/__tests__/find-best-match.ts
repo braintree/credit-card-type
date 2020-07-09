@@ -1,4 +1,4 @@
-import findBestMatch from "../lib/find-best-match";
+import { findBestMatch } from "../lib/find-best-match";
 
 import { createFakeCreditCardType } from "./helper";
 

@@ -1,4 +1,4 @@
-import addMatchingCardsToResults from "../lib/add-matching-cards-to-results";
+import { addMatchingCardsToResults } from "../lib/add-matching-cards-to-results";
 import { CreditCardType } from "../types";
 import { createFakeCreditCardType } from "./helper";
 

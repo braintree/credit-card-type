@@ -18,7 +18,7 @@ function hasEnoughResultsToDetermineBestMatch(
   );
 }
 
-export default function findBestMatch(
+export function findBestMatch(
   results: CreditCardType[]
 ): CreditCardType | null {
   if (!hasEnoughResultsToDetermineBestMatch(results)) {

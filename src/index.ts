@@ -1,8 +1,8 @@
-import cardTypes from "./lib/card-types";
-import addMatchingCardsToResults from "./lib/add-matching-cards-to-results";
-import isValidInputType from "./lib/is-valid-input-type";
-import findBestMatch from "./lib/find-best-match";
-import clone from "./lib/clone";
+import cardTypes = require("./lib/card-types");
+import { addMatchingCardsToResults } from "./lib/add-matching-cards-to-results";
+import { isValidInputType } from "./lib/is-valid-input-type";
+import { findBestMatch } from "./lib/find-best-match";
+import { clone } from "./lib/clone";
 import type {
   CreditCardType,
   CardCollection,

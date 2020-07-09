@@ -29,7 +29,7 @@ function matchesPattern(cardNumber: string, pattern: string | number): boolean {
   );
 }
 
-export default function matches(
+export function matches(
   cardNumber: string,
   pattern: string | number | string[] | number[]
 ): boolean {
