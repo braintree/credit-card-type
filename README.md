@@ -89,7 +89,7 @@ A full response for a `Visa` card will look like this:
 {
   "niceType": "Visa",
   "type": "visa",
-  "gaps": [ 4, 8, 12 ],
+  "gaps": [4, 8, 12],
   "lengths": [16],
   "code": { "name": "CVV", "size": 3 }
 }
@@ -118,7 +118,7 @@ import creditCardType, {
 
 ```javascript
 creditCardType(cardNumber).filter(function (card) {
-  return (card.type === CardType.MASTERCARD) || (card.type === CardType.VISA);
+  return card.type === CardType.MASTERCARD || card.type === CardType.VISA;
 });
 ```
 
