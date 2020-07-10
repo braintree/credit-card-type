@@ -1,3 +1,12 @@
+# unreleased
+
+- Add typescript types
+
+_Breaking Changes_
+
+- Drop Bower Support
+- Drop support for card numbers instantiated with `new String(number)`
+
 # 8.3.0
 
 - Add support for series 8 UnionPay cards (fixes #95 thanks @leebradley)
