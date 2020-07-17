@@ -107,7 +107,16 @@ const cardTypes: CardCollection = {
   maestro: {
     niceType: "Maestro",
     type: "maestro",
-    patterns: [493698, [500000, 506698], [506779, 508999], [56, 59], 63, 67, 6],
+    patterns: [
+      493698,
+      [500000, 504174],
+      [504176, 506698],
+      [506779, 508999],
+      [56, 59],
+      63,
+      67,
+      6,
+    ],
     gaps: [4, 8, 12],
     lengths: [12, 13, 14, 15, 16, 17, 18, 19],
     code: {
