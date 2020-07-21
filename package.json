@@ -20,8 +20,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.4",
-    "eslint": "^7.4.0",
+    "@types/jest": "^26.0.5",
+    "eslint": "^7.5.0",
     "eslint-config-braintree": "5.0.0-typescript-prep-rc.17",
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
