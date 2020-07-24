@@ -1,3 +1,7 @@
+# 9.0.1
+
+- Correct issue where ELO cards were misidentified as Maestro cards (thanks @gabrielozaki)
+
 # 9.0.0
 
 - Add typescript types
