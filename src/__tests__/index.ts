@@ -146,6 +146,8 @@ describe("creditCardType", () => {
     ["637599", "hiper"],
     ["637612", "hiper"],
     ["637568", "hiper"],
+    ["63737423", "hiper"],
+    ["63743358", "hiper"],
   ])("Matches %s to brand %s", (number, cardType) => {
     const actual = creditCardType(number);
 
@@ -206,7 +208,11 @@ describe("creditCardType", () => {
     ["63629", ["maestro", "elo"]],
 
     ["637", ["maestro", "hiper"]],
+    ["637374", ["maestro", "hiper"]],
+    ["637433", ["maestro", "hiper"]],
+
     ["606", ["maestro", "hipercard"]],
+
     ["627", ["unionpay", "maestro", "elo"]],
     ["6062", ["maestro", "hipercard"]],
     ["6370", ["maestro", "hiper"]],

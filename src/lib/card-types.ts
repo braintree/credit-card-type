@@ -175,7 +175,7 @@ const cardTypes: CardCollection = {
   hiper: {
     niceType: "Hiper",
     type: "hiper",
-    patterns: [637095, 637568, 637599, 637609, 637612, 63743358, 63737423],
+    patterns: [637095, 63737423, 63743358, 637568, 637599, 637609, 637612],
     gaps: [4, 8, 12],
     lengths: [16],
     code: {
