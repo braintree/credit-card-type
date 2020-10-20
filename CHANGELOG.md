@@ -1,3 +1,7 @@
+# 9.1.0
+
+- Add additional Hiper bins (#115 thanks @upigilam)
+
 # 9.0.1
 
 - Correct issue where ELO cards were misidentified as Maestro cards (thanks @gabrielozaki)
