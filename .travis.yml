@@ -1,9 +1,0 @@
-language: node_js
-notifications:
-  email: false
-  slack:
-    on_success: change
-    on_failure: always
-    on_pull_requests: false
-    rooms:
-      - secure: LYgi5mu6DmSk34BBNTcpt8+mEgy/P7lzebJlYMGRJqQBP4X4RZLaxU29UhNXdWSS4KClaHcABouf+sC1z0m3GvSjOaEAXtk6yJkRC1aQ0W9tYjVChE6Mu86It4UhdnmyjBnj/zu3ZkUb9SSYkWFDIMaJoDgZhTkQSafP5+YW/EA=
