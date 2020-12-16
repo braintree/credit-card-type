@@ -1,10 +1,10 @@
-name: Node.js CI
+name: "Unit Tests"
 
 on: [push]
 
 jobs:
   build:
-
+    name: "Unit Tests on Ubuntu"
     runs-on: ubuntu-latest
 
     steps:
@@ -15,5 +15,3 @@ jobs:
         node-version: '12.x'
     - run: npm install
     - run: npm test
-      env:
-        CI: true
