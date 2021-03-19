@@ -148,6 +148,8 @@ describe("creditCardType", () => {
     ["637568", "hiper"],
     ["63737423", "hiper"],
     ["63743358", "hiper"],
+
+    ["5019", "dankort"],
   ])("Matches %s to brand %s", (number, cardType) => {
     const actual = creditCardType(number);
 
@@ -176,12 +178,13 @@ describe("creditCardType", () => {
         "mir",
         "hiper",
         "hipercard",
+        "dankort",
       ],
     ],
     ["2", ["mastercard", "jcb", "mir"]],
     ["3", ["american-express", "diners-club", "jcb"]],
-    ["5", ["mastercard", "maestro", "elo"]],
-    ["50", ["maestro", "elo"]],
+    ["5", ["mastercard", "maestro", "elo", "dankort"]],
+    ["50", ["maestro", "elo", "dankort"]],
     ["6", ["discover", "unionpay", "maestro", "elo", "hiper", "hipercard"]],
     ["60", ["discover", "maestro", "hipercard"]],
     ["601", ["discover", "maestro"]],
@@ -222,6 +225,7 @@ describe("creditCardType", () => {
     ["655", ["discover", "maestro", "elo"]],
     ["6550", ["discover", "maestro", "elo"]],
     ["65502", ["discover", "maestro", "elo"]],
+    ["5019", ["dankort"]],
   ])("Matches %s to array %p", (number, expectedNames) => {
     const actualNames = creditCardType(number).map((cardType) => cardType.type);
 
@@ -259,6 +263,7 @@ describe("creditCardType", () => {
     ["UnionPay", "6220558812340000", { size: 3, name: "CVN" }],
     ["Maestro", "6304000000000000", { size: 3, name: "CVC" }],
     ["Mir", "2200000000000000", { size: 3, name: "CVP2" }],
+    ["Dankort", "5019000000000000", { size: 3, name: "CVC" }],
   ])("returns security codes for %s", (brand, number, code) => {
     const parsedCode = creditCardType(number)[0].code;
 
@@ -277,6 +282,7 @@ describe("creditCardType", () => {
     ["Mastercard", "54", { type: "mastercard", lengths: [16] }],
     ["JCB", "35", { type: "jcb", lengths: [16, 17, 18, 19] }],
     ["Mir", "220", { type: "mir", lengths: [16, 17, 18, 19] }],
+    ["Dankort", "5019", { type: "dankort", lengths: [16] }],
   ])("returns lengths for %s", (brand, number, meta) => {
     const cardType = creditCardType(number)[0];
 

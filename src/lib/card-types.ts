@@ -109,7 +109,8 @@ const cardTypes: CardCollection = {
     type: "maestro",
     patterns: [
       493698,
-      [500000, 504174],
+      [5000, 5018],
+      [502000, 504174],
       [504176, 506698],
       [506779, 508999],
       [56, 59],
@@ -187,6 +188,17 @@ const cardTypes: CardCollection = {
     niceType: "Hipercard",
     type: "hipercard",
     patterns: [606282],
+    gaps: [4, 8, 12],
+    lengths: [16],
+    code: {
+      name: "CVC",
+      size: 3,
+    },
+  } as BuiltInCreditCardType,
+  dankort: {
+    niceType: "Dankort",
+    type: "dankort",
+    patterns: [5019],
     gaps: [4, 8, 12],
     lengths: [16],
     code: {

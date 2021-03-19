@@ -1,5 +1,6 @@
 export type CreditCardTypeCardBrandId =
   | "american-express"
+  | "dankort"
   | "diners-club"
   | "discover"
   | "elo"
@@ -14,6 +15,7 @@ export type CreditCardTypeCardBrandId =
 
 type CreditCardTypeCardBrandNiceType =
   | "American Express"
+  | "Dankort"
   | "Diners Club"
   | "Discover"
   | "Elo"
