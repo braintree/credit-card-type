@@ -194,6 +194,17 @@ const cardTypes: CardCollection = {
       size: 3,
     },
   } as BuiltInCreditCardType,
+  rupay: {
+    niceType: "RuPay",
+    type: "rupay",
+    patterns: [60, 6521, 6522],
+    gaps: [4, 8, 12],
+    lengths: [16],
+    code: {
+      name: "CVV",
+      size: 3,
+    },
+  } as BuiltInCreditCardType,
 };
 
 export = cardTypes;

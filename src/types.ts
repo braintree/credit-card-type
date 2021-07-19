@@ -9,6 +9,7 @@ export type CreditCardTypeCardBrandId =
   | "maestro"
   | "mastercard"
   | "mir"
+  | "rupay"
   | "unionpay"
   | "visa";
 
@@ -23,6 +24,7 @@ type CreditCardTypeCardBrandNiceType =
   | "Maestro"
   | "Mastercard"
   | "Mir"
+  | "RuPay"
   | "UnionPay"
   | "Visa";
 
