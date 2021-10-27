@@ -21,8 +21,10 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^27.0.2",
-    "eslint": "^7.32.0",
-    "eslint-config-braintree": "^5.0.0-typescript-prep-rc.18",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "eslint": "^8.1.0",
+    "eslint-config-braintree": "^6.0.0-typescript-prep-rc.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.7",
