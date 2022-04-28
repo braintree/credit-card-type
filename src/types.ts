@@ -10,7 +10,8 @@ export type CreditCardTypeCardBrandId =
   | "mastercard"
   | "mir"
   | "unionpay"
-  | "visa";
+  | "visa"
+  | "rupay";
 
 type CreditCardTypeCardBrandNiceType =
   | "American Express"
@@ -24,7 +25,8 @@ type CreditCardTypeCardBrandNiceType =
   | "Mastercard"
   | "Mir"
   | "UnionPay"
-  | "Visa";
+  | "Visa"
+  | "Rupay";
 
 type CreditCardTypeSecurityCodeLabel =
   | "CVV"
