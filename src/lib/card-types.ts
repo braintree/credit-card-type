@@ -12,6 +12,17 @@ const cardTypes: CardCollection = {
       size: 3,
     },
   } as BuiltInCreditCardType,
+  "visa-electron": {
+    niceType: "Visa Electron",
+    type: "visa-electron",
+    patterns: [4026, 417500, 4508, 4844, 4913, 4917],
+    gaps: [4, 8, 12],
+    lengths: [16],
+    code: {
+      name: "CVV",
+      size: 3,
+    },
+  } as BuiltInCreditCardType,
   mastercard: {
     niceType: "Mastercard",
     type: "mastercard",

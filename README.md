@@ -63,6 +63,7 @@ Named variables are provided for each of the supported card types:
 - `MIR`
 - `UNIONPAY`
 - `VISA`
+- `VISA ELECTRON`
 
 #### `code`
 
@@ -71,6 +72,7 @@ Card brands provide different nomenclature for their security codes as well as v
 | Brand              | Name   | Size |
 | ------------------ | ------ | ---- |
 | `Visa`             | `CVV`  | 3    |
+| `Visa Electron`    | `CVV`  | 3    |
 | `Mastercard`       | `CVC`  | 3    |
 | `American Express` | `CID`  | 4    |
 | `Diners Club`      | `CVV`  | 3    |
@@ -179,6 +181,7 @@ Adding new cards puts them at the bottom of the priority for testing. Priority i
 ```javascript
 [
   creditCardType.types.VISA,
+  creditCardType.types.VISA_ELECTRON,
   creditCardType.types.MASTERCARD,
   creditCardType.types.AMERICAN_EXPRESS,
   creditCardType.types.DINERS_CLUB,

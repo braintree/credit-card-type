@@ -13,6 +13,7 @@ let customCards = {} as CardCollection;
 
 const cardNames: Record<string, CreditCardTypeCardBrandId> = {
   VISA: "visa",
+  VISA_ELECTRON: "visa-electron",
   MASTERCARD: "mastercard",
   AMERICAN_EXPRESS: "american-express",
   DINERS_CLUB: "diners-club",
@@ -28,6 +29,7 @@ const cardNames: Record<string, CreditCardTypeCardBrandId> = {
 
 const ORIGINAL_TEST_ORDER = [
   cardNames.VISA,
+  cardNames.VISA_ELECTRON,
   cardNames.MASTERCARD,
   cardNames.AMERICAN_EXPRESS,
   cardNames.DINERS_CLUB,
