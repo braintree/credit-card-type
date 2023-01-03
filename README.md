@@ -17,6 +17,7 @@ npm install credit-card-type
 ```javascript
 var creditCardType = require("credit-card-type");
 
+// The card number provided should be normalized prior to usage here. 
 var visaCards = creditCardType("4111");
 console.log(visaCards[0].type); // 'visa'
 
@@ -42,6 +43,8 @@ console.log(ambiguousCards[2].niceType); // 'Maestro'
 | `code`     | `Object` | The information regarding the security code for the determined card. Learn more about the [code object](#code) below.                                                                                                                                                                                                                                                        |
 
 If no card types are found, this returns an empty array.
+
+*Note:* The card number provided should be normalized ahead of time. The card number string should not contain any non-integer values (e.g. no letters or special characters)
 
 ### `creditCardType.getTypeInfo(type: String)`
 
