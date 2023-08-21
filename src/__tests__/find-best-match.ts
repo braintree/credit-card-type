@@ -13,7 +13,7 @@ describe("findBestMatch", () => {
         createFakeCreditCardType({ matchStrength: 4 }),
         createFakeCreditCardType({}),
         createFakeCreditCardType({ matchStrength: 5 }),
-      ])
+      ]),
     ).toBeNull();
   });
 

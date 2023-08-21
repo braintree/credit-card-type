@@ -1,3 +1,9 @@
+#  UNRELEASED
+
+- Dependency Updates:
+  - Update prettier to v3
+  - Update eslint-plugin-prettier to v5
+
 # 9.1.0
 
 - Add additional Hiper bins (#115 thanks @upigilam)

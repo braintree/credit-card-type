@@ -5,7 +5,7 @@
 function matchesRange(
   cardNumber: string,
   min: number | string,
-  max: number | string
+  max: number | string,
 ): boolean {
   const maxLengthToCheck = String(min).length;
   const substr = cardNumber.substr(0, maxLengthToCheck);
@@ -31,7 +31,7 @@ function matchesPattern(cardNumber: string, pattern: string | number): boolean {
 
 export function matches(
   cardNumber: string,
-  pattern: string | number | string[] | number[]
+  pattern: string | number | string[] | number[],
 ): boolean {
   if (Array.isArray(pattern)) {
     return matchesRange(cardNumber, pattern[0], pattern[1]);
