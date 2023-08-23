@@ -3,6 +3,8 @@
 - Dependency Updates:
   - Update prettier to v3
   - Update eslint-plugin-prettier to v5
+  - Typescript to v5
+  - Node to v18
 
 # 9.1.0
 
