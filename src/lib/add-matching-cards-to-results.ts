@@ -5,7 +5,7 @@ import type { CreditCardType } from "../types";
 export function addMatchingCardsToResults(
   cardNumber: string,
   cardConfiguration: CreditCardType,
-  results: Array<CreditCardType>
+  results: Array<CreditCardType>,
 ): void {
   let i, patternLength;
 

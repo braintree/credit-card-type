@@ -3,7 +3,7 @@ import type { CreditCardType } from "../types";
 type FakeCreditCardTypeOptions = Partial<CreditCardType>;
 
 export function createFakeCreditCardType(
-  options: FakeCreditCardTypeOptions = {}
+  options: FakeCreditCardTypeOptions = {},
 ): CreditCardType {
   const defaultOptions = {
     niceType: "Nice Type",

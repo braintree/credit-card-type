@@ -37,22 +37,22 @@ describe("addMatchingCardsToResults", () => {
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [304] }),
-      results
+      results,
     );
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [30] }),
-      results
+      results,
     );
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [3045] }),
-      results
+      results,
     );
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [3] }),
-      results
+      results,
     );
 
     expect(results.length).toBe(4);
@@ -68,22 +68,22 @@ describe("addMatchingCardsToResults", () => {
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [[304, 305]] }),
-      results
+      results,
     );
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [[30, 99]] }),
-      results
+      results,
     );
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [[3045, 4500]] }),
-      results
+      results,
     );
     addMatchingCardsToResults(
       "304",
       createFakeCreditCardType({ patterns: [[3, 5]] }),
-      results
+      results,
     );
 
     expect(results.length).toBe(4);

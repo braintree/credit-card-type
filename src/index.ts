@@ -49,13 +49,13 @@ function findType(cardType: string | number): CreditCardType {
 
 function getAllCardTypes(): CreditCardType[] {
   return testOrder.map(
-    (cardType) => clone(findType(cardType)) as CreditCardType
+    (cardType) => clone(findType(cardType)) as CreditCardType,
   );
 }
 
 function getCardPosition(
   name: string,
-  ignoreErrorForNotExisting = false
+  ignoreErrorForNotExisting = false,
 ): number {
   const position = testOrder.indexOf(name);
 
@@ -113,13 +113,13 @@ creditCardType.addCard = (config: CreditCardType): void => {
 
 creditCardType.updateCard = (
   cardType: string,
-  updates: Partial<CreditCardType>
+  updates: Partial<CreditCardType>,
 ): void => {
   const originalObject = customCards[cardType] || cardTypes[cardType];
 
   if (!originalObject) {
     throw new Error(
-      `"${cardType}" is not a recognized type. Use \`addCard\` instead.'`
+      `"${cardType}" is not a recognized type. Use \`addCard\` instead.'`,
     );
   }
 

@@ -1,3 +1,12 @@
+#  UNRELEASED
+
+- Dependency Updates:
+  - Node to v18
+-DevDependencies
+  - Update prettier to v3
+  - Update eslint-plugin-prettier to v5
+  - Typescript to v5
+
 # 9.1.0
 
 - Add additional Hiper bins (#115 thanks @upigilam)
