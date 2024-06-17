@@ -1,3 +1,8 @@
+# UNRELEASED
+
+- Dependencies
+  - Update `braces` to 3.0.3
+
 # 10.0.0 
 
 - BREAKING CHANGES
