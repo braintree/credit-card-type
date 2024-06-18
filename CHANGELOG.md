@@ -1,7 +1,6 @@
-# UNRELEASED
+# 10.0.1
 
-- Dependencies
-  - Update `braces` to 3.0.3
+- Update `braces` to 3.0.3
 
 # 10.0.0 
 
