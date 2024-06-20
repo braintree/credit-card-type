@@ -24,6 +24,7 @@ const cardNames: Record<string, CreditCardTypeCardBrandId> = {
   MIR: "mir",
   HIPER: "hiper",
   HIPERCARD: "hipercard",
+  RUPAY: "rupay",
 };
 
 const ORIGINAL_TEST_ORDER = [
@@ -39,6 +40,7 @@ const ORIGINAL_TEST_ORDER = [
   cardNames.MIR,
   cardNames.HIPER,
   cardNames.HIPERCARD,
+  cardNames.RUPAY,
 ];
 
 let testOrder = clone(ORIGINAL_TEST_ORDER) as string[];
