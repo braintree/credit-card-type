@@ -148,6 +148,9 @@ describe("creditCardType", () => {
     ["637568", "hiper"],
     ["63737423", "hiper"],
     ["63743358", "hiper"],
+
+    ["507803", "meeza"],
+    ["5078030000000000", "meeza"],
   ])("Matches %s to brand %s", (number, cardType) => {
     const actual = creditCardType(number);
 
@@ -171,6 +174,7 @@ describe("creditCardType", () => {
         "discover",
         "jcb",
         "unionpay",
+        "meeza",
         "maestro",
         "elo",
         "mir",
@@ -180,8 +184,8 @@ describe("creditCardType", () => {
     ],
     ["2", ["mastercard", "jcb", "mir"]],
     ["3", ["american-express", "diners-club", "jcb"]],
-    ["5", ["mastercard", "maestro", "elo"]],
-    ["50", ["maestro", "elo"]],
+    ["5", ["mastercard", "meeza", "maestro", "elo"]],
+    ["50", ["meeza", "maestro", "elo"]],
     ["6", ["discover", "unionpay", "maestro", "elo", "hiper", "hipercard"]],
     ["60", ["discover", "maestro", "hipercard"]],
     ["601", ["discover", "maestro"]],
@@ -198,6 +202,8 @@ describe("creditCardType", () => {
     ["40117", ["visa", "elo"]],
     ["43893", ["visa", "elo"]],
     ["45763", ["visa", "elo"]],
+
+    ["507803", ["meeza"]],
 
     ["6277", ["unionpay", "maestro", "elo"]],
     ["62778", ["unionpay", "maestro", "elo"]],
@@ -257,6 +263,7 @@ describe("creditCardType", () => {
     ["JCB", "30569309025904", { size: 3, name: "CVV" }],
     ["Diners Club", "30569309025904", { size: 3, name: "CVV" }],
     ["UnionPay", "6220558812340000", { size: 3, name: "CVN" }],
+    ["Meeza", "5078030000000000", { size: 3, name: "CVV" }],
     ["Maestro", "6304000000000000", { size: 3, name: "CVC" }],
     ["Mir", "2200000000000000", { size: 3, name: "CVP2" }],
   ])("returns security codes for %s", (brand, number, code) => {
@@ -271,6 +278,7 @@ describe("creditCardType", () => {
       "6304000000000000",
       { type: "maestro", lengths: [12, 13, 14, 15, 16, 17, 18, 19] },
     ],
+    ["Meeza", "507803", { type: "meeza", lengths: [16] }],
     ["Diners Club", "305", { type: "diners-club", lengths: [14, 16, 19] }],
     ["Discover", "6011", { type: "discover", lengths: [16, 19] }],
     ["Visa", "4", { type: "visa", lengths: [16, 18, 19] }],
