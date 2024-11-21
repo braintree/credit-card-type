@@ -125,7 +125,7 @@ describe("creditCardType", () => {
     ["6221558812340000", "unionpay"],
     ["6269992058134322", "unionpay"],
     ["622018111111111111", "unionpay"],
-    ["8", "unionpay"],
+    ["8110", "unionpay"],
     ["8100513433325374", "unionpay"],
     ["8111700872004845", "unionpay"],
     ["8141618644273338", "unionpay"],
@@ -148,6 +148,10 @@ describe("creditCardType", () => {
     ["637568", "hiper"],
     ["63737423", "hiper"],
     ["63743358", "hiper"],
+
+    ["60000", "rupay"],
+    ["6073830123456789", "rupay"],
+    ["8273830123456789", "rupay"],
   ])("Matches %s to brand %s", (number, cardType) => {
     const actual = creditCardType(number);
 
@@ -176,15 +180,19 @@ describe("creditCardType", () => {
         "mir",
         "hiper",
         "hipercard",
+        "rupay",
       ],
     ],
     ["2", ["mastercard", "jcb", "mir"]],
     ["3", ["american-express", "diners-club", "jcb"]],
-    ["5", ["mastercard", "maestro", "elo"]],
-    ["50", ["maestro", "elo"]],
-    ["6", ["discover", "unionpay", "maestro", "elo", "hiper", "hipercard"]],
-    ["60", ["discover", "maestro", "hipercard"]],
-    ["601", ["discover", "maestro"]],
+    ["5", ["mastercard", "maestro", "elo", "rupay"]],
+    ["50", ["maestro", "elo", "rupay"]],
+    [
+      "6",
+      ["discover", "unionpay", "maestro", "elo", "hiper", "hipercard", "rupay"],
+    ],
+    ["60", ["discover", "maestro", "hipercard", "rupay"]],
+    ["601", ["discover", "maestro", "rupay"]],
     ["64", ["discover", "maestro"]],
     ["62", ["unionpay", "maestro", "elo"]],
 
@@ -211,17 +219,21 @@ describe("creditCardType", () => {
     ["637374", ["maestro", "hiper"]],
     ["637433", ["maestro", "hiper"]],
 
-    ["606", ["maestro", "hipercard"]],
+    ["606", ["maestro", "hipercard", "rupay"]],
 
     ["627", ["unionpay", "maestro", "elo"]],
-    ["6062", ["maestro", "hipercard"]],
+    ["6062", ["maestro", "hipercard", "rupay"]],
     ["6370", ["maestro", "hiper"]],
     ["6376", ["maestro", "hiper"]],
     ["6375", ["maestro", "hiper"]],
-    ["65", ["discover", "maestro", "elo"]],
-    ["655", ["discover", "maestro", "elo"]],
-    ["6550", ["discover", "maestro", "elo"]],
-    ["65502", ["discover", "maestro", "elo"]],
+    ["65", ["discover", "maestro", "elo", "rupay"]],
+    ["655", ["discover", "maestro", "elo", "rupay"]],
+    ["6550", ["discover", "maestro", "elo", "rupay"]],
+    ["65502", ["discover", "maestro", "elo", "rupay"]],
+
+    ["508", ["maestro", "rupay"]],
+    ["6085", ["rupay"]],
+    ["8199", ["rupay"]],
   ])("Matches %s to array %p", (number, expectedNames) => {
     const actualNames = creditCardType(number).map((cardType) => cardType.type);
 
@@ -259,6 +271,7 @@ describe("creditCardType", () => {
     ["UnionPay", "6220558812340000", { size: 3, name: "CVN" }],
     ["Maestro", "6304000000000000", { size: 3, name: "CVC" }],
     ["Mir", "2200000000000000", { size: 3, name: "CVP2" }],
+    ["Rupay", "6073830123456789", { size: 3, name: "CVV" }],
   ])("returns security codes for %s", (brand, number, code) => {
     const parsedCode = creditCardType(number)[0].code;
 
