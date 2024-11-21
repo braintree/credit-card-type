@@ -101,6 +101,17 @@ const cardTypes: CardCollection = {
       size: 3,
     },
   } as BuiltInCreditCardType,
+  meeza: {
+    niceType: "Meeza",
+    type: "meeza",
+    patterns: [507803],
+    gaps: [4, 8, 12],
+    lengths: [16],
+    code: {
+      name: "CVV",
+      size: 3,
+    },
+  } as BuiltInCreditCardType,
   maestro: {
     niceType: "Maestro",
     type: "maestro",
