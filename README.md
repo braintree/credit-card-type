@@ -66,6 +66,7 @@ Named variables are provided for each of the supported card types:
 - `MIR`
 - `UNIONPAY`
 - `VISA`
+- `RUPAY`
 
 #### `code`
 
@@ -85,6 +86,7 @@ Card brands provide different nomenclature for their security codes as well as v
 | `Elo`              | `CVE`  | 3    |
 | `Hiper`            | `CVC`  | 3    |
 | `Hipercard`        | `CVC`  | 4    |
+| `Rupay    `        | `CVV`  | 3    |
 
 A full response for a `Visa` card will look like this:
 
@@ -193,6 +195,7 @@ Adding new cards puts them at the bottom of the priority for testing. Priority i
   creditCardType.types.MIR,
   creditCardType.types.HIPER,
   creditCardType.types.HIPERCARD,
+  creditCardType.types.RUPAY,
 ];
 ```
 
