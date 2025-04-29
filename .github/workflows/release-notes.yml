@@ -1,0 +1,43 @@
+# This workflow will create a release for the most recent deploy
+
+name: Create release
+run-name: Running github release
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - run: |
+          git checkout main
+          git pull
+
+      - name: Get version
+        run: echo "latest_version=$(npm pkg get version --workspaces=false | tr -d \")" >> $GITHUB_ENV
+
+      - name: Get details
+        run: |
+          {
+            echo 'release_details<<EOF'
+            awk '/^## / { if (p) exit; p=1 } p' CHANGELOG.md | sed '1d'
+            echo EOF
+          } >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ env.latest_version }}
+          release_name: v${{ env.latest_version }}
+          body: "${{ env.release_details }}"
+          draft: false
+          prerelease: false
