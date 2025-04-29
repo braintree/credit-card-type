@@ -1,0 +1,56 @@
+name: Publish to gh pages
+on:
+  workflow_dispatch:
+  workflow_call:
+
+env:
+  NPM_REGISTRY: https://registry.npmjs.org/
+
+jobs:
+  publish-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Configure Github Credentials
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Pull latest
+        run: |
+          git checkout main
+          git pull
+
+      - run: npm ci
+
+      - name: Get version
+        run: echo "latest_version=$(npm pkg get version --workspaces=false | tr -d \")" >> $GITHUB_ENV
+
+      - name: Build app
+        run: |
+          npm run build
+          npm run build:app
+
+      - name: Copy page index
+        run: cp test/support/index.html dist-app/
+
+      - name: Checkout gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+
+      - name: Add page to current directory
+        run: mv dist-app/* .
+
+      - name: Stage page for commit
+        run: git add restricted-input.js index.html
+
+      - name: Commit page
+        run: git commit -m "Update demo page for restricted-input v${{ env.latest_version }}"
+
+      - name: Push changes
+        run: git push
