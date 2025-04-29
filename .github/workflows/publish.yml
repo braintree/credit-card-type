@@ -1,0 +1,53 @@
+# This workflow will run tests using node, bump the npm version, deploy to npm, and create a release with notes
+
+name: Publish to npm
+run-name: Deploy ${{ github.repository }} to npmjs by @${{ github.actor }}
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Version bump type (major, minor, patch)"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+env:
+  NPM_REGISTRY: https://registry.npmjs.org/
+
+concurrency: # prevent concurrent releases
+  group: npm-publish
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+  bump-version:
+    needs: ci
+    uses: ./.github/workflows/version-bump.yml
+    with:
+      version_type: ${{ inputs.version_type }}
+  publish-npm:
+    needs: bump-version
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          registry-url: ${{ env.NPM_REGISTRY }}
+      - run: git pull # Pull down changes from previous step
+      - run: npm ci
+      - run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.BRAINTREE_NPM_ACCESS_TOKEN }}
+  publish-release:
+    needs: publish-npm
+    uses: ./.github/workflows/release-notes.yml
+  publish-gh-pages:
+    needs: publish-npm
+    uses: ./.github/workflows/publish-gh-pages.yml
