@@ -1,6 +1,14 @@
-name: "Unit Tests"
+name: "CI"
 
-on: [push]
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches:
+      - "*"
 
 jobs:
   build:
@@ -10,8 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: "18.x"
+          node-version-file: '.nvmrc'
       - run: npm install
       - run: npm test
