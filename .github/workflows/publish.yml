@@ -48,6 +48,3 @@ jobs:
   publish-release:
     needs: publish-npm
     uses: ./.github/workflows/release-notes.yml
-  publish-gh-pages:
-    needs: publish-npm
-    uses: ./.github/workflows/publish-gh-pages.yml
