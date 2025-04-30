@@ -276,4 +276,6 @@ nvm install
 npm install
 ```
 
+### Testing
+
 All testing dependencies will be installed upon `npm install` and the test suite executed with `npm test`.
