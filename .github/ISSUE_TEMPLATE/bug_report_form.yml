@@ -39,7 +39,10 @@ body:
     id: browsers
     attributes:
       label: What browsers are you seeing the problem on?
-      description: List browsers where you see the problem reported.
+      description: |
+        List browsers where you see the problem reported. For example:
+          * Mac OS 15.3.5, Chrome 130.0.1234.987
+          * Android 14, Firefox 133.0
+          * iPadOS 17.1, Safari
       placeholder: 'For each browser specify 1) operating system and version 2) browser name and version'
-      value: 'OS browser version'
-      
+
