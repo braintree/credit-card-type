@@ -1,6 +1,6 @@
-import { clone } from "./clone";
-import { matches } from "./matches";
-import type { CreditCardType } from "../types";
+import { clone } from "./clone.js";
+import { matches } from "./matches.js";
+import type { CreditCardType } from "../types.js";
 
 export function addMatchingCardsToResults(
   cardNumber: string,

@@ -2,12 +2,16 @@
   "compilerOptions": {
     "allowJs": true,
     "esModuleInterop": true,
-    "outDir": "./dist",
-    "module": "commonjs",
-    "target": "es5",
+    "allowSyntheticDefaultImports": true,
     "lib": ["es2015", "dom"],
-    "strict": true
+    "strict": true,
+    "declaration": true,
+    "module": "node16",
+    "moduleResolution": "node16",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./src/__tests__/**/*"]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["test", "node_modules", "dist"]
 }

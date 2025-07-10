@@ -1,6 +1,6 @@
-import { findBestMatch } from "../lib/find-best-match";
+import { findBestMatch } from "../../src/lib/find-best-match.js";
 
-import { createFakeCreditCardType } from "./helper";
+import { createFakeCreditCardType } from "./helper.test.js";
 
 describe("findBestMatch", () => {
   it("returns nothing if there are not enough results to try to match", () => {

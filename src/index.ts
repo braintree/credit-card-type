@@ -1,13 +1,13 @@
-import cardTypes = require("./lib/card-types");
-import { addMatchingCardsToResults } from "./lib/add-matching-cards-to-results";
-import { isValidInputType } from "./lib/is-valid-input-type";
-import { findBestMatch } from "./lib/find-best-match";
-import { clone } from "./lib/clone";
+import cardTypes from "./lib/card-types.js";
+import { addMatchingCardsToResults } from "./lib/add-matching-cards-to-results.js";
+import { isValidInputType } from "./lib/is-valid-input-type.js";
+import { findBestMatch } from "./lib/find-best-match.js";
+import { clone } from "./lib/clone.js";
 import type {
   CreditCardType,
   CardCollection,
   CreditCardTypeCardBrandId,
-} from "./types";
+} from "./types.js";
 
 let customCards = {} as CardCollection;
 
@@ -119,7 +119,7 @@ creditCardType.updateCard = (
 
   if (!originalObject) {
     throw new Error(
-      `"${cardType}" is not a recognized type. Use \`addCard\` instead.'`,
+      `"${cardType}" is not a recognized type. Use \`addCard\` instead.`,
     );
   }
 
@@ -148,4 +148,33 @@ creditCardType.resetModifications = (): void => {
 
 creditCardType.types = cardNames;
 
-export = creditCardType;
+// Named exports (ESM tree-shaking + destructuring)
+export const getTypeInfo = creditCardType.getTypeInfo;
+export const removeCard = creditCardType.removeCard;
+export const addCard = creditCardType.addCard;
+export const updateCard = creditCardType.updateCard;
+export const changeOrder = creditCardType.changeOrder;
+export const resetModifications = creditCardType.resetModifications;
+export const types = cardNames;
+
+// Export main function as named export too
+export { creditCardType };
+
+// Type exports
+export type { CreditCardType, CreditCardTypeCardBrandId };
+
+// Default export (CommonJS compatibility + simple ESM imports)
+export default creditCardType;
+
+// CommonJS compatibility - assign the function to module.exports
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = creditCardType;
+  module.exports.default = creditCardType;
+  module.exports.getTypeInfo = creditCardType.getTypeInfo;
+  module.exports.removeCard = creditCardType.removeCard;
+  module.exports.addCard = creditCardType.addCard;
+  module.exports.updateCard = creditCardType.updateCard;
+  module.exports.changeOrder = creditCardType.changeOrder;
+  module.exports.resetModifications = creditCardType.resetModifications;
+  module.exports.types = cardNames;
+}

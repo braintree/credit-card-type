@@ -1,4 +1,4 @@
-import { CreditCardType } from "../types";
+import { CreditCardType } from "../types.js";
 
 function hasEnoughResultsToDetermineBestMatch(
   results: CreditCardType[],

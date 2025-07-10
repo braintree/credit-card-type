@@ -1,4 +1,4 @@
-import type { BuiltInCreditCardType, CardCollection } from "../types";
+import type { BuiltInCreditCardType, CardCollection } from "../types.js";
 
 const cardTypes: CardCollection = {
   visa: {
@@ -193,4 +193,4 @@ const cardTypes: CardCollection = {
   } as BuiltInCreditCardType,
 };
 
-export = cardTypes;
+export default cardTypes;
