@@ -1,4 +1,4 @@
-import { isValidInputType } from "../lib/is-valid-input-type";
+import { isValidInputType } from "../../src/lib/is-valid-input-type.js";
 
 describe("isValidInputType", () => {
   it("returns true if value is a string", () => {

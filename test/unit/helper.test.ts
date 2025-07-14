@@ -1,4 +1,4 @@
-import type { CreditCardType } from "../types";
+import type { CreditCardType } from "../../src/types.js";
 
 type FakeCreditCardTypeOptions = Partial<CreditCardType>;
 

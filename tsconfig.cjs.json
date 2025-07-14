@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/cjs",
+    "module": "commonjs",
+    "target": "es5",
+    "declaration": true,
+    "declarationDir": "./dist/cjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "verbatimModuleSyntax": false
+  }
+}

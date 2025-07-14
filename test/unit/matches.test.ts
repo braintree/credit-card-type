@@ -1,4 +1,4 @@
-import { matches } from "../lib/matches";
+import { matches } from "../../src/lib/matches.js";
 
 describe("matches", () => {
   describe("Array", () => {

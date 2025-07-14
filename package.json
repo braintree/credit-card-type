@@ -2,15 +2,28 @@
   "name": "credit-card-type",
   "version": "10.0.2",
   "description": "A library for determining credit card type",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "/dist/cjs/index.js",
+  "module": "/dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "scripts": {
     "lint": "eslint --ext js,ts .",
     "posttest": "npm run lint",
-    "test": "jest",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest",
+    "test:integration": "npm run test:integration:cjs && npm run test:integration:esm && npm run test:integration:imports",
+    "test:integration:cjs": "node test/integration/commonjs.test.cjs",
+    "test:integration:esm": "node test/integration/esm.test.mjs",
+    "test:integration:imports": "node test/integration/esm-mixed-imports.test.mjs",
     "prepublishOnly": "npm run build",
     "prebuild": "prettier --write .",
-    "build": "tsc --declaration"
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json"
   },
   "repository": {
     "type": "git",
@@ -29,12 +42,5 @@
     "prettier": "^3.0.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "<rootDir>/src/__tests__/helper.ts"
-    ]
   }
 }

@@ -1,3 +1,7 @@
+# Unreleased
+
+- Add support for ESM
+
 # 10.0.2
 
 - Update (sub-)dependencies

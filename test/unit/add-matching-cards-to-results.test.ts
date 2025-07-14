@@ -1,6 +1,6 @@
-import { addMatchingCardsToResults } from "../lib/add-matching-cards-to-results";
-import { CreditCardType } from "../types";
-import { createFakeCreditCardType } from "./helper";
+import { addMatchingCardsToResults } from "../../src/lib/add-matching-cards-to-results.js";
+import { CreditCardType } from "../../src/types.js";
+import { createFakeCreditCardType } from "./helper.test.js";
 
 describe("addMatchingCardsToResults", () => {
   it("adds a clone of matching card configurations to results array", () => {
