@@ -1,3 +1,7 @@
+# 10.1.0
+
+- Add support for Verve cards
+
 # 10.0.2
 
 - Update (sub-)dependencies
