@@ -47,6 +47,7 @@ describe("creditCardType", () => {
     ["272", "mastercard"],
     ["2720", "mastercard"],
 
+    ["506099", "verve"],
     ["506100", "verve"],
     ["506127", "verve"],
     ["506129", "verve"],
@@ -58,7 +59,9 @@ describe("creditCardType", () => {
     ["506170", "verve"],
     ["506176", "verve"],
     ["506180", "verve"],
+    ["506195", "verve"],
     ["507865", "verve"],
+    ["507888", "verve"],
     ["507941", "verve"],
     ["5061001234567890123", "verve"],
 
@@ -215,8 +218,11 @@ describe("creditCardType", () => {
     ["43893", ["visa", "elo"]],
     ["45763", ["visa", "elo"]],
 
+    ["506099", ["verve"]],
     ["506100", ["verve"]],
+    ["506195", ["verve"]],
     ["507865", ["verve"]],
+    ["507888", ["verve"]],
     ["50794", ["verve", "maestro"]],
     ["507941", ["verve"]],
 
