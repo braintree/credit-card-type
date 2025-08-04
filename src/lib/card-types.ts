@@ -191,6 +191,38 @@ const cardTypes: CardCollection = {
       size: 3,
     },
   } as BuiltInCreditCardType,
+  verve: {
+    niceType: "Verve",
+    type: "verve",
+    patterns: [
+      [506099, 506127],
+      506129,
+      [506133, 506150],
+      [506158, 506163],
+      506166,
+      506168,
+      506170,
+      506173,
+      [506176, 506180],
+      506184,
+      [506187, 506188],
+      506191,
+      506195,
+      506197,
+      507865,
+      507866,
+      [507868, 507877],
+      [507880, 507888],
+      507900,
+      507941,
+    ],
+    gaps: [4, 8, 12],
+    lengths: [16, 18, 19],
+    code: {
+      name: "CVV",
+      size: 3,
+    },
+  } as BuiltInCreditCardType,
 };
 
 export = cardTypes;
