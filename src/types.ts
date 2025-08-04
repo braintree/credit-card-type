@@ -6,6 +6,7 @@ export type CreditCardTypeCardBrandId =
   | "hiper"
   | "hipercard"
   | "jcb"
+  | "verve"
   | "maestro"
   | "mastercard"
   | "mir"
@@ -24,7 +25,8 @@ type CreditCardTypeCardBrandNiceType =
   | "Mastercard"
   | "Mir"
   | "UnionPay"
-  | "Visa";
+  | "Visa"
+  | "Verve";
 
 type CreditCardTypeSecurityCodeLabel =
   | "CVV"

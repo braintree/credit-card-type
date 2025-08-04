@@ -47,6 +47,21 @@ describe("creditCardType", () => {
     ["272", "mastercard"],
     ["2720", "mastercard"],
 
+    ["506100", "verve"],
+    ["506127", "verve"],
+    ["506129", "verve"],
+    ["506133", "verve"],
+    ["506150", "verve"],
+    ["506158", "verve"],
+    ["506163", "verve"],
+    ["506166", "verve"],
+    ["506170", "verve"],
+    ["506176", "verve"],
+    ["506180", "verve"],
+    ["507865", "verve"],
+    ["507941", "verve"],
+    ["5061001234567890123", "verve"],
+
     ["51", "mastercard"],
     ["52", "mastercard"],
     ["53", "mastercard"],
@@ -171,6 +186,7 @@ describe("creditCardType", () => {
         "discover",
         "jcb",
         "unionpay",
+        "verve",
         "maestro",
         "elo",
         "mir",
@@ -180,8 +196,8 @@ describe("creditCardType", () => {
     ],
     ["2", ["mastercard", "jcb", "mir"]],
     ["3", ["american-express", "diners-club", "jcb"]],
-    ["5", ["mastercard", "maestro", "elo"]],
-    ["50", ["maestro", "elo"]],
+    ["5", ["mastercard", "verve", "maestro", "elo"]],
+    ["50", ["verve", "maestro", "elo"]],
     ["6", ["discover", "unionpay", "maestro", "elo", "hiper", "hipercard"]],
     ["60", ["discover", "maestro", "hipercard"]],
     ["601", ["discover", "maestro"]],
@@ -198,6 +214,11 @@ describe("creditCardType", () => {
     ["40117", ["visa", "elo"]],
     ["43893", ["visa", "elo"]],
     ["45763", ["visa", "elo"]],
+
+    ["506100", ["verve"]],
+    ["507865", ["verve"]],
+    ["50794", ["verve", "maestro"]],
+    ["507941", ["verve"]],
 
     ["6277", ["unionpay", "maestro", "elo"]],
     ["62778", ["unionpay", "maestro", "elo"]],
@@ -259,6 +280,7 @@ describe("creditCardType", () => {
     ["UnionPay", "6220558812340000", { size: 3, name: "CVN" }],
     ["Maestro", "6304000000000000", { size: 3, name: "CVC" }],
     ["Mir", "2200000000000000", { size: 3, name: "CVP2" }],
+    ["Verve", "5061001234567890", { size: 3, name: "CVV" }],
   ])("returns security codes for %s", (brand, number, code) => {
     const parsedCode = creditCardType(number)[0].code;
 
@@ -277,6 +299,7 @@ describe("creditCardType", () => {
     ["Mastercard", "54", { type: "mastercard", lengths: [16] }],
     ["JCB", "35", { type: "jcb", lengths: [16, 17, 18, 19] }],
     ["Mir", "220", { type: "mir", lengths: [16, 17, 18, 19] }],
+    ["Verve", "5061", { type: "verve", lengths: [16, 18, 19] }],
   ])("returns lengths for %s", (brand, number, meta) => {
     const cardType = creditCardType(number)[0];
 
