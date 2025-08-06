@@ -1,5 +1,6 @@
 export function clone<T>(originalObject: T): T | null {
   if (!originalObject) {
+    // TODO: update`
     return null;
   }
 
