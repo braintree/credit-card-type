@@ -1,0 +1,65 @@
+# This workflow will bump the version                                                                                                                                                                                                        [5/1013]
+
+name: Bump version and update changelog
+
+on:
+  workflow_call:
+    inputs:
+      version_type:
+        description: "Version bump type (major, minor, patch)"
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Version bump type (major, minor, patch)"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  version_bump:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Configure Github Credentials
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Check Changelog
+        run: |
+          if ! grep -i -q "## UNRELEASED" CHANGELOG.md; then
+            echo "Error: 'UNRELEASED' not found in CHANGELOG.md. Please ensure the changelog is correctly formatted."
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Bump npm version
+        run: |
+          new_version=$(npm version ${{ inputs.version_type }})
+          echo "new_version=$(echo $new_version | sed 's/v//')" >> $GITHUB_ENV
+
+      - name: Update changelog
+        run: |
+          today=$(date +'%Y-%m-%d')
+          sed -i "s/## unreleased/## ${{ env.new_version }} (${today})/i" CHANGELOG.md
+
+      - name: Commit and push changes
+        run: |
+          git tag -m  ${{ env.new_version }} ${{ env.new_version }}
+          git add --all
+          git commit -m "v${{ env.new_version }}"
+          git push
