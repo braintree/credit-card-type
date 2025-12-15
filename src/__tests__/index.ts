@@ -430,6 +430,30 @@ describe("addCard", () => {
     creditCardType.resetModifications();
   });
 
+  it("adds new nested card types correctly", () => {
+    // this test is mostly prove nested CreditCardType.patterns are valid
+    // see https://github.com/braintree/credit-card-type/pull/147 for inciting issue
+    creditCardType.addCard({
+      niceType: "NestedCard",
+      type: "nested-card",
+      patterns: [41111, [44, 47]],
+      gaps: [4, 8, 12],
+      lengths: [16],
+      code: {
+        name: "cvv",
+        size: 3,
+      },
+    });
+
+    const result = creditCardType("4");
+
+    expect(result).toHaveLength(4);
+    expect(result[0].type).toBe("visa");
+    expect(result[1].type).toBe("maestro");
+    expect(result[2].type).toBe("elo");
+    expect(result[3].type).toBe("nested-card");
+  });
+
   it("adds new card type", () => {
     creditCardType.addCard({
       niceType: "NewCard",

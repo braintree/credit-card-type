@@ -39,7 +39,7 @@ type CreditCardTypeSecurityCodeLabel =
 export type CreditCardType = {
   niceType: string;
   type: string;
-  patterns: number[] | [number[]];
+  patterns: (number | number[])[];
   gaps: number[];
   lengths: number[];
   code: {
