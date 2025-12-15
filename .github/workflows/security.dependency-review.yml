@@ -1,0 +1,10 @@
+name: Security
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  dependency-review:
+    uses: PayPal-Braintree/security-workflows/.github/workflows/dependency-review.yml@main
