@@ -1,4 +1,4 @@
-import creditCardType = require("../index");
+import creditCardType from "../index";
 
 describe("creditCardType", () => {
   it.each([
@@ -421,7 +421,7 @@ describe("removeCard", () => {
   it("throws an error if card type is passed which is not in the array", () => {
     expect(() => {
       creditCardType.removeCard("bogus");
-    }).toThrowError('"bogus" is not a supported card type.');
+    }).toThrow('"bogus" is not a supported card type.');
   });
 });
 
@@ -556,7 +556,7 @@ describe("updateCard", () => {
   it("throws an error if the card type does not exist", () => {
     expect(() => {
       creditCardType.updateCard("foo", {});
-    }).toThrowError('"foo" is not a recognized type. Use `addCard` instead.');
+    }).toThrow('"foo" is not a recognized type. Use `addCard` instead.');
   });
 
   it("throws an error if the type field in the updates object exists and does not match", () => {
@@ -564,7 +564,7 @@ describe("updateCard", () => {
       creditCardType.updateCard(creditCardType.types.VISA, {
         type: "not visa",
       });
-    }).toThrowError("Cannot overwrite type parameter.");
+    }).toThrow("Cannot overwrite type parameter.");
   });
 
   it("does not throw an error if the type field in the updates object exists and does match", () => {
@@ -572,7 +572,7 @@ describe("updateCard", () => {
       creditCardType.updateCard(creditCardType.types.VISA, {
         type: "visa",
       });
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it("updates existing card", () => {
@@ -672,7 +672,7 @@ describe("changeOrder", () => {
   it("throws an error if card type is passed which is not in the array", () => {
     expect(() => {
       creditCardType.changeOrder("bogus", 0);
-    }).toThrowError('"bogus" is not a supported card type.');
+    }).toThrow('"bogus" is not a supported card type.');
   });
 });
 
