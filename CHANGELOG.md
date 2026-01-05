@@ -1,3 +1,15 @@
+# UNRELEASED
+
+- Update dependencies
+  - @types/jest to 30.0.0
+  - eslint to 8.57.1
+  - eslint-plugin-prettier to 5.5.4
+  - jest to 30.2.0
+  - prettier to 3.7.4
+  - ts-jest to 29.4.6
+  - typescript to 5.9.3
+- Update Node to v24
+
 # 10.1.0
 
 - Add support for Verve cards
