@@ -1,4 +1,8 @@
-# Credit Card Type -  Release Notes
+# Credit Card Type - Release Notes
+
+## 10.1.2
+
+- Add @types/node 24.0.0
 
 ## 10.1.1
 
