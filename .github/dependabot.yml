@@ -9,3 +9,12 @@ updates:
         applies-to: security-updates
         patterns:
           - "*"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    allow:
+      - dependency-type: "development"
+        update-types:
+          - "version-update:semver-minor"
