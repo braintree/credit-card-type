@@ -1,6 +1,13 @@
 name: "Unit Tests"
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - "*"
 
 jobs:
   build:
@@ -8,10 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v6
         with:
-          node-version: "18.x"
-      - run: npm install
+          node-version-file: .nvmrc
+      - run: npm ci
+      - run: npx eslint . --ext .js,.ts
       - run: npm test
