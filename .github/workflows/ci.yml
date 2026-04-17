@@ -14,4 +14,4 @@ permissions:
 
 jobs:
   ci:
-    uses: braintree/web-sdk-github-actions/.github/workflows/ci.yml@3d3621c5bb46edf879370cec4e63a34d345db4cf
+    uses: braintree/web-sdk-github-actions/.github/workflows/ci.yml@17a3922575160e8e3ffdb7ecc76c6a3dbfd6a50a
