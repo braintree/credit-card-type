@@ -1,0 +1,59 @@
+name: "PR Title Check"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+      - labeled
+
+jobs:
+  pr-title-check:
+    name: "Validate PR title"
+    if: >-
+      github.actor != 'dependabot[bot]' &&
+      !contains(github.actor, '[bot]') &&
+      github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            build
+            dx
+            ci
+            chore
+            revert
+          scopes: |
+            american-express
+            apple-pay
+            client
+            data-collector
+            fastlane
+            google-payment
+            hosted-fields
+            instant-verification
+            local-payment
+            payment-ready
+            payment-request
+            paypal-checkout
+            paypal-checkout-v6
+            sepa
+            three-d-secure
+            us-bank-account
+            vault-manager
+            venmo
+            deps
+            other
+          ignoreLabels: ignore-semantic-pull-request

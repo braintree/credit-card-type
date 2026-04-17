@@ -48,6 +48,7 @@ module.exports = {
         "vault-manager",
         "venmo",
         "deps",
+        "dev-deps",
         "other",
       ],
     ],
