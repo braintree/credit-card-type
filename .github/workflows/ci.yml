@@ -1,4 +1,4 @@
-name: "Unit Tests"
+name: "CI"
 
 on:
   push:
@@ -10,16 +10,5 @@ on:
       - "*"
 
 jobs:
-  build:
-    name: "Unit Tests on Ubuntu"
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v6
-      - name: Use Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-      - run: npm ci
-      - run: npx eslint . --ext .js,.ts
-      - run: npm test
+  ci:
+    uses: braintree/web-sdk-github-actions/.github/workflows/ci.yml@main
