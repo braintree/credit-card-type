@@ -1,4 +1,4 @@
-name: "PR Title Check"
+name: "PR Validation"
 
 on:
   pull_request:
@@ -55,5 +55,7 @@ jobs:
             vault-manager
             venmo
             deps
+            dev-deps
             other
           ignoreLabels: ignore-semantic-pull-request
+
