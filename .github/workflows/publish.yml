@@ -1,0 +1,27 @@
+name: "Publish to npm"
+run-name: Deploy ${{ github.repository }} to npmjs by @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Version bump type (major, minor, patch)"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  publish:
+    uses: braintree/web-sdk-github-actions/.github/workflows/publish.yml@main
+    with:
+      version-type: ${{ inputs.version_type }}
+    secrets:
+      npm-token: ${{ secrets.BRAINTREE_NPM_ACCESS_TOKEN }}
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+
