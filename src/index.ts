@@ -70,6 +70,7 @@ function getCardPosition(
 
 function creditCardType(cardNumber: string): Array<CreditCardType> {
   const results = [] as CreditCardType[];
+  cardNumber = String(cardNumber).replace(/\s+|-/g, "");
 
   if (!isValidInputType(cardNumber)) {
     return results;
