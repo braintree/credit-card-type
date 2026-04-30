@@ -28,14 +28,14 @@ Only the latest release receives security patches and new versions in the case o
 
 We are committed to working with security researchers in good faith. To support responsible disclosure, our team will:
 
-- Acknowledge your report in a timely manner
-- Keep you informed of our progress toward a fix
-- Notify you before any public disclosure
+* Acknowledge your report in a timely manner
+* Keep you informed of our progress toward a fix
+* Notify you before any public disclosure
 
 We ask that you:
 
-- Do not publicly disclose the issue before it has been resolved
-- Avoid accessing, modifying, or deleting data that does not belong to you
-- Make a good faith effort to avoid disruption to production systems
+* Do not publicly disclose the issue before it has been resolved
+* Avoid accessing, modifying, or deleting data that does not belong to you
+* Make a good faith effort to avoid disruption to production systems
 
 We appreciate responsible disclosure and your efforts to keep Braintree SDK users safe.
