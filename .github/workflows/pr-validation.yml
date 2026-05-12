@@ -8,6 +8,7 @@ on:
       - reopened
       - synchronize
       - labeled
+      - ready_for_review
 
 jobs:
   pr-title-check:
