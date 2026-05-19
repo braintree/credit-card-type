@@ -191,6 +191,17 @@ const cardTypes: CardCollection = {
       size: 3,
     },
   } as BuiltInCreditCardType,
+  naranja: {
+    niceType: "Naranja",
+    type: "naranja",
+    patterns: [589562, 402918, 527572],
+    gaps: [4, 8, 12],
+    lengths: [16],
+    code: {
+      name: "CVV",
+      size: 3,
+    },
+  } as BuiltInCreditCardType,
   verve: {
     niceType: "Verve",
     type: "verve",
