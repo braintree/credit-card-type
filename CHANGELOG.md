@@ -3,8 +3,7 @@
 ## UNRELEASED
 
 - feat(deps): Add [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to the repo
-
-## UNRELEASED
+- Add support for Naranja cards
 
 ## 10.1.2
 
