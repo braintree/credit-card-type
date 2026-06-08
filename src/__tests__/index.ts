@@ -47,6 +47,11 @@ describe("creditCardType", () => {
     ["272", "mastercard"],
     ["2720", "mastercard"],
 
+    ["589562", "naranja"],
+    ["5895626292990446", "naranja"],
+    ["402918", "naranja"],
+    ["527572", "naranja"],
+
     ["506099", "verve"],
     ["506100", "verve"],
     ["506127", "verve"],
@@ -66,7 +71,6 @@ describe("creditCardType", () => {
     ["5061001234567890123", "verve"],
 
     ["51", "mastercard"],
-    ["52", "mastercard"],
     ["53", "mastercard"],
     ["54", "mastercard"],
     ["55", "mastercard"],
@@ -111,7 +115,6 @@ describe("creditCardType", () => {
 
     ["56", "maestro"],
     ["57", "maestro"],
-    ["58", "maestro"],
     ["59", "maestro"],
     ["67", "maestro"],
     ["6304000000000000", "maestro"],
@@ -189,6 +192,7 @@ describe("creditCardType", () => {
         "discover",
         "jcb",
         "unionpay",
+        "naranja",
         "verve",
         "maestro",
         "elo",
@@ -199,7 +203,7 @@ describe("creditCardType", () => {
     ],
     ["2", ["mastercard", "jcb", "mir"]],
     ["3", ["american-express", "diners-club", "jcb"]],
-    ["5", ["mastercard", "verve", "maestro", "elo"]],
+    ["5", ["mastercard", "naranja", "verve", "maestro", "elo"]],
     ["50", ["verve", "maestro", "elo"]],
     ["6", ["discover", "unionpay", "maestro", "elo", "hiper", "hipercard"]],
     ["60", ["discover", "maestro", "hipercard"]],
@@ -207,7 +211,7 @@ describe("creditCardType", () => {
     ["64", ["discover", "maestro"]],
     ["62", ["unionpay", "maestro", "elo"]],
 
-    ["4", ["visa", "maestro", "elo"]],
+    ["4", ["visa", "naranja", "maestro", "elo"]],
     ["43", ["visa", "elo"]],
     ["431", ["visa", "elo"]],
     ["4312", ["visa", "elo"]],
@@ -217,6 +221,11 @@ describe("creditCardType", () => {
     ["40117", ["visa", "elo"]],
     ["43893", ["visa", "elo"]],
     ["45763", ["visa", "elo"]],
+
+    ["52", ["mastercard", "naranja"]],
+    ["58", ["naranja", "maestro"]],
+    ["58956", ["naranja", "maestro"]],
+    ["589562", ["naranja"]],
 
     ["506099", ["verve"]],
     ["506100", ["verve"]],
@@ -287,6 +296,7 @@ describe("creditCardType", () => {
     ["Maestro", "6304000000000000", { size: 3, name: "CVC" }],
     ["Mir", "2200000000000000", { size: 3, name: "CVP2" }],
     ["Verve", "5061001234567890", { size: 3, name: "CVV" }],
+    ["Naranja", "5895626292990446", { size: 3, name: "CVV" }],
   ])("returns security codes for %s", (brand, number, code) => {
     const parsedCode = creditCardType(number)[0].code;
 
@@ -306,6 +316,7 @@ describe("creditCardType", () => {
     ["JCB", "35", { type: "jcb", lengths: [16, 17, 18, 19] }],
     ["Mir", "220", { type: "mir", lengths: [16, 17, 18, 19] }],
     ["Verve", "5061", { type: "verve", lengths: [16, 18, 19] }],
+    ["Naranja", "589562", { type: "naranja", lengths: [16] }],
   ])("returns lengths for %s", (brand, number, meta) => {
     const cardType = creditCardType(number)[0];
 
@@ -447,11 +458,12 @@ describe("addCard", () => {
 
     const result = creditCardType("4");
 
-    expect(result).toHaveLength(4);
+    expect(result).toHaveLength(5);
     expect(result[0].type).toBe("visa");
-    expect(result[1].type).toBe("maestro");
-    expect(result[2].type).toBe("elo");
-    expect(result[3].type).toBe("nested-card");
+    expect(result[1].type).toBe("naranja");
+    expect(result[2].type).toBe("maestro");
+    expect(result[3].type).toBe("elo");
+    expect(result[4].type).toBe("nested-card");
   });
 
   it("adds new card type", () => {
