@@ -1,11 +1,9 @@
 # CHANGELOG
 
-## UNRELEASED
+## 10.2.0
 
 - feat(deps): Add [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to the repo
 - Add support for Naranja cards
-
-## UNRELEASED
 
 ## 10.1.2
 
