@@ -2,6 +2,7 @@ export type CreditCardTypeCardBrandId =
   | "american-express"
   | "diners-club"
   | "discover"
+  | "troy"
   | "elo"
   | "hiper"
   | "hipercard"
@@ -28,7 +29,8 @@ type CreditCardTypeCardBrandNiceType =
   | "UnionPay"
   | "Visa"
   | "Verve"
-  | "Naranja";
+  | "Naranja"
+  | "Troy";
 
 type CreditCardTypeSecurityCodeLabel =
   | "CVV"
