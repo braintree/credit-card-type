@@ -17,8 +17,8 @@ on:
 
 jobs:
   codeql-javascript:
-    uses: braintree/security-workflows/.github/workflows/codeql.yml@main
+    uses: braintree/security-workflows/.github/workflows/codeql.yml@c8038c54b62baeabff63eba5a29f7c28ebac6214  # main
     with:
       language: javascript-typescript
   dependency-review:
-    uses: braintree/security-workflows/.github/workflows/dependency-review.yml@main
+    uses: braintree/security-workflows/.github/workflows/dependency-review.yml@c8038c54b62baeabff63eba5a29f7c28ebac6214  # main
