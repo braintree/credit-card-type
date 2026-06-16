@@ -1,0 +1,20 @@
+name: "Stale Cleanup"
+
+on:
+  schedule:
+    # Runs at midnight UTC every Wednesday
+    - cron: "0 0 * * 3"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  stale:
+    uses: braintree/web-sdk-github-actions/.github/workflows/stale-cleanup.yml@cf4b40ff4b46c96aadbfae38806b8de404a98cb3
+    permissions:
+      actions: write
+      issues: write
+      pull-requests: write
+      contents: write
+    with:
+      start-date: "2026-06-01T00:00:00Z"
