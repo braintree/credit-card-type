@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.3.0
+
+- Add support for Troy cards
+
 ## 10.2.0
 
 - feat(deps): Add [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to the repo
