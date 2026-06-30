@@ -52,6 +52,13 @@ describe("creditCardType", () => {
     ["402918", "naranja"],
     ["527572", "naranja"],
 
+    ["9792100000000001", "troy"],
+    ["9792090000000004", "troy"],
+    ["6502740000000001", "troy"],
+    ["9792", "troy"],
+    ["650274", "troy"],
+    ["6509230000000000", "troy"],
+
     ["506099", "verve"],
     ["506100", "verve"],
     ["506127", "verve"],
@@ -190,6 +197,7 @@ describe("creditCardType", () => {
         "american-express",
         "diners-club",
         "discover",
+        "troy",
         "jcb",
         "unionpay",
         "naranja",
@@ -205,7 +213,10 @@ describe("creditCardType", () => {
     ["3", ["american-express", "diners-club", "jcb"]],
     ["5", ["mastercard", "naranja", "verve", "maestro", "elo"]],
     ["50", ["verve", "maestro", "elo"]],
-    ["6", ["discover", "unionpay", "maestro", "elo", "hiper", "hipercard"]],
+    [
+      "6",
+      ["discover", "troy", "unionpay", "maestro", "elo", "hiper", "hipercard"],
+    ],
     ["60", ["discover", "maestro", "hipercard"]],
     ["601", ["discover", "maestro"]],
     ["64", ["discover", "maestro"]],
@@ -226,6 +237,12 @@ describe("creditCardType", () => {
     ["58", ["naranja", "maestro"]],
     ["58956", ["naranja", "maestro"]],
     ["589562", ["naranja"]],
+
+    ["9", ["troy"]],
+    ["97", ["troy"]],
+    ["979", ["troy"]],
+    ["650274", ["troy"]],
+    ["650923", ["troy"]],
 
     ["506099", ["verve"]],
     ["506100", ["verve"]],
@@ -254,7 +271,7 @@ describe("creditCardType", () => {
     ["6370", ["maestro", "hiper"]],
     ["6376", ["maestro", "hiper"]],
     ["6375", ["maestro", "hiper"]],
-    ["65", ["discover", "maestro", "elo"]],
+    ["65", ["discover", "troy", "maestro", "elo"]],
     ["655", ["discover", "maestro", "elo"]],
     ["6550", ["discover", "maestro", "elo"]],
     ["65502", ["discover", "maestro", "elo"]],
@@ -280,7 +297,6 @@ describe("creditCardType", () => {
     "32",
     "33",
     "7",
-    "9",
   ])("returns an empty array for %s", (unknown) => {
     expect(creditCardType(unknown)).toHaveLength(0);
   });
@@ -297,6 +313,7 @@ describe("creditCardType", () => {
     ["Mir", "2200000000000000", { size: 3, name: "CVP2" }],
     ["Verve", "5061001234567890", { size: 3, name: "CVV" }],
     ["Naranja", "5895626292990446", { size: 3, name: "CVV" }],
+    ["Troy", "9792100000000001", { size: 3, name: "CVV" }],
   ])("returns security codes for %s", (brand, number, code) => {
     const parsedCode = creditCardType(number)[0].code;
 
@@ -317,6 +334,7 @@ describe("creditCardType", () => {
     ["Mir", "220", { type: "mir", lengths: [16, 17, 18, 19] }],
     ["Verve", "5061", { type: "verve", lengths: [16, 18, 19] }],
     ["Naranja", "589562", { type: "naranja", lengths: [16] }],
+    ["Troy", "9792", { type: "troy", lengths: [16] }],
   ])("returns lengths for %s", (brand, number, meta) => {
     const cardType = creditCardType(number)[0];
 
