@@ -59,4 +59,3 @@ jobs:
             dev-deps
             other
           ignoreLabels: ignore-semantic-pull-request
-

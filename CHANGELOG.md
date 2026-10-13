@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 10.3.1
+
+- fix: add new ranges for Elo card types (thanks @Victor-Vechi!)
+
 ## 10.3.0
 
 - Add support for Troy cards
